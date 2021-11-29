@@ -15,7 +15,7 @@ public class CommentDAO {
 	
 	public List<CommentDTO> select(int boardNum) {
 		String query = "SELECT * FROM COMMENTDB WHERE BOARD_NUM = '" + boardNum + "'";
-		ResultSet result = oc.selectData(query);
+		ResultSet result = oc.select(query);
 		
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		if(result == null) {
@@ -35,7 +35,7 @@ public class CommentDAO {
 	}
 	public boolean insert(CommentDTO dto) {
 		String query = "INSERT INTO COMMENTDB VALUES(COMMENTDB_SEQ.NEXTVAL, '" + dto.getWriteId() + "', '" + dto.getWriter() + "', '" + dto.getComment() + "', TO_DATE('" + dto.getCommentDate() + "', 'YYYY-MM-DD'))";
-		int result = oc.insertData(query);
+		int result = oc.insert(query);
 		
 		if(result == 1) {
 			//성공
@@ -47,7 +47,7 @@ public class CommentDAO {
 	}
 	public boolean delete(int commentId) {
 		String query = "DELETE * FROM COMMENTDB WHERE COMMENT_NUM = '" + commentId + "'";
-		int result = oc.deleteData(query);
+		int result = oc.delete(query);
 		
 		if(result == 1) {
 			//성공
@@ -59,7 +59,7 @@ public class CommentDAO {
 	}
 	public boolean update(CommentDTO dto) {
 		String query = "UPDATE COMMENTS, COMMENT_DATE FROM COMMENTDB WHERE COMMENT_NUM = '" + dto.getCommentId() + "'";
-		int result = oc.updaetData(query);
+		int result = oc.update(query);
 		
 		if(result == 1) {
 			//성공

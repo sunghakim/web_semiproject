@@ -1,6 +1,7 @@
 package com.web.writeview.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 import javax.servlet.RequestDispatcher;
@@ -46,10 +47,18 @@ public class WriteviewController extends HttpServlet {
 			}
 			else {
 				//db에 저장 안됨 (오류 발생 알람)
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('데이터베이스 저장 시 문제가 발생했습니다.'); location.href='/Writeview';</script>");
+				out.flush();
 			}
 		}
 		else {
 			//댓글이 없습니다. (알람)
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('댓글 내용이 없습니다.'); location.href='/Writeview';</script>");
+			out.flush();
 		}
 		
 		String view = "/WEB-INF/jsp/writeview/views";
@@ -62,7 +71,6 @@ public class WriteviewController extends HttpServlet {
 /*
 요청해야될 사항 : 
 	COMMENT_NUM 에 시퀀스 처리 해줄것.
-	OracleConnect 문서 새로 받을 것
 	게시글 수정 페이지는 게시글 입력페이지를 이용할 것인지? 아니면 새로운 페이지?
 	댓글 수정은 수정을 누르면 리스트는 그대로인데 댓글 쓰기 칸에 수정 누른 댓글 내용을 불러오기? 아니면 원래 댓글은 사라진 리스트를 보여주면서 댓글 쓰기 칸에 수정 누른 댓글 내용을 불러오기? 아니면 새로운 수정용 페이지?
 	게시글 삭제, 댓글 삭제는 버튼 누르면 쿠키작업처럼 redirect 시키자.
