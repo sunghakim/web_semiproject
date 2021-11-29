@@ -28,7 +28,7 @@ public class WriteviewController extends HttpServlet {
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		commentList = service.getCommentList((int)request.getAttribute("board_num"));
 		
-		String view = "/WEB-INF/jsp/writeview/views";
+		String view = "/WEB-INF/jsp/writeview/views"; //게시글 상세보기 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
@@ -61,7 +61,7 @@ public class WriteviewController extends HttpServlet {
 			out.flush();
 		}
 		
-		String view = "/WEB-INF/jsp/writeview/views";
+		String view = "/WEB-INF/jsp/writeview/views"; //게시글 상세보기 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
@@ -71,8 +71,8 @@ public class WriteviewController extends HttpServlet {
 /*
 요청해야될 사항 : 
 	COMMENT_NUM 에 시퀀스 처리 해줄것.
-	게시글 수정 페이지는 게시글 입력페이지를 이용할 것인지? 아니면 새로운 페이지?
-	댓글 수정은 수정을 누르면 리스트는 그대로인데 댓글 쓰기 칸에 수정 누른 댓글 내용을 불러오기? 아니면 원래 댓글은 사라진 리스트를 보여주면서 댓글 쓰기 칸에 수정 누른 댓글 내용을 불러오기? 아니면 새로운 수정용 페이지?
+	게시글 수정 페이지는 게시글 입력페이지를 이용
+	댓글 수정은 수정을 누르면 사라진 리스트를 보여주면서 댓글 쓰기 칸에 수정 누른 댓글 내용을 불러오기
 	게시글 삭제, 댓글 삭제는 버튼 누르면 쿠키작업처럼 redirect 시키자.
 
 */
