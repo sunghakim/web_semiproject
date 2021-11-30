@@ -3,10 +3,10 @@ package com.web.writeview.model;
 import java.util.*;
 
 public class CommentService {
-	public List<CommentDTO> getCommentList(int boardNum) {
+	public List<CommentDTO> getCommentList(int postNum) {
 		CommentDAO dao = new CommentDAO();
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
-		commentList = dao.selectList(boardNum);
+		commentList = dao.selectList(postNum);
 		
 		return commentList;
 	}
@@ -20,27 +20,39 @@ public class CommentService {
 	public boolean addComment(CommentDTO dto) {
 		CommentDAO dao = new CommentDAO();
 		if(dao.insert(dto)) {
+			dao.commit();
+			dao.close();
 			return true;
 		}
 		else {
+			dao.rollback();
+			dao.close();
 			return false;
 		}
 	}
 	public boolean deleteComment(int commentId) {
 		CommentDAO dao = new CommentDAO();
 		if(dao.delete(commentId)) {
+			dao.commit();
+			dao.close();
 			return true;
 		}
 		else {
+			dao.rollback();
+			dao.close();
 			return false;
 		}
 	}
 	public boolean changeComment(CommentDTO dto) {
 		CommentDAO dao = new CommentDAO();
 		if(dao.update(dto)) {
+			dao.commit();
+			dao.close();
 			return true;
 		}
 		else {
+			dao.rollback();
+			dao.close();
 			return false;
 		}
 	}

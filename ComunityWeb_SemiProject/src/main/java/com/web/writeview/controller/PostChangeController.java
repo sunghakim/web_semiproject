@@ -23,7 +23,7 @@ public class PostChangeController extends HttpServlet {
 		request.setAttribute("제목", dto.get());
 		request.setAttribute("본문", dto.get());
 		*/
-		String view = ""; //게시글 목록 페이지
+		String view = ""; //게시글 작성 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}

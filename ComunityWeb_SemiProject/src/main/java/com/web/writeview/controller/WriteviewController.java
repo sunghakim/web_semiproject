@@ -26,25 +26,35 @@ public class WriteviewController extends HttpServlet {
 		//댓글 리스트 불러오기
 		CommentService service = new CommentService();
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
-		commentList = service.getCommentList((int)request.getAttribute("board_num"));
+		//commentList = service.getCommentList((int)request.getAttribute("board_num"));
+		commentList = service.getCommentList(1); //개인 TEST 용
 		
 		request.setAttribute("cList", commentList);
 		
-		String view = "/WEB-INF/jsp/writeview/views"; //게시글 상세보기 페이지
+		String view = "/WEB-INF/jsp/writeview.jsp"; //게시글 상세보기 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int postId = (int)request.getAttribute("게시글번호");
-		String writerId = (String)request.getAttribute("작성자id");
-		String comments = request.getParameter("댓글내용");
+		//int postId = (int)request.getAttribute("게시글번호");
+		//String writerId = (String)request.getAttribute("작성자id");
+		int postId = 1;
+		String writerId = "sungha";
+		String comments = request.getParameter("context");
 		String date = request.getParameter("date");
 		String commentId = (String)request.getAttribute("댓글id");
 		
+		CommentService service = new CommentService();
+		
 		if(commentId == null) {
-			CommentDTO dto = new CommentDTO(postId, writerId, comments, date);
-			CommentService service = new CommentService();
+			CommentDTO dto = new CommentDTO();
+			dto.setWriteId(postId);
+			dto.setWriter(writerId);
+			dto.setComment(comments);
+			dto.setCommentDate(date);
+			//CommentDTO dto = new CommentDTO(postId, writerId, comments, date);
+			
 			if(service.isValid(dto)) {
 				if(service.addComment(dto)) {
 					//정상적으로 db에 저장됨.
@@ -67,7 +77,6 @@ public class WriteviewController extends HttpServlet {
 		}
 		else {
 			CommentDTO dto = new CommentDTO(Integer.parseInt(commentId), postId, writerId, comments, date);
-			CommentService service = new CommentService();
 			if(service.isValid(dto)) {
 				if(service.changeComment(dto)) {
 					//정상적으로 db에 저장됨.
@@ -89,18 +98,15 @@ public class WriteviewController extends HttpServlet {
 			}
 		}
 		
-		String view = "/WEB-INF/jsp/writeview/views"; //게시글 상세보기 페이지
+		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
+		//commentList = service.getCommentList((int)request.getAttribute("board_num"));
+		commentList = service.getCommentList(1); //개인 TEST 용
+		
+		request.setAttribute("cList", commentList);
+		
+		String view = "/WEB-INF/jsp/writeview.jsp"; //게시글 상세보기 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
 
 }
-
-/*
-요청해야될 사항 : 
-	COMMENT_NUM 에 시퀀스 처리 해줄것.
-	게시글 수정 페이지는 게시글 입력페이지를 이용
-	댓글 수정은 수정을 누르면 사라진 리스트를 보여주면서 댓글 쓰기 칸에 수정 누른 댓글 내용을 불러오기
-	게시글 삭제, 댓글 삭제는 버튼 누르면 쿠키작업처럼 redirect 시키자.
-
-*/

@@ -19,7 +19,12 @@ public class CommentChangeController extends HttpServlet {
 		CommentService service = new CommentService();
 		CommentDTO dto = new CommentDTO();
 		dto = service.getComment(commentId);
-		service.deleteComment(commentId);
+		if(service.deleteComment(commentId)) {
+			//삭제 성공
+		}
+		else {
+			//삭제 실패
+		}
 		
 		request.setAttribute("댓글내용", dto.getComment());
 		

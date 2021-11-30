@@ -13,8 +13,8 @@ public class CommentDAO {
 		this.oc = new OracleConnect();
 	}
 	
-	public List<CommentDTO> selectList(int boardNum) {
-		String query = "SELECT * FROM COMMENTDB WHERE BOARD_NUM = '" + boardNum + "'";
+	public List<CommentDTO> selectList(int postNum) {
+		String query = "SELECT * FROM COMMENTDB WHERE POST_NUM = '" + postNum + "' ORDER BY COMMENT_DATE";
 		ResultSet result = oc.select(query);
 		
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
@@ -24,7 +24,7 @@ public class CommentDAO {
 		else {
 			try {
 				while(result.next()) {
-					CommentDTO dtoSample = new CommentDTO(result.getInt("COMMENT_NUM"), result.getInt("BOARD_NUM"), result.getString("USER_ID"), result.getString("COMMENTS"), result.getDate("COMMENT_DATE"));
+					CommentDTO dtoSample = new CommentDTO(result.getInt("COMMENT_NUM"), result.getInt("POST_NUM"), result.getString("USER_ID"), result.getString("COMMENTS"), result.getDate("COMMENT_DATE"));
 					commentList.add(dtoSample);
 				}
 			} catch (SQLException e) {
@@ -40,7 +40,7 @@ public class CommentDAO {
 		CommentDTO dtoSample = new CommentDTO();;
 		try {
 			dtoSample.setCommentId(result.getInt("COMMENT_NUM"));
-			dtoSample.setWriteId(result.getInt("BOARD_NUM"));
+			dtoSample.setWriteId(result.getInt("POST_NUM"));
 			dtoSample.setWriter(result.getString("USER_ID"));
 			dtoSample.setComment(result.getString("COMMENTS"));
 			dtoSample.setCommentDate(result.getString("COMMENT_DATE"));
@@ -51,14 +51,15 @@ public class CommentDAO {
 		return dtoSample;
 	}
 	public boolean insert(CommentDTO dto) {
-		String query = "INSERT INTO COMMENTDB VALUES(COMMENTDB_SEQ.NEXTVAL, '" + dto.getWriteId() + "', '" + dto.getWriter() + "', '" + dto.getComment() + "', TO_DATE('" + dto.getCommentDate() + "', 'YYYY-MM-DD'))";
+		String query = "INSERT INTO COMMENTDB VALUES(COMMENTNUM_SEQ.NEXTVAL, '" + dto.getWriteId() + "', '" + dto.getWriter() + "', '" + dto.getComment() + "', TO_DATE('" + dto.getCommentDate() + "', 'YYYY-MM-DD'))";
 		int result = oc.insert(query);
 		
 		if(result == 1) {
-			//성공
+			System.out.println("db성공");//성공
 			return true;
 		}
 		else {
+			System.out.println("db실패");
 			return false;
 		}
 	}
