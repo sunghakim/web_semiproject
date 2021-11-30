@@ -28,6 +28,8 @@ public class WriteviewController extends HttpServlet {
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		commentList = service.getCommentList((int)request.getAttribute("board_num"));
 		
+		request.setAttribute("cList", commentList);
+		
 		String view = "/WEB-INF/jsp/writeview/views"; //게시글 상세보기 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
@@ -37,7 +39,7 @@ public class WriteviewController extends HttpServlet {
 		int postId = (int)request.getAttribute("게시글번호");
 		String writerId = (String)request.getAttribute("작성자id");
 		String comments = request.getParameter("댓글내용");
-		String date = request.getParameter("날짜");
+		String date = request.getParameter("date");
 		String commentId = (String)request.getAttribute("댓글id");
 		
 		if(commentId == null) {
