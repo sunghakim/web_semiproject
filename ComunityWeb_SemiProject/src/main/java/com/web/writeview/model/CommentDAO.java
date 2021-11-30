@@ -13,7 +13,7 @@ public class CommentDAO {
 		this.oc = new OracleConnect();
 	}
 	
-	public List<CommentDTO> select(int boardNum) {
+	public List<CommentDTO> selectList(int boardNum) {
 		String query = "SELECT * FROM COMMENTDB WHERE BOARD_NUM = '" + boardNum + "'";
 		ResultSet result = oc.select(query);
 		
@@ -32,6 +32,23 @@ public class CommentDAO {
 			}
 		}
 		return commentList;
+	}
+	public CommentDTO select(int commentNum) {
+		String query = "SELECT * FROM COMMENTDB WHERE COMMENT_NUM = '" + commentNum + "'";
+		ResultSet result = oc.select(query);
+		
+		CommentDTO dtoSample = new CommentDTO();;
+		try {
+			dtoSample.setCommentId(result.getInt("COMMENT_NUM"));
+			dtoSample.setWriteId(result.getInt("BOARD_NUM"));
+			dtoSample.setWriter(result.getString("USER_ID"));
+			dtoSample.setComment(result.getString("COMMENTS"));
+			dtoSample.setCommentDate(result.getString("COMMENT_DATE"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return dtoSample;
 	}
 	public boolean insert(CommentDTO dto) {
 		String query = "INSERT INTO COMMENTDB VALUES(COMMENTDB_SEQ.NEXTVAL, '" + dto.getWriteId() + "', '" + dto.getWriter() + "', '" + dto.getComment() + "', TO_DATE('" + dto.getCommentDate() + "', 'YYYY-MM-DD'))";
@@ -58,7 +75,7 @@ public class CommentDAO {
 		}
 	}
 	public boolean update(CommentDTO dto) {
-		String query = "UPDATE COMMENTS, COMMENT_DATE FROM COMMENTDB WHERE COMMENT_NUM = '" + dto.getCommentId() + "'";
+		String query = "UPDATE COMMENTDB SET COMMENTS = " + dto.getComment() + ", COMMENT_DATE = TO_DATE('" + dto.getCommentDate() + "', 'YYYY-MM-DD') WHERE COMMENT_NUM = '" + dto.getCommentId() + "'";
 		int result = oc.update(query);
 		
 		if(result == 1) {

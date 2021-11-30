@@ -38,27 +38,53 @@ public class WriteviewController extends HttpServlet {
 		String writerId = (String)request.getAttribute("작성자id");
 		String comments = request.getParameter("댓글내용");
 		String date = request.getParameter("날짜");
+		String commentId = (String)request.getAttribute("댓글id");
 		
-		CommentDTO dto = new CommentDTO(postId, writerId, comments, date);
-		CommentService service = new CommentService();
-		if(service.isValid(dto)) {
-			if(service.addComment(dto)) {
-				//정상적으로 db에 저장됨.
+		if(commentId == null) {
+			CommentDTO dto = new CommentDTO(postId, writerId, comments, date);
+			CommentService service = new CommentService();
+			if(service.isValid(dto)) {
+				if(service.addComment(dto)) {
+					//정상적으로 db에 저장됨.
+				}
+				else {
+					//db에 저장 안됨 (오류 발생 알람)
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('데이터베이스 저장 시 문제가 발생했습니다.'); location.href='/Writeview';</script>");
+					out.flush();
+				}
 			}
 			else {
-				//db에 저장 안됨 (오류 발생 알람)
+				//댓글이 없습니다. (알람)
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('데이터베이스 저장 시 문제가 발생했습니다.'); location.href='/Writeview';</script>");
+				out.println("<script>alert('댓글 내용이 없습니다.'); location.href='/Writeview';</script>");
 				out.flush();
 			}
 		}
 		else {
-			//댓글이 없습니다. (알람)
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('댓글 내용이 없습니다.'); location.href='/Writeview';</script>");
-			out.flush();
+			CommentDTO dto = new CommentDTO(Integer.parseInt(commentId), postId, writerId, comments, date);
+			CommentService service = new CommentService();
+			if(service.isValid(dto)) {
+				if(service.changeComment(dto)) {
+					//정상적으로 db에 저장됨.
+				}
+				else {
+					//db에 저장 안됨 (오류 발생 알람)
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('데이터베이스 저장 시 문제가 발생했습니다.'); location.href='/Writeview';</script>");
+					out.flush();
+				}
+			}
+			else {
+				//댓글이 없습니다. (알람)
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('댓글 내용이 없습니다.'); location.href='/Writeview';</script>");
+				out.flush();
+			}
 		}
 		
 		String view = "/WEB-INF/jsp/writeview/views"; //게시글 상세보기 페이지
