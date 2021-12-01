@@ -11,7 +11,7 @@
 	
 	<ul>
 		
-		<li><a href="/Writeview">게시글 상세 페이지</a></li>
+		<li><a href="/PostController">게시글 리스트 페이지</a></li>
 		
 	</ul>
 </body>

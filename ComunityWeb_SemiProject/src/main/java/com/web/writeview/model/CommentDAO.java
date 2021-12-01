@@ -14,7 +14,7 @@ public class CommentDAO {
 	}
 	
 	public List<CommentDTO> selectList(int postNum) {
-		String query = "SELECT * FROM COMMENTDB WHERE POST_NUM = '" + postNum + "' ORDER BY COMMENT_DATE";
+		String query = "SELECT * FROM COMMENTDB WHERE POST_NUM = '" + postNum + "' ORDER BY COMMENT_NUM";
 		ResultSet result = oc.select(query);
 		
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
@@ -78,8 +78,24 @@ public class CommentDAO {
 			return false;
 		}
 	}
+	public boolean deletePostCommentAll(int postId) {
+		//게시글에 있는 댓글 삭제
+		String query = "DELETE FROM COMMENTDB WHERE POST_NUM = '" + postId + "'";
+		System.out.println("쿼리 전달");
+		int result = oc.delete(query);
+		System.out.println("db 끝, result = " + result);
+		if(result >= 1) {
+			//성공
+			System.out.println("삭제됨");
+			return true;
+		}
+		else {
+			System.out.println("삭제안됨");
+			return false;
+		}
+	}
 	public boolean update(CommentDTO dto) {
-		String query = "UPDATE COMMENTDB SET COMMENTS = " + dto.getComment() + ", COMMENT_DATE = TO_DATE('" + dto.getCommentDate() + "', 'YYYY-MM-DD') WHERE COMMENT_NUM = '" + dto.getCommentId() + "'";
+		String query = "UPDATE COMMENTDB SET COMMENTS = '" + dto.getComment() + "', COMMENT_DATE = TO_DATE('" + dto.getCommentDate() + "', 'YYYY-MM-DD') WHERE COMMENT_NUM = '" + dto.getCommentId() + "'";
 		int result = oc.update(query);
 		
 		if(result == 1) {
