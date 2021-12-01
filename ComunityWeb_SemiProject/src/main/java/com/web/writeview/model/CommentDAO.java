@@ -37,18 +37,21 @@ public class CommentDAO {
 		String query = "SELECT * FROM COMMENTDB WHERE COMMENT_NUM = '" + commentNum + "'";
 		ResultSet result = oc.select(query);
 		
-		CommentDTO dtoSample = new CommentDTO();;
-		try {
-			dtoSample.setCommentId(result.getInt("COMMENT_NUM"));
-			dtoSample.setWriteId(result.getInt("POST_NUM"));
-			dtoSample.setWriter(result.getString("USER_ID"));
-			dtoSample.setComment(result.getString("COMMENTS"));
-			dtoSample.setCommentDate(result.getString("COMMENT_DATE"));
-		} catch (SQLException e) {
-			e.printStackTrace();
+		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
+		if(result == null) {
+			
 		}
-		
-		return dtoSample;
+		else {
+			try {
+				while(result.next()) {
+					CommentDTO dtoSample = new CommentDTO(result.getInt("COMMENT_NUM"), result.getInt("POST_NUM"), result.getString("USER_ID"), result.getString("COMMENTS"), result.getDate("COMMENT_DATE"));
+					commentList.add(dtoSample);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return commentList.get(0);
 	}
 	public boolean insert(CommentDTO dto) {
 		String query = "INSERT INTO COMMENTDB VALUES(COMMENTNUM_SEQ.NEXTVAL, '" + dto.getWriteId() + "', '" + dto.getWriter() + "', '" + dto.getComment() + "', TO_DATE('" + dto.getCommentDate() + "', 'YYYY-MM-DD'))";
@@ -64,7 +67,7 @@ public class CommentDAO {
 		}
 	}
 	public boolean delete(int commentId) {
-		String query = "DELETE * FROM COMMENTDB WHERE COMMENT_NUM = '" + commentId + "'";
+		String query = "DELETE FROM COMMENTDB WHERE COMMENT_NUM = '" + commentId + "'";
 		int result = oc.delete(query);
 		
 		if(result == 1) {

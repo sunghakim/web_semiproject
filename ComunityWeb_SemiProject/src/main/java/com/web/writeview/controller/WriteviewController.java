@@ -46,7 +46,7 @@ public class WriteviewController extends HttpServlet {
 		String commentId = (String)request.getAttribute("댓글id");
 		
 		CommentService service = new CommentService();
-		
+		System.out.println((String)request.getAttribute("댓글id") + "|");
 		if(commentId == null) {
 			CommentDTO dto = new CommentDTO();
 			dto.setWriteId(postId);

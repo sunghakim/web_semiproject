@@ -18,7 +18,9 @@ public class CommentDeleteController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int commentId = (int)request.getAttribute("댓글 번호");
+		//int commentId = (int)request.getAttribute("댓글id");
+		int commentId = 12;
+		
 		CommentService service = new CommentService();
 		if(service.deleteComment(commentId)) {
 			//성공
@@ -34,10 +36,6 @@ public class CommentDeleteController extends HttpServlet {
 			out.println("<script>alert('댓글 삭제에 실패했습니다.'); location.href='/Writeview';</script>");
 			out.flush();
 		}
-		
-		String view = "/WEB-INF/jsp/writeview/views"; //게시글 상세보기 페이지
-		RequestDispatcher rd = request.getRequestDispatcher(view);
-		rd.forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

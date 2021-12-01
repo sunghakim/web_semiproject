@@ -27,8 +27,8 @@
 					<div><%= dto.getWriter() %></div>
 					<div><%= dto.getComment() %></div>
 					<div><%= dto.getCommentDate() %></div>
-					<button type="button">수정</button>
-					<button type="button">삭제</button>
+					<button type="button"><a href="/CommentChange">수정</a></button>
+					<button type="button"><a href="/CommentDelete">삭제</a></button>
 				</div>
 				<%
 			}
@@ -36,7 +36,7 @@
 	%>
 	
 	<form id="comment_form" action="/Writeview" method="post">
-		<input type="text" name="context" required>
+		<input type="text" name="context" value="<%= request.getAttribute("댓글내용") %>" required>
 		<input type="hidden" name="date">
 		<button type="submit">등록</button>
 	</form>
