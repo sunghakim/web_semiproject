@@ -23,6 +23,13 @@ public class CommentDTO {
 		this.comment = comment;
 		this.commentDate = commentDate;
 	}
+	public CommentDTO(int commentId, int writeBoardId, String writer, String comment, String commentDate) {
+		this.commentId = commentId;
+		this.writeBoardId = writeBoardId;
+		this.writer = writer;
+		this.comment = comment;
+		this.commentDate = Date.valueOf(commentDate);
+	}
 	public int getCommentId() {
 		return this.commentId;
 	}

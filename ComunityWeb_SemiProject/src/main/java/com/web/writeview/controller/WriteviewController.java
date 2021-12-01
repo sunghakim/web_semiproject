@@ -28,7 +28,9 @@ public class WriteviewController extends HttpServlet {
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		commentList = service.getCommentList((int)request.getAttribute("board_num"));
 		
-		String view = "/WEB-INF/jsp/writeview/views";
+		request.setAttribute("cList", commentList);
+		
+		String view = "/WEB-INF/jsp/writeview/views"; //게시글 상세보기 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
@@ -37,31 +39,57 @@ public class WriteviewController extends HttpServlet {
 		int postId = (int)request.getAttribute("게시글번호");
 		String writerId = (String)request.getAttribute("작성자id");
 		String comments = request.getParameter("댓글내용");
-		String date = request.getParameter("날짜");
+		String date = request.getParameter("date");
+		String commentId = (String)request.getAttribute("댓글id");
 		
-		CommentDTO dto = new CommentDTO(postId, writerId, comments, date);
-		CommentService service = new CommentService();
-		if(service.isValid(dto)) {
-			if(service.addComment(dto)) {
-				//정상적으로 db에 저장됨.
+		if(commentId == null) {
+			CommentDTO dto = new CommentDTO(postId, writerId, comments, date);
+			CommentService service = new CommentService();
+			if(service.isValid(dto)) {
+				if(service.addComment(dto)) {
+					//정상적으로 db에 저장됨.
+				}
+				else {
+					//db에 저장 안됨 (오류 발생 알람)
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('데이터베이스 저장 시 문제가 발생했습니다.'); location.href='/Writeview';</script>");
+					out.flush();
+				}
 			}
 			else {
-				//db에 저장 안됨 (오류 발생 알람)
+				//댓글이 없습니다. (알람)
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('데이터베이스 저장 시 문제가 발생했습니다.'); location.href='/Writeview';</script>");
+				out.println("<script>alert('댓글 내용이 없습니다.'); location.href='/Writeview';</script>");
 				out.flush();
 			}
 		}
 		else {
-			//댓글이 없습니다. (알람)
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('댓글 내용이 없습니다.'); location.href='/Writeview';</script>");
-			out.flush();
+			CommentDTO dto = new CommentDTO(Integer.parseInt(commentId), postId, writerId, comments, date);
+			CommentService service = new CommentService();
+			if(service.isValid(dto)) {
+				if(service.changeComment(dto)) {
+					//정상적으로 db에 저장됨.
+				}
+				else {
+					//db에 저장 안됨 (오류 발생 알람)
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('데이터베이스 저장 시 문제가 발생했습니다.'); location.href='/Writeview';</script>");
+					out.flush();
+				}
+			}
+			else {
+				//댓글이 없습니다. (알람)
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('댓글 내용이 없습니다.'); location.href='/Writeview';</script>");
+				out.flush();
+			}
 		}
 		
-		String view = "/WEB-INF/jsp/writeview/views";
+		String view = "/WEB-INF/jsp/writeview/views"; //게시글 상세보기 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
@@ -71,8 +99,8 @@ public class WriteviewController extends HttpServlet {
 /*
 요청해야될 사항 : 
 	COMMENT_NUM 에 시퀀스 처리 해줄것.
-	게시글 수정 페이지는 게시글 입력페이지를 이용할 것인지? 아니면 새로운 페이지?
-	댓글 수정은 수정을 누르면 리스트는 그대로인데 댓글 쓰기 칸에 수정 누른 댓글 내용을 불러오기? 아니면 원래 댓글은 사라진 리스트를 보여주면서 댓글 쓰기 칸에 수정 누른 댓글 내용을 불러오기? 아니면 새로운 수정용 페이지?
+	게시글 수정 페이지는 게시글 입력페이지를 이용
+	댓글 수정은 수정을 누르면 사라진 리스트를 보여주면서 댓글 쓰기 칸에 수정 누른 댓글 내용을 불러오기
 	게시글 삭제, 댓글 삭제는 버튼 누르면 쿠키작업처럼 redirect 시키자.
 
 */

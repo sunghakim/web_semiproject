@@ -3,6 +3,7 @@ package com.web.writeview.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,9 @@ public class CommentDeleteController extends HttpServlet {
 			out.flush();
 		}
 		
-		response.sendRedirect("/Writeview");
+		String view = "/WEB-INF/jsp/writeview/views"; //게시글 상세보기 페이지
+		RequestDispatcher rd = request.getRequestDispatcher(view);
+		rd.forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
