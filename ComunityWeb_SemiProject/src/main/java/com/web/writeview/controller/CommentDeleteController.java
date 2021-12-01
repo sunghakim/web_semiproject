@@ -19,6 +19,10 @@ public class CommentDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//int commentId = (int)request.getAttribute("댓글id");
+		//
+		//
+		//
+		//
 		int commentId = 12;
 		
 		CommentService service = new CommentService();

@@ -19,7 +19,12 @@ public class CommentChangeController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//int commentId = (int)request.getAttribute("댓글id");
+		//
+		//
+		//
+		//
 		int commentId = 14;
+		
 		request.setAttribute("댓글id", commentId);
 		
 		CommentService service = new CommentService();
@@ -38,6 +43,10 @@ public class CommentChangeController extends HttpServlet {
 		
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		//commentList = service.getCommentList((int)request.getAttribute("board_num"));
+		//
+		//
+		//
+		//
 		commentList = service.getCommentList(1); //개인 TEST 용
 		
 		request.setAttribute("cList", commentList);

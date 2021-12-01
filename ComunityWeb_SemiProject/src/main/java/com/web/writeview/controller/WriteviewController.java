@@ -27,6 +27,10 @@ public class WriteviewController extends HttpServlet {
 		CommentService service = new CommentService();
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		//commentList = service.getCommentList((int)request.getAttribute("board_num"));
+		//
+		//
+		//
+		//
 		commentList = service.getCommentList(1); //개인 TEST 용
 		
 		request.setAttribute("cList", commentList);
@@ -39,8 +43,13 @@ public class WriteviewController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//int postId = (int)request.getAttribute("게시글번호");
 		//String writerId = (String)request.getAttribute("작성자id");
+		//
+		//
+		//
+		//
 		int postId = 1;
 		String writerId = "sungha";
+		
 		String comments = request.getParameter("context");
 		String date = request.getParameter("date");
 		String commentId = (String)request.getAttribute("댓글id");
@@ -53,7 +62,6 @@ public class WriteviewController extends HttpServlet {
 			dto.setWriter(writerId);
 			dto.setComment(comments);
 			dto.setCommentDate(date);
-			//CommentDTO dto = new CommentDTO(postId, writerId, comments, date);
 			
 			if(service.isValid(dto)) {
 				if(service.addComment(dto)) {
@@ -100,6 +108,10 @@ public class WriteviewController extends HttpServlet {
 		
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		//commentList = service.getCommentList((int)request.getAttribute("board_num"));
+		//
+		//
+		//
+		//
 		commentList = service.getCommentList(1); //개인 TEST 용
 		
 		request.setAttribute("cList", commentList);
