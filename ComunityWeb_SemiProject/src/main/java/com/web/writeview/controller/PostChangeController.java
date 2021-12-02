@@ -9,21 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.web.post.model.*;
+
 @WebServlet("/PostChange")
 public class PostChangeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int postId = (int)request.getAttribute("게시글id");
+		int postId = Integer.parseInt(request.getParameter("post_id"));
 		
-		/*Service service = new Service();
-		DTO dto = new DTO();
-		dto = service.get(postId);
+		request.setAttribute("post_id", postId);
 		
-		request.setAttribute("제목", dto.get());
-		request.setAttribute("본문", dto.get());
-		*/
-		String view = ""; //게시글 작성 페이지
+		PostService service = new PostService();
+		PostDTO dto = new PostDTO();
+		dto = service.searchPost(postId);
+		
+		request.setAttribute("post_content", dto.getPost_content());
+		request.setAttribute("post_title", dto.getPost_title());
+		request.setAttribute("board", dto.getBoard_num());
+		
+		String view = "WEB-INF/jsp/postwrite.jsp"; //게시글 수정 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}

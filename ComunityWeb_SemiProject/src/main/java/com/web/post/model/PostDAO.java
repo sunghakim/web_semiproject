@@ -27,7 +27,7 @@ public class PostDAO {
 	}
 	
 	public List<PostDTO> getList() {
-		String query = "SELECT * FROM POSTDB ORDER BY POSTNUM_SEQ DESC"; //postdb 테이블 조회
+		String query = "SELECT * FROM POSTDB ORDER BY POST_NUM DESC"; //postdb 테이블 조회
 		
 		List<PostDTO> datas = new ArrayList<PostDTO>(); //여러 데이터 담을 컬렉션
 		
@@ -62,4 +62,55 @@ public class PostDAO {
 		oc.close();
 	}
 
+	//성하 작업
+	public PostDTO selectPost(int postNum) {
+		String query = "SELECT * FROM POSTDB WHERE POST_NUM = '" + postNum + "'";
+		ResultSet result = oc.select(query);
+		
+		List<PostDTO> postList = new ArrayList<PostDTO>();
+		if(result == null) {
+			
+		}
+		else {
+			try {
+				while(result.next()) {
+					PostDTO dtoSample = new PostDTO();
+					dtoSample.setPost_num(result.getInt("POST_NUM"));
+					dtoSample.setUser_id(result.getString("USER_ID"));
+					dtoSample.setPost_title(result.getString("POST_TITLE"));
+					dtoSample.setPost_content(result.getString("POST_CONTENT"));
+					dtoSample.setPost_date(result.getDate("POST_DATE"));
+					dtoSample.setBoard_num(result.getInt("BOARD_NUM"));
+					postList.add(dtoSample);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return postList.get(0);
+	}
+	public boolean delete(int postNum) {
+		String query = "DELETE FROM POSTDB WHERE POST_NUM = '" + postNum + "'";
+		int result = oc.delete(query);
+		
+		if(result == 1) {
+			//성공
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	public boolean update(PostDTO dto) {
+		String query = "UPDATE POSTDB SET POST_TITLE = '" + dto.getPost_title() + "', POST_CONTENT = '" + dto.getPost_content() + "', POST_DATE = TO_DATE('" + dto.getPost_date() + "', 'YYYY-MM-DD') WHERE POST_NUM = '" + dto.getPost_num() + "'";
+		int result = oc.update(query);
+		
+		if(result == 1) {
+			//성공
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

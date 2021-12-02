@@ -23,6 +23,10 @@ public class PostDTO {
 	public void setPost_date(Date post_date) {
 		this.post_date = post_date;
 	}
+	//성하 작업 추가
+	public void setPost_date(String post_date) {
+		this.post_date = Date.valueOf(post_date);
+	}
 	public int getBoard_num() {
 		return board_num;
 	}
@@ -51,4 +55,3 @@ public class PostDTO {
 	
 
 }
-

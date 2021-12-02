@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.web.post.model.*;
 import com.web.writeview.model.*;
 
 @WebServlet("/Writeview")
@@ -18,20 +19,15 @@ public class WriteviewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//게시글 내용 불러오기
-		//게시글 controller, service, dao, dto 필요.
-		//List<> postList = new ArrayList<>();
-		//postList = ;
+		int postId = Integer.parseInt(request.getParameter("post_id"));
+		PostService p_service = new PostService();
+		PostDTO dto = p_service.searchPost(postId);
+		request.setAttribute("post_info", dto);
 		
 		//댓글 리스트 불러오기
 		CommentService service = new CommentService();
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
-		//commentList = service.getCommentList((int)request.getAttribute("board_num"));
-		//
-		//
-		//
-		//
-		commentList = service.getCommentList(1); //개인 TEST 용
+		commentList = service.getCommentList(postId);
 		
 		request.setAttribute("cList", commentList);
 		
@@ -41,22 +37,19 @@ public class WriteviewController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//int postId = (int)request.getAttribute("게시글번호");
-		//String writerId = (String)request.getAttribute("작성자id");
+		int postId = Integer.parseInt(request.getParameter("post_id"));
 		//
 		//
 		//
-		//
-		int postId = 1;
+		// 쿠키나 세션으로 가져오기
 		String writerId = "sungha";
 		
 		String comments = request.getParameter("context");
 		String date = request.getParameter("date");
-		String commentId = (String)request.getAttribute("댓글id");
+		String commentId = request.getParameter("comment_id");
 		
 		CommentService service = new CommentService();
-		System.out.println((String)request.getAttribute("댓글id") + "|");
-		if(commentId == null) {
+		if(commentId.equals("null")) {
 			CommentDTO dto = new CommentDTO();
 			dto.setWriteId(postId);
 			dto.setWriter(writerId);
@@ -106,13 +99,12 @@ public class WriteviewController extends HttpServlet {
 			}
 		}
 		
+		PostService p_service = new PostService();
+		PostDTO dto = p_service.searchPost(postId);
+		request.setAttribute("post_info", dto);
+		
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
-		//commentList = service.getCommentList((int)request.getAttribute("board_num"));
-		//
-		//
-		//
-		//
-		commentList = service.getCommentList(1); //개인 TEST 용
+		commentList = service.getCommentList(postId); //개인 TEST 용
 		
 		request.setAttribute("cList", commentList);
 		
