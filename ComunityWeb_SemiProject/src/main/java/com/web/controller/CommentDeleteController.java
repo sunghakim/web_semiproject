@@ -1,4 +1,4 @@
-package com.web.writeview.controller;
+package com.web.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.web.writeview.model.CommentService;
+import com.web.model.CommentService;
 
 @WebServlet("/CommentDelete")
 public class CommentDeleteController extends HttpServlet {

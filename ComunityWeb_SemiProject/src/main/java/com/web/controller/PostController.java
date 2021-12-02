@@ -1,4 +1,4 @@
-package com.web.post.controller;
+package com.web.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.web.post.model.*;
+import com.web.model.*;
 
 @WebServlet("/PostController")
 public class PostController extends HttpServlet {
@@ -22,7 +22,7 @@ public class PostController extends HttpServlet {
 		
 		request.setAttribute("datas", datas);
 		
-		String view = "/WEB-INF/jsp/postlistview.jsp"; //게시글 리스트 페이지
+		String view = "/WEB-INF/jsp/board/boardList.jsp"; //게시글 리스트 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
@@ -30,7 +30,7 @@ public class PostController extends HttpServlet {
 		//
 		//
 		//
-		// 게시글 번호는 자동입력 아님?
+		// 게시글 번호는 자동입력 아님? 새글 저장할때 postId 설정하는 번호
 		int postId = 1;
 		//
 		//
@@ -79,7 +79,7 @@ public class PostController extends HttpServlet {
 		List<PostDTO> datas = service.searchAll(); //리스트 가져오기
 		request.setAttribute("datas", datas);
 		
-		String view = "/WEB-INF/jsp/postlistview.jsp"; //게시글 리스트 페이지
+		String view = "/WEB-INF/jsp/board/boardList.jsp"; //게시글 리스트 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}

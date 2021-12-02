@@ -1,4 +1,4 @@
-package com.web.writeview.controller;
+package com.web.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.web.post.model.*;
-import com.web.writeview.model.*;
+import com.web.model.*;
 
 @WebServlet("/Writeview")
 public class WriteviewController extends HttpServlet {
@@ -31,7 +30,7 @@ public class WriteviewController extends HttpServlet {
 		
 		request.setAttribute("cList", commentList);
 		
-		String view = "/WEB-INF/jsp/writeview.jsp"; //게시글 상세보기 페이지
+		String view = "/WEB-INF/jsp/board/readPost.jsp"; //게시글 상세보기 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
@@ -108,7 +107,7 @@ public class WriteviewController extends HttpServlet {
 		
 		request.setAttribute("cList", commentList);
 		
-		String view = "/WEB-INF/jsp/writeview.jsp"; //게시글 상세보기 페이지
+		String view = "/WEB-INF/jsp/board/readPost.jsp"; //게시글 상세보기 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}

@@ -1,9 +1,6 @@
-package com.web.post.model;
+package com.web.model;
 
 import java.util.List;
-
-import com.web.writeview.model.CommentDAO;
-import com.web.writeview.model.CommentDTO;
 
 public class PostService {
 	
@@ -39,10 +36,10 @@ public class PostService {
 	public int deletePost(int postNum) {
 		PostDAO p_dao = new PostDAO();
 		CommentDAO c_dao = new CommentDAO();
-		System.out.println("댓글 삭제 시작");
 		List<CommentDTO> c_List = c_dao.selectList(postNum);
 		System.out.println(c_List.size());
 		if(c_List.size() == 0) {
+			//댓글 없으면
 			if(p_dao.delete(postNum)) {
 				p_dao.commit();
 				p_dao.close();

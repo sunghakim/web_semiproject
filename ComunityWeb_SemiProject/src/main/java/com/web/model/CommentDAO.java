@@ -1,4 +1,4 @@
-package com.web.writeview.model;
+package com.web.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,12 +57,10 @@ public class CommentDAO {
 		String query = "INSERT INTO COMMENTDB VALUES(COMMENTNUM_SEQ.NEXTVAL, '" + dto.getWriteId() + "', '" + dto.getWriter() + "', '" + dto.getComment() + "', TO_DATE('" + dto.getCommentDate() + "', 'YYYY-MM-DD'))";
 		int result = oc.insert(query);
 		
-		if(result == 1) {
-			System.out.println("db성공");//성공
+		if(result == 1) {//성공
 			return true;
 		}
 		else {
-			System.out.println("db실패");
 			return false;
 		}
 	}
@@ -81,16 +79,12 @@ public class CommentDAO {
 	public boolean deletePostCommentAll(int postId) {
 		//게시글에 있는 댓글 삭제
 		String query = "DELETE FROM COMMENTDB WHERE POST_NUM = '" + postId + "'";
-		System.out.println("쿼리 전달");
 		int result = oc.delete(query);
-		System.out.println("db 끝, result = " + result);
 		if(result >= 1) {
 			//성공
-			System.out.println("삭제됨");
 			return true;
 		}
 		else {
-			System.out.println("삭제안됨");
 			return false;
 		}
 	}

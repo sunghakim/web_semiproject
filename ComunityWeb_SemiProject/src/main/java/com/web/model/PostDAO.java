@@ -1,4 +1,4 @@
-package com.web.post.model;
+package com.web.model;
 
 import java.sql.*;
 import java.util.*;

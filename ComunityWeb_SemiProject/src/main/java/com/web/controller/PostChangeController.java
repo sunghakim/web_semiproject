@@ -1,4 +1,4 @@
-package com.web.writeview.controller;
+package com.web.controller;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.web.post.model.*;
+import com.web.model.*;
 
 @WebServlet("/PostChange")
 public class PostChangeController extends HttpServlet {
@@ -28,7 +28,7 @@ public class PostChangeController extends HttpServlet {
 		request.setAttribute("post_title", dto.getPost_title());
 		request.setAttribute("board", dto.getBoard_num());
 		
-		String view = "WEB-INF/jsp/postwrite.jsp"; //게시글 수정 페이지
+		String view = "WEB-INF/jsp/board/boardWrite.jsp"; //게시글 수정 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}

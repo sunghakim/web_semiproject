@@ -1,4 +1,4 @@
-package com.web.writeview.controller;
+package com.web.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.web.post.model.PostDTO;
-import com.web.post.model.PostService;
-import com.web.writeview.model.*;
+import com.web.model.*;
 
 @WebServlet("/CommentChange")
 public class CommentChangeController extends HttpServlet {
@@ -46,7 +44,7 @@ public class CommentChangeController extends HttpServlet {
 		PostDTO p_dto = p_service.searchPost(dto.getWriteId());
 		request.setAttribute("post_info", p_dto);
 		
-		String view = "WEB-INF/jsp/writeview.jsp"; //게시글 상세 페이지
+		String view = "WEB-INF/jsp/board/readPost.jsp"; //게시글 상세 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
