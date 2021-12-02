@@ -13,8 +13,8 @@ public class CommentDAO {
 		this.oc = new OracleConnect();
 	}
 	
-	public List<CommentDTO> select(int boardNum) {
-		String query = "SELECT * FROM COMMENTDB WHERE BOARD_NUM = '" + boardNum + "'";
+	public List<CommentDTO> selectList(int postNum) {
+		String query = "SELECT * FROM COMMENTDB WHERE POST_NUM = '" + postNum + "' ORDER BY COMMENT_DATE";
 		ResultSet result = oc.select(query);
 		
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
@@ -24,7 +24,7 @@ public class CommentDAO {
 		else {
 			try {
 				while(result.next()) {
-					CommentDTO dtoSample = new CommentDTO(result.getInt("COMMENT_NUM"), result.getInt("BOARD_NUM"), result.getString("USER_ID"), result.getString("COMMENTS"), result.getDate("COMMENT_DATE"));
+					CommentDTO dtoSample = new CommentDTO(result.getInt("COMMENT_NUM"), result.getInt("POST_NUM"), result.getString("USER_ID"), result.getString("COMMENTS"), result.getDate("COMMENT_DATE"));
 					commentList.add(dtoSample);
 				}
 			} catch (SQLException e) {
@@ -33,20 +33,41 @@ public class CommentDAO {
 		}
 		return commentList;
 	}
+	public CommentDTO select(int commentNum) {
+		String query = "SELECT * FROM COMMENTDB WHERE COMMENT_NUM = '" + commentNum + "'";
+		ResultSet result = oc.select(query);
+		
+		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
+		if(result == null) {
+			
+		}
+		else {
+			try {
+				while(result.next()) {
+					CommentDTO dtoSample = new CommentDTO(result.getInt("COMMENT_NUM"), result.getInt("POST_NUM"), result.getString("USER_ID"), result.getString("COMMENTS"), result.getDate("COMMENT_DATE"));
+					commentList.add(dtoSample);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return commentList.get(0);
+	}
 	public boolean insert(CommentDTO dto) {
-		String query = "INSERT INTO COMMENTDB VALUES(COMMENTDB_SEQ.NEXTVAL, '" + dto.getWriteId() + "', '" + dto.getWriter() + "', '" + dto.getComment() + "', TO_DATE('" + dto.getCommentDate() + "', 'YYYY-MM-DD'))";
+		String query = "INSERT INTO COMMENTDB VALUES(COMMENTNUM_SEQ.NEXTVAL, '" + dto.getWriteId() + "', '" + dto.getWriter() + "', '" + dto.getComment() + "', TO_DATE('" + dto.getCommentDate() + "', 'YYYY-MM-DD'))";
 		int result = oc.insert(query);
 		
 		if(result == 1) {
-			//성공
+			System.out.println("db성공");//성공
 			return true;
 		}
 		else {
+			System.out.println("db실패");
 			return false;
 		}
 	}
 	public boolean delete(int commentId) {
-		String query = "DELETE * FROM COMMENTDB WHERE COMMENT_NUM = '" + commentId + "'";
+		String query = "DELETE FROM COMMENTDB WHERE COMMENT_NUM = '" + commentId + "'";
 		int result = oc.delete(query);
 		
 		if(result == 1) {
@@ -58,7 +79,7 @@ public class CommentDAO {
 		}
 	}
 	public boolean update(CommentDTO dto) {
-		String query = "UPDATE COMMENTS, COMMENT_DATE FROM COMMENTDB WHERE COMMENT_NUM = '" + dto.getCommentId() + "'";
+		String query = "UPDATE COMMENTDB SET COMMENTS = " + dto.getComment() + ", COMMENT_DATE = TO_DATE('" + dto.getCommentDate() + "', 'YYYY-MM-DD') WHERE COMMENT_NUM = '" + dto.getCommentId() + "'";
 		int result = oc.update(query);
 		
 		if(result == 1) {

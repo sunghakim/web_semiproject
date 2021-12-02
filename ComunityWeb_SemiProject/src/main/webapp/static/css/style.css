@@ -1,0 +1,199 @@
+@charset "UTF-8";
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  min-width: 700px;
+}
+
+/* categories */
+.main {
+  padding: 20px;
+  display: flex;
+}
+
+#catecol {
+  margin-right: 50px;
+}
+.nav-link {
+  height: 50px;
+  width: 200px;
+  font-size: 17px;
+}
+
+/* memberlist */
+.card {
+  width: 80%;
+  border: none;
+}
+#memberlist-clear,
+#memberlist-clearall,
+#memberlist-edit {
+  font-size: 14px;
+  padding: 5px 8px;
+}
+tr,
+td {
+  text-align: center;
+}
+
+/* board */
+
+.container > hr {
+  width: 80%;
+}
+
+.addboard_form > input {
+  width: 60%;
+  margin: 0 10px 20px 40px;
+}
+
+.addboard_form > button {
+  font-size: 16px;
+  padding: 3px 10px;
+  position: absolute;
+  right: 40px;
+  color: #10caf0;
+  border-color: #10caf0;
+}
+.addboard_form > button:hover {
+  background-color: #10caf0;
+  color: white;
+  border-color: #10caf0;
+}
+
+/* notice */
+#notice_form {
+  width: 55%;
+}
+#notic-btn {
+  margin: 0;
+  float: right;
+}
+
+/* footer */
+.wrap {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 60px;
+}
+
+.footer-container {
+  background-color: #0e4bf1;
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+/* nav */
+ul {
+  list-style: none;
+}
+
+.navBar {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%), 0 2px 2px rgb(0 0 0 / 6%),
+    0 0 2px rgb(0 0 0 / 7%);
+}
+
+.navBar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.navBar-home > a {
+  list-style: none;
+  margin-left: 10px;
+}
+
+.navBar-right {
+  margin-top: 15px;
+}
+.navBar ul {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+.navBar ul li {
+  margin-right: 10px;
+}
+.navBar-right .navBar-item > li > button {
+  cursor: pointer;
+  display: inline-block;
+  border: 1px #000 solid;
+  border-radius: 50px;
+  padding: 7px 16px;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.SignIn_btn {
+  background-color: white;
+  color: black;
+}
+.SignIn_btn:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.SignUp_btn,.LogOut_btn {
+  background-color: black;
+  color: white;
+}
+.SignUp_btn:hover {
+  background-color: #333;
+}
+.nav_right .na .navBar a {
+  color: #000;
+  text-decoration: none;
+}
+
+/* mypage */
+h4 {
+  width: 150px;
+}
+.navBar-item li a {
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 100ms ease-in-out;
+}
+.navBar-item li a:hover {
+  transform: scale(1.02);
+}
+
+.card.info {
+  width: 60%;
+}
+.info_box {
+  display: flex;
+  margin-top: 40px;
+}
+
+.info_img {
+  margin: 0 60px 40px 40px;
+}
+.info_id,
+.info_psw {
+  display: flex;
+}
+.info_details > a {
+  text-decoration: none;
+  display: block;
+}
+
+.info_details > button {
+  position: absolute;
+  right: 40px;
+  font-size: 15px;
+}
+
