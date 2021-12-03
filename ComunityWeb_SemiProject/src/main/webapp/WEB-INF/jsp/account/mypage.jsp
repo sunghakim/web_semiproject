@@ -16,12 +16,12 @@
     <nav class="navBar">
       <div class="navBar-container">
         <div class="navBar-home">
-          <a href="#"><i class="fas fa-home"> home</i></a>
+          <a href="index.jsp"><i class="fas fa-home"> home</i></a>
         </div>
         <div class="navBar-right">
           <ul class="navBar-item">
-            <li><a href="#">님 환영합니다.</a></li>
-            <li><button  type="submit" class="SignUp_btn">Log Out</button></li>
+            <li><a href="/mypage">님 환영합니다.</a></li>
+            <li><button  type="submit" class="SignUp_btn" onclick="location.href='/logout'">Log Out</button></li>
           </ul>
         </div>
 
