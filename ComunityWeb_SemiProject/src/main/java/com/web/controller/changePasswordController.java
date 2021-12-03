@@ -40,20 +40,20 @@ public class changePasswordController extends HttpServlet {
 			if (service.updatePassword(dto)) {
 				//변경 성공
 				request.setAttribute("result", "CPsuccess");
-				String view = "/WEB-INF/jsp/myPage/myPage.jsp";
+				String view = "/WEB-INF/jsp/account/mypage.jsp";
 				RequestDispatcher rd = request.getRequestDispatcher(view);
 				rd.forward(request, response);
 			} else {
 				//변경 실패
 				request.setAttribute("result", "CPfailure2");
-				String view = "/WEB-INF/jsp/account/changePassword.jsp";
+				String view = "/WEB-INF/jsp/account/changepsw.jsp";
 				RequestDispatcher rd = request.getRequestDispatcher(view);
 				rd.forward(request, response);
 			}
 		} else {//잘못된 현재 비밀번호 입력시
 			//변경 실패
 			request.setAttribute("result", "CPfailure1");
-			String view = "/WEB-INF/jsp/account/changePassword.jsp";
+			String view = "/WEB-INF/jsp/account/changepsw.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);
 		}
