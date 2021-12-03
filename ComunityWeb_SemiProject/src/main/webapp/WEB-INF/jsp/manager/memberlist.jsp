@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" 
+		 import="com.web.model.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,72 +64,27 @@
                         </tr>
                       </thead>
                       <tbody>
+                      	<%
+
+							List<AccountDTO> datas = (List<AccountDTO>) request.getAttribute("datas");					 
+							for(AccountDTO dto : datas){
+					
+						%>
                         <tr>
                           <td class="pl-4"><input type="checkbox" value="1"> 1</td>
                           <td>
-                              <h5 class="font-medium mb-0">Idkakdadlka</h5>
-                        </td>
+                              <h5 class="font-medium mb-0"><%=dto.getUserID()%></h5>
+                         </td>
                           <td>
-                            <h5 class="font-medium mb-0">Idkakdadlka</h5>
+                            <h5 class="font-medium mb-0"><%=dto.getUserPassword()%></h5>
                           </td>
                           <td>
                           </td>
                         </tr>  
-                        <tr>
-                          <td class="pl-4"><input type="checkbox" value="1"> 1</td>
-                          <td>
-                              <h5 class="font-medium mb-0">Idkakdadlka</h5>
-                        </td>
-                          <td>
-                            <h5 class="font-medium mb-0">Idkakdadlka</h5>
-                          </td>
-                          <td>
-                          </td>
-                        </tr>  
-                        <tr>
-                          <td class="pl-4"><input type="checkbox" value="1"> 1</td>
-                          <td>
-                              <h5 class="font-medium mb-0">Idkakdadlka</h5>
-                        </td>
-                          <td>
-                            <h5 class="font-medium mb-0">Idkakdadlka</h5>
-                          </td>
-                          <td>
-                          </td>
-                        </tr>  
-                        <tr>
-                          <td class="pl-4"><input type="checkbox" value="1"> 1</td>
-                          <td>
-                              <h5 class="font-medium mb-0">Idkakdadlka</h5>
-                        </td>
-                          <td>
-                            <h5 class="font-medium mb-0">Idkakdadlka</h5>
-                          </td>
-                          <td>
-                          </td>
-                        </tr>  
-                        <tr>
-                          <td class="pl-4"><input type="checkbox" value="1"> 1</td>
-                          <td>
-                              <h5 class="font-medium mb-0">Idkakdadlka</h5>
-                        </td>
-                          <td>
-                            <h5 class="font-medium mb-0">Idkakdadlka</h5>
-                          </td>
-                          <td>
-                          </td>
-                        </tr>  
-                        <tr>
-                          <td class="pl-4"><input type="checkbox" value="1"> 1</td>
-                          <td>
-                              <h5 class="font-medium mb-0">Idkakdadlka</h5>
-                        </td>
-                          <td>
-                            <h5 class="font-medium mb-0">Idkakdadlka</h5>
-                          </td>
-                          <td>
-                      </td>
-                    </tr>  
+                        <%
+                        }
+                        %>
+                        
                   </tbody>
                   <tfoot>
                     <tr>

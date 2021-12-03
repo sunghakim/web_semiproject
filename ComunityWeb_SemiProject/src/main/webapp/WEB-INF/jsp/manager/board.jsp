@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" 
+		 import="com.web.model.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,17 +64,28 @@
                           </tr>
                         </thead>
                         <tbody>
+                         <%
+
+							List<Board> datas = (List<Board>) request.getAttribute("datas");					 
+							for(Board dto : datas){
+					
+						%>
                           <tr>
                             <td class="pl-4"><input type="checkbox" value=""> 1</td>
-                            <td class="pl-4"><h5 class="font-medium mb-0">asdlasdkjals</h5></td>
+                            <td class="pl-4"><h5 class="font-medium mb-0"><%=dto.getBOARD_NUM() %></h5></td>
                             <td>
-                                <h5 class="font-medium mb-0">ㅁㄴㅇㅁㅇ;ㅏㅁ</h5>
+                                <h5 class="font-medium mb-0"><%=dto.getBOARD_NAME() %></h5>
                            </td>
 
                             <td>
                               <button type="button" id="memberlist-edit" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fas fa-edit"></i></button>
                             </td>
                           </tr>  
+                          
+                        <%
+                        }
+                        %>
+                        
                         </tbody>
                         <tfoot>
                           <tr>
