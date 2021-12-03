@@ -36,26 +36,36 @@ public class changePasswordController extends HttpServlet {
 		
 		AccountService service = new AccountService();
 		AccountDTO dto = new AccountDTO(UserID, UserPassword, NewUserPassword);
-		if (service.login(dto)) {//올바른 현재 비밀번호 입력시
-			if (service.updatePassword(dto)) {
-				//변경 성공
-				request.setAttribute("result", "CPsuccess");
-				String view = "/WEB-INF/jsp/myPage/myPage.jsp";
-				RequestDispatcher rd = request.getRequestDispatcher(view);
-				rd.forward(request, response);
-			} else {
-				//변경 실패
-				request.setAttribute("result", "CPfailure2");
-				String view = "/WEB-INF/jsp/account/changePassword.jsp";
-				RequestDispatcher rd = request.getRequestDispatcher(view);
-				rd.forward(request, response);
-			}
-		} else {
-			//잘못된 현재 비밀번호 입력시 변경실패
-			request.setAttribute("result", "CPfailure1");
-			String view = "/WEB-INF/jsp/account/changePassword.jsp";
-			RequestDispatcher rd = request.getRequestDispatcher(view);
+		
+		String view = "/WEB-INF/jsp/myPage/myPage.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(view);
+		switch(service.updatePassword(dto)) {
+		case (1):
+			//변경 성공
+			request.setAttribute("result", "CPsuccess");
 			rd.forward(request, response);
+			break;
+		case (2):
+			//변경 실패 - 쿼리문 에러
+			request.setAttribute("result", "CPfailure1");
+			view = "/WEB-INF/jsp/account/changePassword.jsp";
+			rd = request.getRequestDispatcher(view);
+			rd.forward(request, response);
+			break;
+		case (3):
+			//현재 비밀번호 다름
+			request.setAttribute("result", "CPfailure2");
+			view = "/WEB-INF/jsp/account/changePassword.jsp";
+			rd = request.getRequestDispatcher(view);
+			rd.forward(request, response);
+			break;
+		case (4):
+			//데이터베이스에서 중복된 값 오류 검출
+			request.setAttribute("result", "CPfailure3");
+			view = "/WEB-INF/jsp/account/changePassword.jsp";
+			rd = request.getRequestDispatcher(view);
+			rd.forward(request, response);
+			break;
 		}
 	}
 }
