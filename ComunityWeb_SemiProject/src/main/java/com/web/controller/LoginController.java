@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.web.account.model.AccountDTO;
-import com.web.account.model.AccountService;
+import com.web.model.AccountDTO;
+import com.web.model.AccountService;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {

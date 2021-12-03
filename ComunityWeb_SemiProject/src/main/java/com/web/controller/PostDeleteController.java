@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.web.post.model.PostService;
+import com.web.model.PostService;
 
 @WebServlet("/PostDelete")
 public class PostDeleteController extends HttpServlet {

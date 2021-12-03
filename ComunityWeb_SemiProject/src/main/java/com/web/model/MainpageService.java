@@ -2,7 +2,7 @@ package com.web.model;
 
 import java.util.List;
 
-import com.web.post.model.PostDTO;
+import com.web.model.PostDTO;
 
 public class MainpageService {
 

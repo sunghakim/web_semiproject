@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/css/style2.css">
-    <script src="main.js" defer></script>
     <title>비밀번호 변경</title>
 </head>
 <body>
@@ -34,6 +33,33 @@
       </div>
     </form>
   </div>
+  
+<script type="text/javascript">
+	const pwconfirm = document.querySelector('#error');
+	
+	const pass = document.querySelector('.pass_ipt');
+	const passCon = document.querySelector('.pass_confirm');
+	
+	
+	passCon.addEventListener('blur', ()=>{
+	if(pass.value !== passCon.value){
+	        pwconfirm.innerHTML = "비밀번호가 일치하지 않습니다.";
+	        pwconfirm.style.display = "block";
+	    } else{
+	        pwconfirm.style.display = "none";
+	    }
+	});
+	
+	function passwdCheck(form){
+	    if(form.currPasswd.value ==""){
+	        alert("현재 비밀번호를 입력해주세요");
+	        form.currPasswd.focus();
+	        return;
+	
+	    }
+	    form.submit();
+	}
 
+</script>
 </body>
 </html>

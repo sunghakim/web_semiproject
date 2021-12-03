@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.web.account.model.AccountDTO;
-import com.web.account.model.AccountService;
+import com.web.model.AccountDTO;
+import com.web.model.AccountService;
 
-@WebServlet("/quitCommunity")
+@WebServlet("/mypage")
 public class quitCommunityController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

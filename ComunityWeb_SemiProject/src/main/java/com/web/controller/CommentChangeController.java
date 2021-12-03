@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.web.post.model.PostDTO;
-import com.web.post.model.PostService;
-import com.web.writeview.model.*;
+import com.web.model.PostDTO;
+import com.web.model.PostService;
+import com.web.model.*;
 
 @WebServlet("/CommentChange")
 public class CommentChangeController extends HttpServlet {

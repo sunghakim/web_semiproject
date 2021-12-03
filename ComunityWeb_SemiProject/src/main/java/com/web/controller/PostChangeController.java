@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.web.post.model.*;
+import com.web.model.*;
 
 @WebServlet("/PostChange")
 public class PostChangeController extends HttpServlet {

@@ -2,8 +2,8 @@ package com.web.model;
 
 import java.util.List;
 
-import com.web.writeview.model.CommentDAO;
-import com.web.writeview.model.CommentDTO;
+import com.web.model.CommentDAO;
+import com.web.model.CommentDTO;
 
 public class PostService {
 	
