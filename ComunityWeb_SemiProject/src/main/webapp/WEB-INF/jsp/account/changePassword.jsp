@@ -19,7 +19,7 @@
 			</div>
 			<div class="input-box">
 		        <label>새로운 비밀번호</label>
-		        <input class="pass_ipt" type="password" name="newUserPassword"placeholder="Create password" required>   
+		        <input class="pass_ipt" type="password" name="NewUserPassword"placeholder="Create password" required>   
 			</div>
 			<div class="input-box">
 		        <label>비밀번호 확인</label>
@@ -38,12 +38,21 @@
 			%>
 				<h3>비밀번호 변경 실패: 입력하신 현재 비밀번호가 틀립니다.</h3>
 			<% 
-			} else if (result.equals("CPfailure1")) {
+			} else if (result.equals("CPfailure2")) {
 			%>
-				<h3>비밀번호 변경 실패: 입력하신 현재 비밀번호가 틀립니다.</h3>
+				<h3>DB 오류 발생</h3>
+			<% 
+			} else if (result.equals("CPsuccess")) {
+			%>
+				<h3>비밀번호 변경 성공</h3>
+			<% 
+			} else {
+			%>
+				<h3>기타 오류</h3>
 			<% 
 			}
 			%>
+			
     	</form>
 	</div>
 </body>

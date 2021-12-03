@@ -56,20 +56,30 @@ public class AccountService {
 	
 	public boolean updatePassword(AccountDTO dto) {
 		AccountDAO dao = new AccountDAO();
-		if (login(dto)) {
-			if(dao.updatePassword(dto)) {
-				//비밀번호 변경 성공
-				dao.commit();
-				dao.close();
-				return true;
+		List<AccountDTO> data = dao.select(dto.getUserID());
+		if(data.size() == 1) {
+			AccountDTO DBData = data.get(0);
+			if(dto.getUserPassword().equals(DBData.getUserPassword())) {
+				if(dao.updatePassword(dto)) {
+					//비밀번호 변경 성공
+					dto.setUserID(DBData.getUserID());
+					dto.setUserPassword("");
+					dao.commit();
+					dao.close();
+					return true;
+				} else {
+					//비밀번호 변경 실패
+					dao.rollback();
+					dao.close();
+					return false;
+				}
 			} else {
-				//데이터베이스 오류
-				dao.rollback();
-				dao.close();
+				//현재 비밀번호 다름
 				return false;
 			}
 		} else {
-			return false; //원래 비밀번호 오류
+			//데이터베이스에서 중복된 값 오류 검출- 관리자에게 보고
+			return false;
 		}
 	}
 	

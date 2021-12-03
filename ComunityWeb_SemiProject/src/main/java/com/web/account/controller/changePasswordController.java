@@ -29,7 +29,7 @@ public class changePasswordController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String UserPassword = request.getParameter("UserPassword");
-		String NewUserPassword = request.getParameter("newUserPassword");
+		String NewUserPassword = request.getParameter("NewUserPassword");
 		
 		HttpSession session = request.getSession();
 		String UserID = (String) session.getAttribute("UserID");
@@ -50,8 +50,8 @@ public class changePasswordController extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher(view);
 				rd.forward(request, response);
 			}
-		} else {//잘못된 현재 비밀번호 입력시
-			//변경 실패
+		} else {
+			//잘못된 현재 비밀번호 입력시 변경실패
 			request.setAttribute("result", "CPfailure1");
 			String view = "/WEB-INF/jsp/account/changePassword.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(view);
