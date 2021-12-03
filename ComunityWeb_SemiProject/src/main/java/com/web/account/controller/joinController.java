@@ -18,6 +18,7 @@ public class joinController extends HttpServlet {
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
+		
 		String view = "/WEB-INF/jsp/account/joinMember.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
@@ -28,23 +29,15 @@ public class joinController extends HttpServlet {
 			throws ServletException, IOException {
 		String UserID = request.getParameter("UserID");
 		String UserPassword = request.getParameter("UserPassword");
-
+		String fx = request.getParameter("fx");
+		
 		AccountDTO dto = new AccountDTO(UserID, UserPassword);
 		AccountService service = new AccountService();
-
-		if(service.isValid(dto)) {
-			if(service.add(dto)) {
-				response.sendRedirect("/");
-			} else {
-				request.setAttribute("init", dto);
-				request.setAttribute("error", "아이디 중복");
-				String view = "/WEB-INF/jsp/account/joinMember.jsp";
-				RequestDispatcher rd = request.getRequestDispatcher(view);
-				rd.forward(request, response);
-			}
-		} else {
+		
+		if(service.add(dto)) {
+			response.sendRedirect("/");
+		} else {//DB내에서 잘못된 값 감지
 			request.setAttribute("init", dto);
-			request.setAttribute("error", "유효성 에러");
 			String view = "/WEB-INF/jsp/account/joinMember.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);

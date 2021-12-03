@@ -99,4 +99,19 @@ public class AccountService {
 			return false;
 		}
 	}
+	
+	public int checkID(AccountDTO dto) {
+		AccountDAO dao = new AccountDAO();
+		List<AccountDTO> data = dao.select(dto.getUserID());
+		if(data.size() == 0) {
+			//중복되는 아이디 없음
+			return 0;
+		} else if (data.size() == 1) {
+			//중복되는 아이디 검출
+			return 1;
+		} else {
+			//DB 데이터 오류(관리자에게 보고할것)
+			return 2;
+		}
+	}
 }
