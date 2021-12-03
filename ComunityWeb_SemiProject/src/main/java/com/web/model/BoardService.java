@@ -1,4 +1,4 @@
-package com.web.board.model;
+package com.web.model;
 
 import java.util.List;
 

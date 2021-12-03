@@ -1,4 +1,4 @@
-package com.web.account.controller;
+package com.web.controller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.web.account.model.AccountDTO;
 import com.web.account.model.AccountService;
 
-@WebServlet("/myPage")
+@WebServlet("/mypage")
 public class myPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

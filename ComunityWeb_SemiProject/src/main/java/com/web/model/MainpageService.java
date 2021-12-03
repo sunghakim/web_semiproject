@@ -1,4 +1,4 @@
-package com.web.mainpage.model;
+package com.web.model;
 
 import java.util.List;
 

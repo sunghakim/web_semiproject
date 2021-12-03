@@ -1,4 +1,4 @@
-package com.web.main.controller;
+package com.web.controller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;

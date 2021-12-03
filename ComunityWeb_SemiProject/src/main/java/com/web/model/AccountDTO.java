@@ -1,4 +1,4 @@
-package com.web.account.model;
+package com.web.model;
 
 public class AccountDTO {
 	private String UserID;

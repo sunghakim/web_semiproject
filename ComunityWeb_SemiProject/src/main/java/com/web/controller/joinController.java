@@ -1,4 +1,4 @@
-package com.web.account.controller;
+package com.web.controller;
 
 import java.io.IOException;
 

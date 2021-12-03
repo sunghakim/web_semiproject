@@ -1,4 +1,4 @@
-package com.web.writeview.model;
+package com.web.model;
 
 import java.sql.Date;
 

@@ -1,4 +1,4 @@
-package user;
+package com.web.model;
 
 public class Board {
 	private int BOARD_NUM;
