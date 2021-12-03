@@ -71,27 +71,18 @@
     </footer>
   </div>
   
-  	<%
-		String result = (String)request.getAttribute("result");
-		if (result.equals("QCfailure")) {
-	%>
-		 <script>
-			alert("회원 탈퇴 실패: 관리자에게 문의해주세요.");
-		  </script>
-	<% 
-		} else {
-	%>
-		 <script>
-			alert("정상적으로 탈퇴되었습니다.");
-		  </script>	
-    <%		
-		}
-	%>
+
   <script type="text/javascript">
   
 	  function quiteCommunity(){
 	    if(confirm("탈퇴하시겠습니까?")==true){
-	        document.form.submit();
+	    	String result = (String)request.getAttribute("result");
+			if (result.equals("QCfailure")) {
+				alert("회원 탈퇴 실패: 관리자에게 문의해주세요.");
+			}else{
+				alert("정상적으로 탈퇴되었습니다.");
+			}
+	        
 	    }else{
 	        return;
 	    }

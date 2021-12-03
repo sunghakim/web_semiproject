@@ -39,7 +39,7 @@
     </div>
    <!-- notice form -->
     <div class="container col-md-12">
-    <form id="notice_form" class="">
+    <form id="notice_form" class="" action="">
         <div class="mb-3">
           <label for="notice_form" class="form-label">공지사항</label>
           <input  id="notice_title" class="form-control" type="text" placeholder="제목">

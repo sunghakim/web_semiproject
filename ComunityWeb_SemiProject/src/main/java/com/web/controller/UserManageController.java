@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.web.model.UserManagement;
+
 @WebServlet("/memberlist")
 public class UserManageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

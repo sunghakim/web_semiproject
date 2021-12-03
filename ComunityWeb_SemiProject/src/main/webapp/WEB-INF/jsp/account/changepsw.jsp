@@ -10,7 +10,7 @@
 <body>
 <div class="wrapper">
     <h2>비밀번호 변경</h2>
-    <form action="#">
+    <form action="changepswAction.jsp" method="post">
       <div class="input-box">
         <label>현재 비밀번호</label>
         <input class="pass_ipt" type="password" name="password"placeholder="" required>   
