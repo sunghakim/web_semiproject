@@ -14,9 +14,9 @@
  <div class="wrapper">
     <h2>회원가입</h2>
     <form action="#">
-      <div class="input-box id">
-        <input type="text" name="id" placeholder="Enter your ID" required>
-        <button class="id_check_btn" onclick="confirmId()">중복확인</button>
+      <div class="input-box">
+        <input type="text" name="id" placeholder="click here" onclick="confirmId()"required>
+<!--         <button class="id_check_btn" onclick="confirmId()">중복확인</button> -->
       </div>
       <div class="input-box">
         <input class="pass_ipt" type="password" name="password"placeholder="Create password" required>   
@@ -30,27 +30,18 @@
         <input class="submit_btn"type="submit" value="Sign Up Now">
       </div>
       <div class="text">
-        <h3>가입된 계정이 있으신가요? <a href="#">Sign In</a></h3>
+        <h3>가입된 계정이 있으신가요? <a href="/index.jsp">Sign In</a></h3>
       </div>
     </form>
   </div>
    
-   <% 
-		AccountDTO initData = new AccountDTO();
-		String error = "";
-		
-		if(request.getAttribute("init") != null) {
-			initData = (AccountDTO) request.getAttribute("init");
-		}
-		if(request.getAttribute("error") != null) {
-			error = (String)request.getAttribute("error");
-		}
-	%>
+
 <script type="text/javascript">
 function confirmId(){
-	location.href="/confirmIdAction.jsp"
+   window.open("join_checkId.jsp","중복 확인","width=600, height=500");
 }
 
 </script>
+
 </body>
 </html>

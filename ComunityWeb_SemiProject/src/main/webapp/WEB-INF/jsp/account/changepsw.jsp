@@ -10,10 +10,10 @@
 <body>
 <div class="wrapper">
     <h2>비밀번호 변경</h2>
-    <form action="changepswAction.jsp" method="post">
+    <form action="/changepsw" method="post">
       <div class="input-box">
         <label>현재 비밀번호</label>
-        <input class="pass_ipt" type="password" name="password"placeholder="" required>   
+        <input class="pass_ipt" type="password" name="password"placeholder="현재비밀번호" required>   
       </div>
       <div class="input-box">
         <label>새로운 비밀번호</label>
@@ -26,14 +26,38 @@
       </div>
 
       <div class="input-box button">
-        <input class="submit_btn"type="Submit" value="비밀번호 변경하기">
+        <input class="submit_btn"type="submit" value="비밀번호 변경하기">
       </div>
       <div class="text">
         <h3>변경 취소 <a href="/mypage/mypage.html">My Page</a></h3>
       </div>
     </form>
   </div>
-  
+<%
+	
+		String result = (String)request.getAttribute("result");
+  		if (result.equals("CPsuccess")) {
+%>
+		<script>
+			alert("비밀번호가 정상적으로 변경되었습니다.");
+		</script>
+<%
+		}else if (result.equals("CPfailure2")) {
+%>
+		<script>
+			alert("비밀번호 변경에 실패했습니다.");
+
+		</script>
+<%		
+		} else if (result.equals("CPfailure1")){
+%>
+	<script>
+		alert("기존 비밀번호를 다시 확인해주세요.");
+
+	</script>
+<%		
+	}
+%>
 <script type="text/javascript">
 	const pwconfirm = document.querySelector('#error');
 	

@@ -91,20 +91,6 @@ form .text h3 a:hover {
 .input-box.id {
   display: flex;
 }
-.input-box.id > input {
-  border-radius: 6px 0 0 6px;
-}
-.id_check_btn {
-  color: #fff;
-  letter-spacing: 1px;
-  width: 20%;
-  background: #4070f4;
-  cursor: pointer;
-  border: 1.5px solid #c7bebe;
-  border-left: none;
-  border-bottom-width: 2.5px;
-  border-radius: 0 6px 6px 0;
-}
 
 #error {
   padding: 2px;

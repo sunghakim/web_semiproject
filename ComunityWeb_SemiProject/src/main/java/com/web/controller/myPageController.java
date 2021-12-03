@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.web.model.AccountDTO;
 import com.web.model.AccountService;
 
-@WebServlet("/mypage")
+@WebServlet("/myPage")
 public class myPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

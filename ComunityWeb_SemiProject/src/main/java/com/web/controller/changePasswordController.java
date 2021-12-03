@@ -21,7 +21,7 @@ public class changePasswordController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setAttribute("result", "null");
-		String view = "/WEB-INF/jsp/account/changePassword.jsp";
+		String view = "/WEB-INF/jsp/account/changepsw.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}

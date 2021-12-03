@@ -18,7 +18,7 @@ public class joinController extends HttpServlet {
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		String view = "/WEB-INF/jsp/account/joinMember.jsp";
+		String view = "/WEB-INF/jsp/account/join.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
@@ -38,14 +38,14 @@ public class joinController extends HttpServlet {
 			} else {
 				request.setAttribute("init", dto);
 				request.setAttribute("error", "아이디 중복");
-				String view = "/WEB-INF/jsp/account/joinMember.jsp";
+				String view = "/WEB-INF/jsp/account/join.jsp";
 				RequestDispatcher rd = request.getRequestDispatcher(view);
 				rd.forward(request, response);
 			}
 		} else {
 			request.setAttribute("init", dto);
 			request.setAttribute("error", "유효성 에러");
-			String view = "/WEB-INF/jsp/account/joinMember.jsp";
+			String view = "/WEB-INF/jsp/account/join.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);
 		}
