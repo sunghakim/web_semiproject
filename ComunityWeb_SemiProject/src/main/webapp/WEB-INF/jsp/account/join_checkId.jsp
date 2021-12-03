@@ -15,10 +15,17 @@
 
     <h3>아이디 중복확인</h3>
     <form action="/join_checkId">
-        <input type="text" name="userId" placeholder="Enter your ID" required>
+        <input id="checked_id" type="text" name="userId" placeholder="Enter your ID" required>
         <button class="id_check_btn">중복확인</button>
     </form>
-    
+   
+   <script type="text/javascript">
+   function apply(){
+	    const id =document.getElementById("checked_id").value;
+	    window.opener.document.getElementById("confirmed_id").value = id;
+	    window.close();
+   }
+   </script>
     
 </body>
 </html>

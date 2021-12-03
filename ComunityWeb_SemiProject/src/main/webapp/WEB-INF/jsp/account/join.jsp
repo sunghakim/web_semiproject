@@ -15,7 +15,7 @@
     <h2>회원가입</h2>
     <form action="#">
       <div class="input-box">
-        <input type="text" name="id" placeholder="click here" onclick="confirmId()"required>
+        <input type="text" id="confirmed_id" name="id" placeholder="click here" onclick="confirmId()"required>
 <!--         <button class="id_check_btn" onclick="confirmId()">중복확인</button> -->
       </div>
       <div class="input-box">
