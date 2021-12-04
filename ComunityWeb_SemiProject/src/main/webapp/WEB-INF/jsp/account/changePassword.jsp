@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<script src="main.js" defer></script>
+	<script src="IDOverlap.js"></script>
 	<title>비밀번호 변경</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
 			</div>
 			<div class="input-box">
 		        <label>새로운 비밀번호</label>
-		        <input class="pass_ipt" type="password" name="newUserPassword"placeholder="Create password" required>   
+		        <input class="pass_ipt" type="password" name="NewUserPassword"placeholder="Create password" required>   
 			</div>
 			<div class="input-box">
 		        <label>비밀번호 확인</label>
@@ -34,16 +35,28 @@
 			</div>
 			<%
 			String result = (String)request.getAttribute("result");
-			if (result.equals("CPfailure1")) {
+			if (result.equals("CPsuccess")) {
 			%>
-				<h3>비밀번호 변경 실패: 입력하신 현재 비밀번호가 틀립니다.</h3>
+				<h3>비밀번호 변경 성공</h3>
 			<% 
 			} else if (result.equals("CPfailure1")) {
 			%>
-				<h3>비밀번호 변경 실패: 입력하신 현재 비밀번호가 틀립니다.</h3>
+				<h3>오류가 발생했습니다. 다시 시도하거나 다음에 시도해주세요</h3>
+				<h3>오류코드: CPfailure1</h3>
 			<% 
-			}
+			} else if (result.equals("CPfailure2")) {
 			%>
+				<h3>비밀번호 변경 실패: 입력하신 현재 비밀번호가 틀립니다.</h3>
+				<h3>오류코드: CPfailure2</h3>
+			<% 
+			} else if (result.equals("CPfailure3")) {
+			%>
+				<h3>오류가 발생했습니다. 다시 시도하거나 다음에 시도해주세요</h3>
+				<h3>오류코드: CPfailure3</h3>
+			<% 
+			} else {}
+			%>
+			
     	</form>
 	</div>
 </body>

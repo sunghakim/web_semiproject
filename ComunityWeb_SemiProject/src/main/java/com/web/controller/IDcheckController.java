@@ -7,41 +7,46 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import com.web.model.AccountDTO;
 import com.web.model.AccountService;
 
-@WebServlet("/login")
-public class LoginController extends HttpServlet {
+@WebServlet("/IDcheck")
+public class IDcheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("result", "null");
-		String view = "/WEB-INF/jsp/account/login.jsp";
+		//새 창을 띄워서 작동하도록 해야한다. (자바스크립트와 연계 필요)
+		String view = "/WEB-INF/jsp/account/IDcheck.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
+
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String UserID = request.getParameter("UserID");
-		String UserPassword = request.getParameter("UserPassword");
-		
-		AccountDTO dto = new AccountDTO(UserID, UserPassword);
+		AccountDTO dto = new AccountDTO(UserID);
 		AccountService service = new AccountService();
-		HttpSession session = request.getSession();
 		
-		if(service.login(dto)) {
-			//로그인 성공
-			session.setAttribute("UserID", dto.getUserID());
-			response.sendRedirect("/");
-		} else {
-			//로그인 실패
-			request.setAttribute("result", "failure");
-			String view = "/WEB-INF/jsp/account/login.jsp";
+		if(service.checkID(dto) == 0) {
+			//중복되는 아이디 없음
+			request.setAttribute("UserID", dto.getUserID());
+			request.setAttribute("result", "0");
+			String view = "/WEB-INF/jsp/account/IDcheck.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);
+		} else if(service.checkID(dto) == 1) {
+			//중복되는 아이디 발견
+			request.setAttribute("UserID", dto.getUserID());
+			request.setAttribute("result", "1");
+			String view = "/WEB-INF/jsp/account/IDcheck.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(view);
+			rd.forward(request, response);
+		} else {
+			//DB내에서 잘못된 데이터 검출
 		}
+		
 	}
+
 }
