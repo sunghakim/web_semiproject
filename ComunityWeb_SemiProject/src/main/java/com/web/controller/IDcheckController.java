@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.web.model.AccountDTO;
 import com.web.model.AccountService;
 
-@WebServlet("/IDcheck")
+@WebServlet("/join_checkId")
 public class IDcheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//새 창을 띄워서 작동하도록 해야한다. (자바스크립트와 연계 필요)
-		String view = "/WEB-INF/jsp/account/IDcheck.jsp";
+		String view = "/WEB-INF/jsp/account/join_checkId.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
@@ -33,14 +33,14 @@ public class IDcheckController extends HttpServlet {
 			//중복되는 아이디 없음
 			request.setAttribute("UserID", dto.getUserID());
 			request.setAttribute("result", "0");
-			String view = "/WEB-INF/jsp/account/IDcheck.jsp";
+			String view = "/WEB-INF/jsp/account/join_checkId.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);
 		} else if(service.checkID(dto) == 1) {
 			//중복되는 아이디 발견
 			request.setAttribute("UserID", dto.getUserID());
 			request.setAttribute("result", "1");
-			String view = "/WEB-INF/jsp/account/IDcheck.jsp";
+			String view = "/WEB-INF/jsp/account/join_checkId.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);
 		} else {

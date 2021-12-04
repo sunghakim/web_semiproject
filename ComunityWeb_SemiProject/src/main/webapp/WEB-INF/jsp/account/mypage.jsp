@@ -21,7 +21,7 @@
         <div class="navBar-right">
           <ul class="navBar-item">
             <li><a href="/mypage">님 환영합니다.</a></li>
-            <li><button  type="submit" class="SignUp_btn" onclick="location.href='/logout'">Log Out</button></li>
+            <li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
           </ul>
         </div>
 

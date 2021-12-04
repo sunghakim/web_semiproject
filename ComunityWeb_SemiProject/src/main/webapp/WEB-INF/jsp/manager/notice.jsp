@@ -21,7 +21,7 @@
       <div class="navBar-right">
          <ul class="navBar-item">
             <li>관리자님 환영합니다.</li>
-            <li><button  type="submit" class="LogOut_btn">Log Out</button></li>
+            <li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
           </ul>
     </div>
 

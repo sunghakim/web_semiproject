@@ -5,25 +5,38 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<link rel="stylesheet" href="/static/css/style2.css">
 </head>
 <body>
-	<form action="/login" method="post">
-		<div>
-			<input type="text" name="UserID" placeholder="아이디">
-		</div>
-		<div>
-			<input type="password" name="UserPassword" placeholder="비밀번호">
-		</div>
-		<div>
-			<button type="submit">로그인</button>
-		</div>
-	</form>
+
+<div class="wrapper">
+    <h2>로그인</h2>
+    <form action="/login" method="post">
+      <div class="input-box">
+        <input type="text" id="confirmed_id" name="UserID" placeholder="insert ID" required>
+      </div>
+      <div class="input-box">
+        <input class="pass_ipt" type="password" name="UserPassword" placeholder="insert password" required>   
+      </div>
+
+      <div class="input-box button">
+        <input class="submit_btn"type="submit" value="LogIn Now">
+      </div>
+      <div class="text">
+        <h3>가입된 계정이 없으신가요? <a href="join.jsp">Sign up</a></h3>
+      </div>
+    </form>
+  </div>
+
+
 	<div>
 		<%
 			String result = (String)request.getAttribute("result");
 			if (result.equals("failure")) {
 		%>
-		<h3>로그인 실패: 아이디나 비밀번호가 일치하지 않습니다.</h3>
+		    <script>
+				alert("로그인 실패: 아이디나 비밀번호가 일치하지 않습니다.");
+			</script>
 		<% 
 			}
 		%>

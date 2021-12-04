@@ -114,7 +114,7 @@
         <div class="card-body">
           <h5 class="card-title text-uppercase mb-0">게시판 등록</h5>
         </div>
-        <form class="addboard_form" action="/board" method="">
+        <form class="addboard_form" action="/board" method="post">
             <input type="text" name="" id="board_name" placeholder="게시판 이름">
             <button type="submit" id="addboard_btn" class="btn btn-outline-primary" onclick="boardAdd()">등록</button>
 
