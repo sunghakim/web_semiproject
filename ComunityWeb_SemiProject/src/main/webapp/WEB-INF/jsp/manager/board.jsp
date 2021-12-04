@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" 
-		 import="com.web.model.*"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.web.model.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,11 +65,9 @@
                         </thead>
                         <tbody>
                          <%
-
-							List<Board> datas = (List<Board>) request.getAttribute("datas");					 
-							for(Board dto : datas){
-					
-						%>
+                         List<BoardManageDTO> datas = (List<BoardManageDTO>) request.getAttribute("datas");					 
+                         					for(BoardManageDTO dto : datas){
+                         %>
                           <tr>
                             <td class="pl-4"><input type="checkbox" value=""> 1</td>
                             <td class="pl-4"><h5 class="font-medium mb-0"><%=dto.getBOARD_NUM() %></h5></td>

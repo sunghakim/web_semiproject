@@ -8,14 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserManagement {
+public class MemberManageDAO {
 
 	//db 주소
 	private String dbURL = "";
 	private String dbID = "";
 	private String dbPassword = "";
 
-	public UserManagement() {
+	public MemberManageDAO() {
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -25,8 +25,8 @@ public class UserManagement {
 
 	}
 
-	public List<User> userList() {
-		List<User> userList = new ArrayList<>();
+	public List<AccountDTO> memberList() {
+		List<AccountDTO> memberList = new ArrayList<>();
 		String SQL = "SELECT USER_ID, PASSWORD FROM ACCOUNTDB";
 
 		try (// db 접속, 쿼리 try-with-resource 사용
@@ -37,17 +37,17 @@ public class UserManagement {
 			while (rs.next()) {
 				String id = rs.getString(1);
 				String password = rs.getString(2);
-				userList.add(new User(id, password));
+				memberList.add(new AccountDTO(id, password));
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return userList;
+		return memberList;
 	}
 
-	public int userDelete(String[] ids) {
+	public int memberDelete(String[] ids) {
 		String SQL = "DELETE ACCOUNTDB WHERE USER_ID IN (?)";
 		
 		StringBuffer id = new StringBuffer();

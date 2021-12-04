@@ -8,14 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardManagement {
+public class BoardManageDAO {
 
 	// db 주소
 	private String dbURL = "";
 	private String dbID = "";
 	private String dbPassword = "";
 	
-	public BoardManagement() {
+	public BoardManageDAO() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch (ClassNotFoundException e) {
@@ -23,9 +23,9 @@ public class BoardManagement {
 		}
 	}
 	
-	public List<Board> boardList() {
+	public List<BoardManageDTO> boardList() {
 		String SQL = "SELECT BOARD_NUM, BOARD_NAME FROM BOARDDB";
-		List<Board> boardList = new ArrayList<>();
+		List<BoardManageDTO> boardList = new ArrayList<>();
 
 		try (// db 접속, 쿼리 try-with-resource 사용
 				Connection conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
@@ -35,7 +35,7 @@ public class BoardManagement {
 			while (rs.next()) {
 				int id = rs.getInt(1);
 				String name = rs.getString(2);
-				boardList.add(new Board(id, name));
+				boardList.add(new BoardManageDTO(id, name));
 			}
 
 		} catch (SQLException e) {

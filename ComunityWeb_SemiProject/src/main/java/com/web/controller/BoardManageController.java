@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.web.model.BoardManagement;
+import com.web.model.BoardManageDAO;
 
-@WebServlet("/board")
-public class BoardController extends HttpServlet{
+@WebServlet("/manageBoard")
+public class BoardManageController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	BoardManagement manage;
+	BoardManageDAO manage;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		manage = new BoardManagement();
+		manage = new BoardManageDAO();
 		
-		req.setAttribute("boardList", manage.boardList());
-		req.getRequestDispatcher("board.jsp").forward(req, resp);
+		req.setAttribute("datas", manage.boardList());
+		req.getRequestDispatcher("/WEB-INF/jsp/manager/board.jsp").forward(req, resp);
 	
 	}
 	
@@ -40,14 +40,14 @@ public class BoardController extends HttpServlet{
 			String categoryName = update[1];
 			System.out.println("수정 전 카테고리 : ...");
 			System.out.println("수정한 카테고리 : " + categoryNum + ", " + categoryName);
-			manage.updateCategory(categoryNum, categoryName);
+			manage.updateCategory(categoryName, categoryNum);
 		}
 		
 		if(delete != null) {
 			System.out.println("지운 카테고리 : " + delete);
 			manage.deleteCategory(delete);
 		}
-		resp.sendRedirect("BoardManagement");
+		resp.sendRedirect("manageBoard");
 
 	}
 }

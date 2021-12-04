@@ -1,10 +1,10 @@
 package com.web.model;
 
-public class Board {
+public class BoardManageDTO {
 	private int BOARD_NUM;
 	private String BOARD_NAME;
 	
-	public Board(int num, String boardName){
+	public BoardManageDTO(int num, String boardName){
 		this.BOARD_NUM = num;
 		this.BOARD_NAME = boardName;
 	}
