@@ -71,7 +71,7 @@
 					
 						%>
                         <tr>
-                          <td class="pl-4"><input type="checkbox" name="deleteUserId" value="<%=dto.getUserID() %>"> 1</td>
+                          <td class="pl-4"><input type="checkbox" name="deleteUserId" value="<%=dto.getUserID() %>"> <%= %></td>
                           <td>
                               <h5 class="font-medium mb-0"><%=dto.getUserID()%></h5>
                          </td>
