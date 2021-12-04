@@ -8,10 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/한수현
 import com.web.model.AccountDTO;
 import com.web.model.AccountService;
 
@@ -38,7 +35,6 @@ public class changePasswordController extends HttpServlet {
 		
 		AccountService service = new AccountService();
 		AccountDTO dto = new AccountDTO(UserID, UserPassword, NewUserPassword);
-<<<<<<< HEAD
 		
 		String view = "/WEB-INF/jsp/myPage/myPage.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(view);
@@ -46,27 +42,6 @@ public class changePasswordController extends HttpServlet {
 		case (1):
 			//변경 성공
 			request.setAttribute("result", "CPsuccess");
-=======
-		if (service.login(dto)) {//올바른 현재 비밀번호 입력시
-			if (service.updatePassword(dto)) {
-				//변경 성공
-				request.setAttribute("result", "CPsuccess");
-				String view = "/WEB-INF/jsp/account/mypage.jsp";
-				RequestDispatcher rd = request.getRequestDispatcher(view);
-				rd.forward(request, response);
-			} else {
-				//변경 실패
-				request.setAttribute("result", "CPfailure2");
-				String view = "/WEB-INF/jsp/account/changepsw.jsp";
-				RequestDispatcher rd = request.getRequestDispatcher(view);
-				rd.forward(request, response);
-			}
-		} else {//잘못된 현재 비밀번호 입력시
-			//변경 실패
-			request.setAttribute("result", "CPfailure1");
-			String view = "/WEB-INF/jsp/account/changepsw.jsp";
-			RequestDispatcher rd = request.getRequestDispatcher(view);
->>>>>>> refs/remotes/origin/한수현
 			rd.forward(request, response);
 			break;
 		case (2):

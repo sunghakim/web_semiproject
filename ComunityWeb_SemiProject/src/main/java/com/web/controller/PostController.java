@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.web.model.*;
 
@@ -27,16 +28,8 @@ public class PostController extends HttpServlet {
 		rd.forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//
-		//
-		//
-		// 게시글 번호는 자동입력 아님? 새글 저장할때 postId 설정하는 번호
-		int postId = 1;
-		//
-		//
-		//
-		//쿠키나 세션 정보 받아오기
-		String writerId = "sungha";
+		HttpSession session = request.getSession();
+		String writerId = (String)session.getAttribute("UserID");
 		
 		String postTitle = request.getParameter("title");
 		String postContent = request.getParameter("content");
@@ -47,7 +40,6 @@ public class PostController extends HttpServlet {
 		PostService service = new PostService();
 		if(postNum == null) {
 			PostDTO dto = new PostDTO();
-			dto.setPost_num(postId);
 			dto.setUser_id(writerId);
 			dto.setPost_title(postTitle);
 			dto.setPost_content(postContent);

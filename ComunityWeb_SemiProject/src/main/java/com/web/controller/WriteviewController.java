@@ -10,12 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.web.model.*;
-<<<<<<< HEAD
-=======
-import com.web.model.*;
->>>>>>> refs/remotes/origin/한수현
 
 @WebServlet("/Writeview")
 public class WriteviewController extends HttpServlet {
@@ -41,11 +38,8 @@ public class WriteviewController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int postId = Integer.parseInt(request.getParameter("post_id"));
-		//
-		//
-		//
-		// 쿠키나 세션으로 가져오기
-		String writerId = "sungha";
+		HttpSession session = request.getSession();
+		String writerId = (String)session.getAttribute("UserID");
 		
 		String comments = request.getParameter("context");
 		String date = request.getParameter("date");

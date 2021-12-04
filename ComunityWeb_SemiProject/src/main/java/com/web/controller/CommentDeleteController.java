@@ -3,6 +3,7 @@ package com.web.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,11 +30,10 @@ public class CommentDeleteController extends HttpServlet {
 			out.flush();
 		}
 		else {
-			//삭제 실패
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('댓글 삭제에 실패했습니다.'); location.href='/PostController';</script>"); //임시로 목록페이지로 넘겼는데 가능하면 상세페이지로 변경
-			out.flush();
+			//삭제 실패 -> 삭제 실패했다고 알림창 프론트에 해달라고 요청
+			String view = "/WEB-INF/jsp/board/readPost.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(view);
+			rd.forward(request, response);
 		}
 	}
 	
