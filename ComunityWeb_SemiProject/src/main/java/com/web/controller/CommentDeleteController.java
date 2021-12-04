@@ -25,14 +25,14 @@ public class CommentDeleteController extends HttpServlet {
 			//성공
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('댓글이 삭제되었습니다.'); location.href='/PostController';</script>");
+			out.println("<script>alert('댓글이 삭제되었습니다.'); location.href='/PostController';</script>"); //임시로 목록페이지로 넘겼는데 가능하면 상세페이지로 변경
 			out.flush();
 		}
 		else {
 			//삭제 실패
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('댓글 삭제에 실패했습니다.'); location.href='/PostController';</script>");
+			out.println("<script>alert('댓글 삭제에 실패했습니다.'); location.href='/PostController';</script>"); //임시로 목록페이지로 넘겼는데 가능하면 상세페이지로 변경
 			out.flush();
 		}
 	}
