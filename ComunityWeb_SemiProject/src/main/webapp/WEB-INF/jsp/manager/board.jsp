@@ -9,7 +9,7 @@
 <title>게시판관리</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
-    <script src="/static/main.js"defer></script>
+    <script src="/static/js/main.js"defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
@@ -75,6 +75,7 @@
                             <td class="pl-4"><h5 class="font-medium mb-0"><%=dto.getBOARD_NUM() %></h5></td>
                             <td>
                                 <h5 class="font-medium mb-0"><%=dto.getBOARD_NAME() %></h5>
+                                <input type="hidden" name="update" value="name">
                            </td>
 
                             <td>
@@ -115,7 +116,7 @@
           <h5 class="card-title text-uppercase mb-0">게시판 등록</h5>
         </div>
         <form class="addboard_form" action="/board" method="post">
-            <input type="text" name="" id="board_name" placeholder="게시판 이름">
+            <input type="text" name="create" id="board_name" placeholder="게시판 이름">
             <button type="submit" id="addboard_btn" class="btn btn-outline-primary" onclick="boardAdd()">등록</button>
 
         </form>
