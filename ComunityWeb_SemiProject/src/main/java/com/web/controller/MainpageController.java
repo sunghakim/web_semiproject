@@ -1,4 +1,4 @@
-package com.web.mainpage.controller;
+package com.web.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

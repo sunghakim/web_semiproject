@@ -2,6 +2,12 @@ package com.web.model;
 
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import com.web.model.CommentDAO;
+import com.web.model.CommentDTO;
+
+>>>>>>> refs/remotes/origin/한수현
 public class PostService {
 	
 	public boolean create(PostDTO dto) {

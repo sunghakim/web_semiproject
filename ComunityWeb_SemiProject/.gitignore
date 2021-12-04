@@ -29,8 +29,5 @@ hs_err_pid*
 
 # macOS
 .DS_Store
-<<<<<<< HEAD
-/bin/
-=======
 /build/
->>>>>>> refs/remotes/origin/김승원
+/bin/

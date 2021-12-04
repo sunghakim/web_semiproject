@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
+=======
+import com.web.model.PostDTO;
+import com.web.model.PostService;
+>>>>>>> refs/remotes/origin/한수현
 import com.web.model.*;
 
 @WebServlet("/CommentChange")

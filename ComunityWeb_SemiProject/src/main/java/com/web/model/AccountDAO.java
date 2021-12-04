@@ -50,6 +50,10 @@ public class AccountDAO {
 		return res == 1 ? true : false;
 	}
 	
+
+	
+	
+	
 	public boolean deleteUser(AccountDTO dto) {
 		String UserID = dto.getUserID();
 		String query = "DELETE FROM ACCOUNTDB WHERE USER_ID = '" + UserID + "'";

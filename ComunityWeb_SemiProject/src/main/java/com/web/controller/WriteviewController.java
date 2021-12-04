@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.web.model.*;
+<<<<<<< HEAD
+=======
+import com.web.model.*;
+>>>>>>> refs/remotes/origin/한수현
 
 @WebServlet("/Writeview")
 public class WriteviewController extends HttpServlet {

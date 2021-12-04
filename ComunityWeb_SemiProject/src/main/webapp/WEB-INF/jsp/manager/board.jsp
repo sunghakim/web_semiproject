@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" 
+		 import="com.web.model.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,17 +64,28 @@
                           </tr>
                         </thead>
                         <tbody>
+                         <%
+
+							List<Board> datas = (List<Board>) request.getAttribute("datas");					 
+							for(Board dto : datas){
+					
+						%>
                           <tr>
                             <td class="pl-4"><input type="checkbox" value=""> 1</td>
-                            <td class="pl-4"><h5 class="font-medium mb-0">asdlasdkjals</h5></td>
+                            <td class="pl-4"><h5 class="font-medium mb-0"><%=dto.getBOARD_NUM() %></h5></td>
                             <td>
-                                <h5 class="font-medium mb-0">ㅁㄴㅇㅁㅇ;ㅏㅁ</h5>
+                                <h5 class="font-medium mb-0"><%=dto.getBOARD_NAME() %></h5>
                            </td>
 
                             <td>
-                              <button type="button" id="memberlist-edit" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fas fa-edit"></i></button>
+                              <button type="button" id="memberlist-edit" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" onclick="updateBoard()"><i class="fas fa-edit"></i></button>
                             </td>
                           </tr>  
+                          
+                        <%
+                        }
+                        %>
+                        
                         </tbody>
                         <tfoot>
                           <tr>
@@ -101,7 +114,7 @@
         <div class="card-body">
           <h5 class="card-title text-uppercase mb-0">게시판 등록</h5>
         </div>
-        <form class="addboard_form" action="" method="">
+        <form class="addboard_form" action="/board" method="">
             <input type="text" name="" id="board_name" placeholder="게시판 이름">
             <button type="submit" id="addboard_btn" class="btn btn-outline-primary" onclick="boardAdd()">등록</button>
 
@@ -124,6 +137,13 @@
         
       </footer>
     </div>
+    
+    <script type="text/javascript">
+    function updateBoard(){
+    	   let new_board =  prompt("변경할 게시판 이름을 입력하세요.");
+    	   alert("변경된 이름 : " + new_board);
+    	}
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
