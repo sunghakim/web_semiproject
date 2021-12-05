@@ -23,7 +23,7 @@ public class BoardDAO {
 				+ (page_num * 10) + "'AND"
 				+ "BOARD_NUM = '" + board_num +"';";
 		// N page = ((n-1) * 10 +1) ~ (n * 10); 페이징 로직 
-		List<MainpageDTO> pagedatas = new ArrayList<MainpageDTO>();
+		List<BoardDTO> pagedatas = new ArrayList<BoardDTO>();
 		ResultSet pageres = oc.select(query);//검색 결과
 		
 		List<BoardDTO> datas = new ArrayList<BoardDTO>(); //여러 데이터 담을 컬렉션
