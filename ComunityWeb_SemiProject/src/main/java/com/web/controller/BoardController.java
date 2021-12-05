@@ -1,6 +1,7 @@
 package com.web.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.web.model.BoardDTO;
 import com.web.model.BoardManagement;
+import com.web.model.BoardService;
 
 @WebServlet("/board")
 public class BoardController extends HttpServlet{
@@ -30,6 +33,7 @@ public class BoardController extends HttpServlet{
 		String[] update = req.getParameterValues("update");
 		Integer delete = Integer.parseInt(req.getParameter("delete"));
 		
+		
 		if(create != null) {
 			System.out.println("추가한 카테고리 : "+ create);
 			manage.insertCategory(create);
@@ -48,6 +52,9 @@ public class BoardController extends HttpServlet{
 			manage.deleteCategory(delete);
 		}
 		resp.sendRedirect("BoardManagement");
-
+		
+		
+		
+		
 	}
 }

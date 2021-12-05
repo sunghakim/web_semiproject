@@ -14,25 +14,30 @@ public class BoardDAO {
 		this.oc = new OracleConnect(false); //로컬 데이터베이스 연결
 	}
 	
-	public List<BoardDTO> select(int board_num){
+	public List<BoardDTO> select(int board_num, int page_num){
 		
-		String query = "SELECT * FROM POSTDB WHERE BOARD_NUM = '"
-				+ board_num +"'ORDER BY POSTNUM_SEQ DESC";
-				
+		String query = "SELECT * FROM (" //페이징 기법으로 만들기 
+				+ "SELECT ROW_NUMBER() OVER (ORDER BY POSTNUM_SEQ DESC) "
+				+ "AS RNUM FROM POSTDB) WHERE RNUM BETWEEN '"
+				+ ((page_num - 1) * 10 + 1) +"' AND '"
+				+ (page_num * 10) + "'AND"
+				+ "BOARD_NUM = '" + board_num +"';";
+		// N page = ((n-1) * 10 +1) ~ (n * 10); 페이징 로직 
+		List<MainpageDTO> pagedatas = new ArrayList<MainpageDTO>();
+		ResultSet pageres = oc.select(query);//검색 결과
 		
 		List<BoardDTO> datas = new ArrayList<BoardDTO>(); //여러 데이터 담을 컬렉션
 		
-		ResultSet res = oc.select(query); //검색 결과 (resultSet)
 		
 		try {
-			while(res.next()) {
+			while(pageres.next()) { //게시글 번호, 유저아이디, 게시글 제목, 내용, 날짜, 게시판 번호
 				BoardDTO dto = new BoardDTO();
-				dto.setPost_num(res.getInt("POST_NUM"));
-				dto.setUser_id(res.getString("USER_ID"));
-				dto.setPost_title(res.getString("POST_TITLE"));
-				dto.setPost_content(res.getString("POST_CONTENT"));
-				dto.setPost_date(res.getDate("POST_DATE"));
-				dto.setBoard_num(res.getInt("BOARD_NUM"));
+				dto.setPost_num(pageres.getInt("POST_NUM"));
+				dto.setUser_id(pageres.getString("USER_ID"));
+				dto.setPost_title(pageres.getString("POST_TITLE"));
+				dto.setPost_content(pageres.getString("POST_CONTENT"));
+				dto.setPost_date(pageres.getDate("POST_DATE"));
+				dto.setBoard_num(pageres.getInt("BOARD_NUM"));
 				datas.add(dto); //결과들 더하는 작업 dto에
 				
 			}

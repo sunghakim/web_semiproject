@@ -30,7 +30,7 @@ public class PostController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String writerId = (String)session.getAttribute("UserID");
-		
+
 		String postTitle = request.getParameter("title");
 		String postContent = request.getParameter("content");
 		String postDate = request.getParameter("date");

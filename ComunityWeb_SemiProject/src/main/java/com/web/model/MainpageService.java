@@ -5,19 +5,9 @@ import java.util.List;
 import com.web.model.PostDTO;
 
 public class MainpageService {
-
-	public void create(MainpageDTO dto) {
-		MainpageDAO dao = new MainpageDAO();
-		
-	}
 	
-	public List<MainpageDTO> searchAll() {  
+	public List<MainpageDTO> searchPage(int page_num){
 		MainpageDAO dao = new MainpageDAO();
-		return dao.getList(); // 모든 DAO 리스트 반환
-	}
-	
-	public List<MainpageDTO> searchPage(){
-		MainpageDAO dao = new MainpageDAO();
-		return dao.pageList(); // page DAO 리스트 반환
+		return dao.pageList(page_num); // page DAO 리스트 반환
 	}
 }

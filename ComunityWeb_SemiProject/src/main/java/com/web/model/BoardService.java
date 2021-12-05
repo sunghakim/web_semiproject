@@ -4,9 +4,8 @@ import java.util.List;
 
 public class BoardService {
 	
-	public List<BoardDTO> searchAll(int board_num){  
+	public List<BoardDTO> searchBoard(int board_num, int page_num){  
 		BoardDAO dao = new BoardDAO();
-		return dao.select(board_num);
-		
+		return dao.select(board_num, page_num);
 	}
 }
