@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <title>아이디 중복확인</title>
+    <title>***</title>
     <style>
         html,body{
             margin: 15px;

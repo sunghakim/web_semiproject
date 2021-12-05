@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.web.model.AccountDTO;
 import com.web.model.AccountService;
 
-@WebServlet("/mypage")
+@WebServlet("/quitAction")
 public class quitCommunityController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,7 +32,7 @@ public class quitCommunityController extends HttpServlet {
 		} else {
 			//삭제 실패
 			request.setAttribute("result", "QCfailure");
-			String view = "/WEB-INF/jsp/myPage/myPage.jsp";
+			String view = "/WEB-INF/jsp/account/mypage.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);
 		}

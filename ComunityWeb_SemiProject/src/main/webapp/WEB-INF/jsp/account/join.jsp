@@ -38,7 +38,7 @@
 
 <script type="text/javascript">
 function confirmId(){
-   window.open("join_checkId.jsp","중복 확인","width=600, height=500");
+   window.open("join_checkId","중복 확인","width=400, height=300");
 }
 
 </script>
