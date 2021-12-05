@@ -197,3 +197,19 @@ h4 {
   font-size: 15px;
 }
 
+/* board_update */
+.input_hidden {
+  display: none;
+}
+
+.hidden_input_Btn {
+  background-color: white;
+  border-style: none;
+}
+
+.hidden_input_Btn:hover {
+  color: #106cfc;
+}
+.input_hidden.visible {
+  display: block;
+}

@@ -72,7 +72,10 @@
                             <td class="pl-4"><h5 class="font-medium mb-0"><%=dto.getBOARD_NUM() %></h5></td>
                             <td>
                                 <h5 class="font-medium mb-0" id="<%=dto.getBOARD_NUM() %>"><%=dto.getBOARD_NAME() %></h5>
-<                               <input type="hidden" name="update" >
+<                               <div class="input_hidden">
+                                  <input type="text" name="update">
+                                  <button class="hidden_input_Btn"type="submit"><i class="fas fa-check"></i></button>
+                                </div>
                             </td>
 
                             <td>
@@ -88,14 +91,7 @@
                         %>
                         
                         </tbody>
-                        <tfoot>
-                          <tr>
-                            <td><input type="checkbox" value="selectall" onclick="selectAll(this)"> 전체 선택</td>
-                            <td></td>
-                            <td></td>
-                            <td><button type="button" id="memberlist-clearall" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" onclick="deleteall(this)"><i class="fas fa-trash-alt"></i> </button></td>
-                          </tr>
-                        </tfoot>
+                      
                       </table>
                   </div>
               </div>
@@ -140,11 +136,11 @@
     </div>
     
     <script type="text/javascript">
+    const input_type =  document.querySelector(".input_hidden");
+
     function updateBoard(){
-    	   let new_board =  prompt("변경할 게시판 이름을 입력하세요.");
-    	   alert("변경된 이름 : " + new_board);
-    	  updateName(new_board);
-    	}
+        input_type.classList.toggle('visible');
+    }
     
     function deleteBoard(){
     	document.form.submit();
