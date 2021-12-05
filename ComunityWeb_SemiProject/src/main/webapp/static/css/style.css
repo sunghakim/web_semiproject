@@ -213,3 +213,46 @@ h4 {
 .input_hidden.visible {
   display: block;
 }
+
+/* main */
+
+.d-sm-flex {
+  justify-content: space-around;
+}
+
+.d-sm-flex > img {
+  max-width: 400px;
+}
+.d-sm-flex > div > h1 {
+  margin-bottom: 50px;
+}
+
+.sidebar {
+  padding-left: 50px;
+}
+.sidebar > header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.sidebar > ul > li > a {
+  text-decoration: none;
+  color: darkgrey;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+
+  font-size: 18px;
+  transition: 0.4s;
+  margin-bottom: 10px;
+}
+
+.sidebar > ul > li:hover a {
+  padding-left: 5px;
+  color: #000;
+}
+
+.container.latestboard {
+  width: 60%;
+}
+
