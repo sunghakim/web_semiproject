@@ -17,8 +17,8 @@ public class PostDAO {
 				+ "'" + dto.getUser_id() + "',"
 				+ "'" + dto.getPost_title() + "',"
 				+ "'" + dto.getPost_content() + "',"
-				+ "TO_DATE('" + dto.getPost_date() + "', 'YYYY-MM-DD'),"
-				+ "'" + dto.getBoard_num() + "',";
+				+ "SYSDATE"
+				+ "'" + dto.getBoard_name() + "'";
 		
 				
 		int res = oc.insert(query);
