@@ -126,10 +126,7 @@
     <!-- footer? -->
     <footer class="footer">
         <div class="footer-container">
-          <div class="social">
-      
-          </div>
-          <p></p>
+          <hr>
         </div>
         
       </footer>

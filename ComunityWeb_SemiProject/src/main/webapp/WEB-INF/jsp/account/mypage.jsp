@@ -63,11 +63,8 @@
 
 
     <footer class="footer">
-      <div class="footer-container">
-        <div class="social">
-    
-        </div>
-        <p></p>
+      <div class="footer-container"> 
+    <hr>
       </div>
       
     </footer>
