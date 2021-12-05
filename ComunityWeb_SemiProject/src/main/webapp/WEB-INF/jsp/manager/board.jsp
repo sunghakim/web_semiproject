@@ -71,12 +71,12 @@
 					
 						%>
                           <tr>
-                            <td class="pl-4"><input type="checkbox" value=""> 1</td>
+                            <td class="pl-4"><input type="checkbox" value="<%=dto.getBOARD_NUM() %>"></td>
                             <td class="pl-4"><h5 class="font-medium mb-0"><%=dto.getBOARD_NUM() %></h5></td>
                             <td>
-                                <h5 class="font-medium mb-0"><%=dto.getBOARD_NAME() %></h5>
-                                <input type="hidden" name="update" value="name">
-                           </td>
+                                <h5 class="font-medium mb-0" id="<%=dto.getBOARD_NUM() %>"><%=dto.getBOARD_NAME() %></h5>
+<                                <input type="hidden" name="update" >
+                            </td>
 
                             <td>
                               <button type="button" id="memberlist-edit" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" onclick="updateBoard()"><i class="fas fa-edit"></i></button>
@@ -143,7 +143,13 @@
     function updateBoard(){
     	   let new_board =  prompt("변경할 게시판 이름을 입력하세요.");
     	   alert("변경된 이름 : " + new_board);
+    	  updateName(new_board);
     	}
+<%--     function updateName(val) {
+
+        var input = document.getElementById('<%=dto.getBOARD_NUM() %>');
+        update.setAttribute('value', val);
+    } --%>
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
