@@ -78,7 +78,7 @@
   
 	  function quiteCommunity(){
 		  if(confirm("탈퇴하시겠습니까.")==true){
-			  location.href="quitAction.jsp";
+			  location.href="/quitAction";
 		  }else{
 			  return;
 		  }
