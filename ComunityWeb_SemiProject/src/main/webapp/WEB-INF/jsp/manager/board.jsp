@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.web.model.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,7 @@
     <section class="container">
 
       <!-- list of board -->
-      <form action="">
+      
       <div class="row">
           <div class="col-md-12">
               <div class="card">
@@ -68,34 +69,36 @@
                          List<BoardManageDTO> datas = (List<BoardManageDTO>) request.getAttribute("datas");					 
                          					for(BoardManageDTO dto : datas){
                          %>
-                          <tr>
-                            <td class="pl-4"><h5 class="font-medium mb-0"><%=dto.getBOARD_NUM() %></h5></td>
+                         <form action="board" method="post">
+                         <tr>
+                            <td class="pl-4">
+                            	<h5 class="font-medium mb-0"><%=dto.getBOARD_NUM() %></h5>
+                            	<input type="hidden" name="delete" value="<%=dto.getBOARD_NUM() %>">
+                            </td>
                             <td>
                                 <h5 class="font-medium mb-0" id="<%=dto.getBOARD_NUM() %>"><%=dto.getBOARD_NAME() %></h5>
-<                               <input type="hidden" name="update" >
+<                               <div class="input_hidden">
+								  <input type="hidden" name="update" value="<%=dto.getBOARD_NUM() + " " +dto.getBOARD_NAME()%>"/>
+                                  <input type="text" name="update" placeholder="게시판 아이디"/>
+                                  <input type="text" name="update" placeholder="게시판 이름"/>
+                                  <button class="hidden_input_Btn" type="submit" name="send" value="updateSubmit"><i class="fas fa-check"></i></button>
+                                </div>
                             </td>
 
                             <td>
                               
                              <button type="button" id="memberlist-edit" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" onclick="updateBoard()"><i class="fas fa-edit"></i></button>
-                             <button type="button" id="memberlist-edit" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" onclick="deleteBoard()"><i class="fas fa-trash-alt"></i></button>
+                             <button type="submit" name="send" value="deleteSubmit" id="memberlist-edit" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" onclick="deleteBoard()"><i class="fas fa-trash-alt"></i></button>
                              
                             </td>
                           </tr>  
-                          
+                          </form>
                         <%
                         }
                         %>
                         
                         </tbody>
-                        <tfoot>
-                          <tr>
-                            <td><input type="checkbox" value="selectall" onclick="selectAll(this)"> 전체 선택</td>
-                            <td></td>
-                            <td></td>
-                            <td><button type="button" id="memberlist-clearall" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" onclick="deleteall(this)"><i class="fas fa-trash-alt"></i> </button></td>
-                          </tr>
-                        </tfoot>
+                      
                       </table>
                   </div>
               </div>
@@ -104,20 +107,22 @@
           
       </div>
 
-   </form>
+   
       <hr>
 
       
       <!-- add board -->
-
-  
+	
+ 
       <div class="card">
         <div class="card-body">
           <h5 class="card-title text-uppercase mb-0">게시판 등록</h5>
         </div>
-        <form class="addboard_form" action="/board" method="post">
+        <form class="addboard_form" action="board" method="post">
+            <input type="text" name="create" id="board_name" placeholder="게시판 아이디">
             <input type="text" name="create" id="board_name" placeholder="게시판 이름">
-            <button type="submit" id="addboard_btn" class="btn btn-outline-primary" onclick="boardAdd()">등록</button>
+            
+            <button type="submit" name="send" value="createSubmit" id="addboard_btn" class="btn btn-outline-primary" onclick="boardAdd()">등록</button>
 
         </form>
 
@@ -140,16 +145,14 @@
     </div>
     
     <script type="text/javascript">
+    const input_type =  document.querySelector(".input_hidden");
     function updateBoard(){
-    	   let new_board =  prompt("변경할 게시판 이름을 입력하세요.");
-    	   alert("변경된 이름 : " + new_board);
-    	  updateName(new_board);
-    	}
+        input_type.classList.toggle('visible');
+    }
     
     function deleteBoard(){
     	document.form.submit();
     }
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
