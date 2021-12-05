@@ -42,21 +42,26 @@
 			alert("비밀번호가 정상적으로 변경되었습니다.");
 		</script>
 <%
-		}else if (result.equals("CPfailure2")) {
+		}else if (result.equals("CPfailure1")) {
 %>
 		<script>
-			alert("비밀번호 변경에 실패했습니다.");
+			alert("오류가 발생했습니다. 다시 시도하거나 다음에 시도해주세요.");
 
 		</script>
 <%		
-		} else if (result.equals("CPfailure1")){
+		} else if (result.equals("CPfailure2")){
 %>
-	<script>
-		alert("기존 비밀번호를 다시 확인해주세요.");
-
-	</script>
+		<script>
+		alert("비밀번호 변경 실패: 입력하신 현재 비밀번호가 틀립니다.");
+		</script>
 <%		
-	}
+		} else if(result.equals("CPfailure3")){
+%>		
+		<script>
+		alert("비밀번호 변경 실패: 입력하신 현재 비밀번호가 틀립니다.");
+		</script>
+<% 
+		}
 %>
 <script type="text/javascript">
 	const pwconfirm = document.querySelector('#error');

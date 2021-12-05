@@ -11,14 +11,14 @@ import javax.servlet.http.HttpSession;
 import com.web.model.AccountDTO;
 import com.web.model.AccountService;
 
-@WebServlet("/myPage")
+@WebServlet("/mypage")
 public class myPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		request.setAttribute("result", "null");
-		String view = "/WEB-INF/jsp/myPage/myPage.jsp";
+		String view = "/WEB-INF/jsp/account/mypage.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}

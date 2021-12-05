@@ -9,7 +9,7 @@
 <title>게시판관리</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
-    <script src="/static/main.js"defer></script>
+    <script src="/static/js/main.js"defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
@@ -69,11 +69,12 @@
                          					for(BoardManageDTO dto : datas){
                          %>
                           <tr>
-                            <td class="pl-4"><input type="checkbox" value=""> 1</td>
+                            <td class="pl-4"><input type="checkbox" value="<%=dto.getBOARD_NUM() %>"></td>
                             <td class="pl-4"><h5 class="font-medium mb-0"><%=dto.getBOARD_NUM() %></h5></td>
                             <td>
-                                <h5 class="font-medium mb-0"><%=dto.getBOARD_NAME() %></h5>
-                           </td>
+                                <h5 class="font-medium mb-0" id="<%=dto.getBOARD_NUM() %>"><%=dto.getBOARD_NAME() %></h5>
+<                                <input type="hidden" name="update" >
+                            </td>
 
                             <td>
                               <button type="button" id="memberlist-edit" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" onclick="updateBoard()"><i class="fas fa-edit"></i></button>
@@ -112,8 +113,8 @@
         <div class="card-body">
           <h5 class="card-title text-uppercase mb-0">게시판 등록</h5>
         </div>
-        <form class="addboard_form" action="/board" method="">
-            <input type="text" name="" id="board_name" placeholder="게시판 이름">
+        <form class="addboard_form" action="/board" method="post">
+            <input type="text" name="create" id="board_name" placeholder="게시판 이름">
             <button type="submit" id="addboard_btn" class="btn btn-outline-primary" onclick="boardAdd()">등록</button>
 
         </form>
@@ -140,7 +141,13 @@
     function updateBoard(){
     	   let new_board =  prompt("변경할 게시판 이름을 입력하세요.");
     	   alert("변경된 이름 : " + new_board);
+    	  updateName(new_board);
     	}
+<%--     function updateName(val) {
+
+        var input = document.getElementById('<%=dto.getBOARD_NUM() %>');
+        update.setAttribute('value', val);
+    } --%>
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="com.web.model.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +21,9 @@
         </div>
         <div class="navBar-right">
           <ul class="navBar-item">
-            <li><a href="/mypage">님 환영합니다.</a></li>
-            <li><button  type="submit" class="SignUp_btn" onclick="location.href='/logout'">Log Out</button></li>
+
+            <li><a href="/mypage"><%=(String) request.getSession().getAttribute("s_login_user")%>님 환영합니다.</a></li>
+            <li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
           </ul>
         </div>
 
@@ -53,7 +55,7 @@
             <h4>PassWord</h4>
           </div>
           <a href="/account/changepsw.jsp">비밀번호 변경</a>
-          <button id="info_psw_change_btn" class="btn btn-outline-primary" type="button" onclick="quiteCommnutiy()"> 탈퇴하기 </button>
+          <button id="info_psw_change_btn" class="btn btn-outline-primary" type="button" onclick="quiteCommunity()"> 탈퇴하기 </button>
         </div>
       </div>
     </div>
@@ -75,17 +77,11 @@
   <script type="text/javascript">
   
 	  function quiteCommunity(){
-	    if(confirm("탈퇴하시겠습니까?")==true){
-	    	String result = (String)request.getAttribute("result");
-			if (result.equals("QCfailure")) {
-				alert("회원 탈퇴 실패: 관리자에게 문의해주세요.");
-			}else{
-				alert("정상적으로 탈퇴되었습니다.");
-			}
-	        
-	    }else{
-	        return;
-	    }
+		  if(confirm("탈퇴하시겠습니까.")==true){
+			  location.href="quitAction.jsp";
+		  }else{
+			  return;
+		  }
 	}
 	  
   </script>

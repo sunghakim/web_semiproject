@@ -17,7 +17,7 @@ public class joinController extends HttpServlet {
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		String view = "/WEB-INF/jsp/account/joinMember.jsp";
+		String view = "/WEB-INF/jsp/account/join.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
@@ -35,7 +35,7 @@ public class joinController extends HttpServlet {
 		} else {//DB내에서 잘못된 값 감지
 
 			request.setAttribute("init", dto);
-			String view = "/WEB-INF/jsp/account/joinMember.jsp";
+			String view = "/WEB-INF/jsp/account/join.jsp";
 
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);

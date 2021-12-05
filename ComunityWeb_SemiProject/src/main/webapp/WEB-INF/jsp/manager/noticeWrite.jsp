@@ -7,7 +7,7 @@
 <title>공지사항</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
-    <script src="/static/main.js" defer></script>
+    <script src="/static/js/main.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
@@ -21,7 +21,7 @@
       <div class="navBar-right">
          <ul class="navBar-item">
             <li>관리자님 환영합니다.</li>
-            <li><button  type="submit" class="LogOut_btn">Log Out</button></li>
+            <li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
           </ul>
     </div>
 
