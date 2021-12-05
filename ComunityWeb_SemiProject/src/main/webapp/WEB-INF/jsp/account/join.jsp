@@ -13,7 +13,7 @@
 <body>
  <div class="wrapper">
     <h2>회원가입</h2>
-    <form action="#">
+    <form action="/join" method="post">
       <div class="input-box">
         <input type="text" id="confirmed_id" name="UserID" placeholder="click here" onclick="confirmId()"required>
 <!--         <button class="id_check_btn" onclick="confirmId()">중복확인</button> -->
@@ -30,7 +30,7 @@
         <input class="submit_btn"type="submit" value="Sign Up Now">
       </div>
       <div class="text">
-        <h3>가입된 계정이 있으신가요? <a href="/login.jsp">Sign In</a></h3>
+        <h3>가입된 계정이 있으신가요? <a href="/account/login.jsp">Sign In</a></h3>
       </div>
     </form>
   </div>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.web.model.BoardManageDAO;
 
-@WebServlet("/manageBoard")
+@WebServlet("/board")
 public class BoardManageController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	BoardManageDAO manage;
@@ -47,7 +47,7 @@ public class BoardManageController extends HttpServlet{
 			System.out.println("지운 카테고리 : " + delete);
 			manage.deleteCategory(delete);
 		}
-		resp.sendRedirect("manageBoard");
+		resp.sendRedirect("board");
 
 	}
 }

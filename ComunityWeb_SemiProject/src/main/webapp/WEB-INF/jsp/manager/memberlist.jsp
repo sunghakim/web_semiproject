@@ -48,6 +48,7 @@
 
 
       <!-- list of member -->
+      <form action="memberlist" method="post">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -72,7 +73,7 @@
 					
 						%>
                         <tr>
-                          <td class="pl-4"><input type="checkbox" name="deleteUserId" value="<%=dto.getUserID() %>"> <%= %></td>
+                          <td class="pl-4"><input type="checkbox" name="deleteUserId" value="<%=dto.getUserID() %>"></td>
                           <td>
                               <h5 class="font-medium mb-0"><%=dto.getUserID()%></h5>
                          </td>
@@ -100,6 +101,7 @@
         </div>
     </div>
 </div>
+</form>
 </section>
 </section>
 
