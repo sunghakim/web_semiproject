@@ -30,7 +30,7 @@
         <input class="submit_btn"type="submit" value="Sign Up Now">
       </div>
       <div class="text">
-        <h3>가입된 계정이 있으신가요? <a href="/account/login.jsp">Sign In</a></h3>
+          <h3>가입된 계정이 있으신가요? <a href="/login">Sign In</a></h3>
       </div>
     </form>
   </div>
