@@ -46,7 +46,9 @@ public class BoardManageController extends HttpServlet {
             // 공지사항 카테고리 번호 = 0, 삭제 수정 불가
             case "updateSubmit": {
                 String[] update = req.getParameterValues("update");
-
+                for(String s : update) {
+                	System.out.println(s+ " ");
+                }
                 String[] currentCategory = update[0].split(" ");
                 int currentCategoryNum = Integer.parseInt(currentCategory[0]);
                 String currentCategoryName = currentCategory[1];

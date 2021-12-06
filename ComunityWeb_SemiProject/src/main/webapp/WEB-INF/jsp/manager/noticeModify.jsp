@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>공지사항 수정</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
-    <script src="/static/js/main.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
@@ -16,7 +15,7 @@
   <nav class="navBar">
     <div class="navBar-container">
       <div class="navBar-home">
-        <a href="/index.jsp"><i class="fas fa-home"> home</i></a>
+        <a href="/main"><i class="fas fa-home"> home</i></a>
       </div>
       <div class="navBar-right">
          <ul class="navBar-item">
@@ -39,17 +38,17 @@
     </div>
    <!-- notice form -->
     <div class="container col-md-12">
-    <form id="notice_form" class="" action="noticeWrite" method="post">
+    <form id="notice_form" class="" action="/notice">
         <div class="mb-3">
-          <label for="notice_form" class="form-label">공지사항</label>
-          <input  id="notice_title" class="form-control" type="text" placeholder="제목" name="title">
+          <label for="notice_form" class="form-label">공지사항 수정</label>
+          <input  id="notice_title" class="form-control" type="text" value="제목">
         </div>
         <div class="mb-3">
-          <textarea class="form-control" id="notice_textarea" placeholder="내용" name="content" style="height: 400px;"></textarea>
+          <textarea class="form-control" id="notice_textarea" style="height: 400px;">내용</textarea>
         </div>
       
         <div class="mb-3">
-          <button id="notic-btn"class="btn btn-outline-primary" type="submit" onclick="noticeAdd()">등록</button>
+          <button id="notic-btn"class="btn btn-outline-primary" type="button" onclick="modify()">수정</button>
         </div>
       </form>
     </div>
@@ -64,15 +63,7 @@
     </footer>
   </div>
   <script type="text/javascript">
-  function noticeAdd(){
-	    if(noticeTitle.value===''){
-	        alert('제목을 입력하세요.');
-	        console.log("ehlsi");
-	        return;
-	    } else if(noticeContent.value===''){
-	        alert('내용을 입력하세요');
-	        return;
-	    } else{
+  function modify(){
 	        if(confirm("등록하시겠습니까?")==true){
 	            document.form.submit();
 	        }else{

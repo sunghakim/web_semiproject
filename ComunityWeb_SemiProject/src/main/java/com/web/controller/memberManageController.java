@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.web.model.MemberManageDAO;
 
 @WebServlet("/memberlist")
-public class memberManageController extends HttpServlet {
+public class MemberManageController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     MemberManageDAO manage;
 
