@@ -29,7 +29,7 @@
         <input class="submit_btn"type="submit" value="비밀번호 변경하기">
       </div>
       <div class="text">
-        <h3>변경 취소 <a href="/mypage/mypage.html">My Page</a></h3>
+        <h3>변경 취소 <a href="/mypage">My Page</a></h3>
       </div>
     </form>
   </div>

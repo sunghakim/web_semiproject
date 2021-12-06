@@ -10,7 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+<<<<<<< HEAD
 @WebServlet("/main")
+=======
+//메인페이지를 대체하는 임시 컨트롤러, 머지시 끝난 후 삭제해주세요
+@WebServlet("")
+>>>>>>> refs/remotes/origin/김승원
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
