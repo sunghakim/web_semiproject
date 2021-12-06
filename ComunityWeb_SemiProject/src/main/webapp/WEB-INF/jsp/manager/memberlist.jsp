@@ -61,7 +61,7 @@
                         <tr>
                           <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
                           <th scope="col" class="border-0 text-uppercase font-medium">ID</th>
-                          <th scope="col" class="border-0 text-uppercase font-medium">password</th> 
+                          <th scope="col" class="border-0 text-uppercase font-medium">password</th>
                           <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
                         </tr>
                       </thead>
@@ -93,7 +93,7 @@
                       <td><input type="checkbox" value="selectall" onclick="selectAll(this)"> 전체 선택</td>
                       <td></td>
                       <td></td>
-                      <td><button type="button" type="submit"id="memberlist-clearall" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" onclick="deleteallMember()"><i class="fas fa-trash-alt"></i> </button></td>
+                      <td><button type="submit" id="memberlist-clearall" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" onclick="deleteallMember()"><i class="fas fa-trash-alt"></i> </button></td>
                     </tr>
                   </tfoot>
                 </table>
