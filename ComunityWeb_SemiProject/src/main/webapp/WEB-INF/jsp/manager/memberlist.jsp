@@ -109,7 +109,10 @@
 
 <footer class="footer">
   <div class="footer-container">
-   <hr>
+    <div class="social">
+
+    </div>
+    <p></p>
   </div>
   
 </footer>

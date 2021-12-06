@@ -39,13 +39,13 @@
     </div>
    <!-- notice form -->
     <div class="container col-md-12">
-    <form id="notice_form" class="" action="/notice">
+    <form id="notice_form" class="" action="noticeWrite" method="post">
         <div class="mb-3">
           <label for="notice_form" class="form-label">공지사항</label>
-          <input  id="notice_title" class="form-control" type="text" placeholder="제목">
+          <input  id="notice_title" class="form-control" type="text" placeholder="제목" name="title">
         </div>
         <div class="mb-3">
-          <textarea class="form-control" id="notice_textarea" placeholder="내용" style="height: 400px;"></textarea>
+          <textarea class="form-control" id="notice_textarea" placeholder="내용" name="content" style="height: 400px;"></textarea>
         </div>
       
         <div class="mb-3">
