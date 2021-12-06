@@ -69,7 +69,7 @@
                 %>
                 <tr>
                   <td style="width: 15%;"><%=dto.getPost_num() %></td>
-                  <td style="width: 50%;"><a href="/BBS/notice?postNum=<%=dto.getPost_num()%>"><%=dto.getUser_id() %></a></td>
+                  <td style="width: 50%;"><a href="notice?postNum=<%=dto.getPost_num()%>"><%=dto.getUser_id() %></a></td>
                   <td style="width: 15%;"><%=dto.getPost_title() %> </td>
                   <td style="width: 20%;"><%=dto.getPost_date() %></td>
                 </tr>
@@ -83,7 +83,7 @@
         </section>
         
         <!-- send to noticeWrite -->
-		<button onclick="location.href='noticeWrite'">게시글 등록</button>
+		<button onclick="location.href='noticeWrite?name=post'">게시글 등록</button>
 
         <!-- footer? -->
     <footer class="footer">
