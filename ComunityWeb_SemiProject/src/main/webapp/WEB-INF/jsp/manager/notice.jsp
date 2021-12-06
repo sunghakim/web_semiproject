@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 작성</title>
+<title>공지사항</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
     <script src="/static/js/main.js" defer></script>
@@ -37,22 +37,7 @@
           <button class="nav-link active" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="true" onclick="location.href=''">공지사항</button>
         </div>
     </div>
-   <!-- notice form -->
-    <div class="container col-md-12">
-    <form id="notice_form" class="" action="/notice">
-        <div class="mb-3">
-          <label for="notice_form" class="form-label">공지사항</label>
-          <input  id="notice_title" class="form-control" type="text" placeholder="제목">
-        </div>
-        <div class="mb-3">
-          <textarea class="form-control" id="notice_textarea" placeholder="내용" style="height: 400px;"></textarea>
-        </div>
-      
-        <div class="mb-3">
-          <button id="notic-btn"class="btn btn-outline-primary" type="submit" onclick="noticeAdd()">등록</button>
-        </div>
-      </form>
-    </div>
+
     </section>
 
     <!-- footer? -->
@@ -63,27 +48,5 @@
       
     </footer>
   </div>
-  <script type="text/javascript">
-  function noticeAdd(){
-	    if(noticeTitle.value===''){
-	        alert('제목을 입력하세요.');
-	        console.log("ehlsi");
-	        return;
-	    } else if(noticeContent.value===''){
-	        alert('내용을 입력하세요');
-	        return;
-	    } else{
-	        if(confirm("등록하시겠습니까?")==true){
-	            document.form.submit();
-	        }else{
-	            return;
-	        }
-	    }
-	}
-  </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
 </body>
 </html>
