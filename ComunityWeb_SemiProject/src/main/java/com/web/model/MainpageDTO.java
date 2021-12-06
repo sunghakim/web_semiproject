@@ -8,7 +8,15 @@ public class MainpageDTO {
 	private String post_title; //게시글 제목
 	private Date post_date; //게시글 날짜
 	private int board_num; //게시판 번호
+	private String board_name;
 	
+	
+	public String getBoard_name() {
+		return board_name;
+	}
+	public void setBoard_name(String board_name) {
+		this.board_name = board_name;
+	}
 	public int getPost_num() {
 		return post_num;
 	}
@@ -33,12 +41,7 @@ public class MainpageDTO {
 	public void setPost_date(Date post_date) {
 		this.post_date = post_date;
 	}
-	public int getBoard_num() {
-		return board_num;
-	}
-	public void setBoard_num(int board_num) {
-		this.board_num = board_num;
-	}
+	
 	
 }
 	

@@ -26,32 +26,6 @@ public class PostDAO {
 		return res == 1? true : false; //추가작업 성공하면 커밋 못하면 롤백.
 	}
 	
-	public List<PostDTO> getList() {
-		String query = "SELECT * FROM POSTDB ORDER BY POST_NUM DESC"; //postdb 테이블 조회
-		
-		List<PostDTO> datas = new ArrayList<PostDTO>(); //여러 데이터 담을 컬렉션
-		
-		ResultSet res = oc.select(query); //검색 결과 (resultSet)
-		
-		try {
-			while(res.next()) {
-				PostDTO dto = new PostDTO();
-				dto.setPost_num(res.getInt("POST_NUM"));
-				dto.setUser_id(res.getString("USER_ID"));
-				dto.setPost_title(res.getString("POST_TITLE"));
-				dto.setPost_content(res.getString("POST_CONTENT"));
-				dto.setPost_date(res.getDate("POST_DATE"));
-				dto.setBoard_num(res.getInt("BOARD_NUM"));
-				datas.add(dto); //결과들 더하는 작업 dto에
-				
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return datas;
-	}
-	
 	public void commit() {
 		oc.commit();
 	}

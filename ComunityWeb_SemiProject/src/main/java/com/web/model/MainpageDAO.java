@@ -17,9 +17,9 @@ public class MainpageDAO {
 	
 	public List<MainpageDTO> pageList(int page_num){
 		
-		String query = "SELECT * FROM (" //페이징 기법으로 만들기 
+		String query = "SELECT P.POST_NUM, P.USER_ID, P.POST_TITLE, P.POST_DATE, B.BOARD_NAME FROM (" //페이징 기법으로 만들기 
 				+ "SELECT ROW_NUMBER() OVER (ORDER BY POSTNUM_SEQ DESC) "
-				+ "AS RNUM FROM POSTDB) WHERE RNUM BETWEEN '"
+				+ "AS RNUM FROM POSTDB P JOIN BOARDDB B ON (P.BOARD_NUM = B.BOARD_NUM) WHERE RNUM BETWEEN '"
 				+ ((page_num - 1) * 10 + 1) +"' AND "
 				+ (page_num * 10) + "';";
 		// N page = ((n-1) * 10 +1) ~ (n * 10); 페이징 로직 
@@ -33,7 +33,7 @@ public class MainpageDAO {
 				pagedto.setUser_id(pageres.getString("USER_ID"));
 				pagedto.setPost_title(pageres.getString("POST_TITLE"));
 				pagedto.setPost_date(pageres.getDate("POST_DATE"));
-				pagedto.setBoard_num(pageres.getInt("BOARD_NUM"));
+				pagedto.setBoard_name(pageres.getString("BOARD_NAME"));
 				pagedatas.add(pagedto);
 			}
 		}catch(SQLException e) {
