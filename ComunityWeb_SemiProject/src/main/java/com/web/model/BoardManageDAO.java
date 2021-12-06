@@ -10,9 +10,9 @@ import java.util.List;
 
 public class BoardManageDAO {
     // db 주소
-    private String dbURL = "";
-    private String dbID = "";
-    private String dbPassword = "";
+    private String dbURL = "jdbc:oracle:thin:@tdb_medium?TNS_ADMIN=c:\\Users\\Coder\\.";
+    private String dbID = "USER2";
+    private String dbPassword = "Database4321";
 
     public BoardManageDAO() {
         try {
