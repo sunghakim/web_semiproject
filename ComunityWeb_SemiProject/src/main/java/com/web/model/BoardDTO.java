@@ -10,12 +10,19 @@ public class BoardDTO {
 	private String post_content; //게시글 내용
 	private Date post_date; //게시글 날짜
 	private int board_num; //게시판 번호
+	private String board_name;
 	
 	public BoardDTO() {}
 	public BoardDTO(int board_num) {
 		this.board_num = board_num;///
 	}
 	
+	public String getBoard_name() {
+		return board_name;
+	}
+	public void setBoard_name(String board_name) {
+		this.board_name = board_name;
+	}
 	public int getPost_num() {
 		return post_num;
 	}

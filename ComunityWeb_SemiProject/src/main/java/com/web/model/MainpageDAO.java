@@ -34,6 +34,7 @@ public class MainpageDAO {
 				pagedto.setUser_id(pageres.getString("USER_ID"));
 				pagedto.setPost_title(pageres.getString("POST_TITLE"));
 				pagedto.setPost_date(pageres.getDate("POST_DATE"));
+				pagedto.setBoard_num(pageres.getInt("BOARD_NUM"));
 				pagedto.setBoard_name(pageres.getString("BOARD_NAME"));
 				pagedatas.add(pagedto);
 			}
