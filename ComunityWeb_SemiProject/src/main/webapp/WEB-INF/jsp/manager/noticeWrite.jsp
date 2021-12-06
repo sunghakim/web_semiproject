@@ -67,7 +67,6 @@
   function noticeAdd(){
 	    if(noticeTitle.value===''){
 	        alert('제목을 입력하세요.');
-	        console.log("ehlsi");
 	        return;
 	    } else if(noticeContent.value===''){
 	        alert('내용을 입력하세요');

@@ -53,11 +53,11 @@
         <!-- categories -->
         <section class="main">
           <div class="sidebar">
-            <header>Categories</header>
+            <header>Category</header>
             <ul>
             <%
-            List<BoardManageDTO> datas = (List<BoardManageDTO>) request.getAttribute("datas");					 
-			for(BoardManageDTO dto : datas){
+            List<MainpageDTO> datas = (List<MainpageDTO>) request.getAttribute("datas");					 
+			for(MainpageDTO dto : datas){
             
             %>
               <li><a href="#"><%=dto.getBOARD_NAME() %></a></li>
@@ -77,6 +77,7 @@
       
             <!-- list of board -->
             <table class="table table-hover">
+            <h3>최신글</h3>
               <thead>
                 <tr>
                   <th scope="col" class="text-center">카테고리</th>
@@ -88,8 +89,8 @@
               <tbody>
                 <tr>
                 <%
-                List<BoardDTO> boardlist = (List<BoardDTO>) request.getAttribute("boardlist");					 
-			   for(BoardDTO dto : boardlist){
+                List<MainpageDTO> boardlist = (List<MainpageDTO>) request.getAttribute("boardlist");					 
+			   for(MainpageDTO dto : boardlist){
             
                 %>
                   <td style="width: 15%;"><%=dto.getBoard_num() %></td>
