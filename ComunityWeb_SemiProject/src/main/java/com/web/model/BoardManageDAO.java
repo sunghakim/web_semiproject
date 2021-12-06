@@ -9,90 +9,89 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoardManageDAO {
+    // db 주소
+    private String dbURL = "";
+    private String dbID = "";
+    private String dbPassword = "";
 
-	// db 주소
-	private String dbURL = "";
-	private String dbID = "";
-	private String dbPassword = "";
-	
-	public BoardManageDAO() {
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public List<BoardManageDTO> boardList() {
-		String SQL = "SELECT BOARD_NUM, BOARD_NAME FROM BOARDDB";
-		List<BoardManageDTO> boardList = new ArrayList<>();
+    public BoardManageDAO() {
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
-		try (// db 접속, 쿼리 try-with-resource 사용
-				Connection conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-				PreparedStatement pstmt = conn.prepareStatement(SQL);
-				ResultSet rs = pstmt.executeQuery();) {
+    public List<BoardManageDTO> boardList() {
+        String SQL = "SELECT BOARD_NUM, BOARD_NAME FROM BOARDDB ORDER BY BOARD_NUM";
+        List<BoardManageDTO> boardList = new ArrayList<>();
 
-			while (rs.next()) {
-				int id = rs.getInt(1);
-				String name = rs.getString(2);
-				boardList.add(new BoardManageDTO(id, name));
-			}
+        try (// db 접속, 쿼리 try-with-resource 사용
+             Connection conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+             PreparedStatement pstmt = conn.prepareStatement(SQL);
+             ResultSet rs = pstmt.executeQuery();) {
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+                boardList.add(new BoardManageDTO(id, name));
+            }
 
-		return boardList;
-	}
-	
-	public int insertCategory(String categoryName) {
-		String SQL = "INSERT INTO BOARDDB VALUES(BOARD_NUMBER.NEXTVAL, ?)";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		try (Connection conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-				PreparedStatement pstmt = conn.prepareStatement(SQL);) {
+        return boardList;
+    }
 
-			pstmt.setString(1, categoryName);
+    public int insertCategory(int categoryId, String categoryName) {
+        String SQL = "INSERT INTO BOARDDB VALUES(?, ?)";
 
-			return pstmt.executeUpdate();
+        try (Connection conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+             PreparedStatement pstmt = conn.prepareStatement(SQL);) {
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            pstmt.setInt(1, categoryId);
+            pstmt.setString(2, categoryName);
+            return pstmt.executeUpdate();
 
-		return -1;
-	}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-	public int updateCategory(String changeName, int categoryNumber) {
-		String SQL = "UPDATE BOARDDB SET BOARD_NAME = ? WHERE BOARD_NUM = ?";
+        return -1;
+    }
 
-		try (Connection conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-				PreparedStatement pstmt = conn.prepareStatement(SQL);) {
+    public int updateCategory(String changeName, int changeCategoryNumber, int currentCategoryNumber) {
+        String SQL = "UPDATE BOARDDB SET BOARD_NAME = ?, BOARD_NUM = ? WHERE BOARD_NUM = ?";
 
-			pstmt.setString(1, changeName);
-			pstmt.setInt(2, categoryNumber);
-			return pstmt.executeUpdate();
+        try (Connection conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+             PreparedStatement pstmt = conn.prepareStatement(SQL);) {
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            pstmt.setString(1, changeName);
+            pstmt.setInt(2, changeCategoryNumber);
+            pstmt.setInt(3, currentCategoryNumber);
+            return pstmt.executeUpdate();
 
-		return -1;
-	}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-	public int deleteCategory(int categoryNumber) {
-		String SQL = "DELETE FROM BOARDDB WHERE BOARD_NUM = ?";
+        return -1;
+    }
 
-		try (Connection conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-				PreparedStatement pstmt = conn.prepareStatement(SQL);
-				ResultSet rs = pstmt.executeQuery();) {
+    public int deleteCategory(int categoryNumber) {
+        String SQL = "DELETE FROM BOARDDB WHERE BOARD_NUM = ?";
 
-			pstmt.setInt(1, categoryNumber);
-			return pstmt.executeUpdate();
+        try (Connection conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+             PreparedStatement pstmt = conn.prepareStatement(SQL);) {
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            pstmt.setInt(1, categoryNumber);
+            return pstmt.executeUpdate();
 
-		return -1;
-	}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
 }

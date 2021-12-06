@@ -54,7 +54,7 @@
           <div class="info_psw">
             <h4>PassWord</h4>
           </div>
-          <a href="/account/changepsw.jsp">비밀번호 변경</a>
+          <a href="/changepsw">비밀번호 변경</a>
           <button id="info_psw_change_btn" class="btn btn-outline-primary" type="button" onclick="quiteCommunity()"> 탈퇴하기 </button>
         </div>
       </div>

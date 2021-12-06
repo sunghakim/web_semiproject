@@ -62,8 +62,8 @@ public class AccountService {
 			if(dto.getUserPassword().equals(DBData.getUserPassword())) {
 				if(dao.updatePassword(dto)) {
 					//비밀번호 변경 성공
-					dto.setUserID(DBData.getUserID());
-					dto.setUserPassword("");
+//					dto.setUserID(DBData.getUserID());
+//					dto.setUserPassword("");
 					dao.commit();
 					dao.close();
 					return 1;
