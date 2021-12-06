@@ -15,6 +15,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
+<style>
+  table>tbody>tr>td>a{
+    text-decoration: none;
+    color:black;
+  }
+</style>
+
+
 <body>
     <div class="wrap">
         <nav class="navBar">
@@ -93,10 +101,10 @@
 			   for(MainpageDTO dto : boardlist){
             
                 %>
-                  <td style="width: 15%;"><%=dto.getBoard_num() %></td>
-                  <td style="width: 50%;"><%=dto.getPost_title() %></td>
-                  <td style="width: 15%;"><%=dto.getUser_id() %></td>
-                  <td style="width: 20%;"><%=dto.getPost_date() %></td>
+                  <td style="width: 15%;"><a href="/<%= %>"><%=dto.getBOARD_NAME() %></a></td>
+                  <td style="width: 50%;"><a href="/<%= %>"><%=dto.getPost_title() %></a></td>
+                  <td style="width: 15%;"><a href="/<%= %>"><%=dto.getUser_id() %></a></td>
+                  <td style="width: 20%;"><a href="/<%= %>"><%=dto.getPost_date() %></a></td>
                   
                   <%
 			    }
