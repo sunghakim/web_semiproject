@@ -22,8 +22,7 @@ public class OracleConnect {
 	
 	{
 		// 1. 데이터베이스 연결 구성 정보가 있는 파일 불러오기
-		//String userHome = System.getProperty("user.home");
-		String userHome = "C:\\Users\\Coder";
+		String userHome = System.getProperty("user.home");
 		try {
 			this.info.load(new FileReader(userHome + "/oracle_connection.prop"));
 		} catch (FileNotFoundException e) {
