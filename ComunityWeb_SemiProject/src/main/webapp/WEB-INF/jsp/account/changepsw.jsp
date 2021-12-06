@@ -13,11 +13,11 @@
     <form action="/changepsw" method="post">
       <div class="input-box">
         <label>현재 비밀번호</label>
-        <input class="currentPsw" type="password" name="password"placeholder="현재비밀번호" required>   
+        <input class="currentPsw" type="password" name="UserPassword"placeholder="현재비밀번호" required>   
       </div>
       <div class="input-box">
         <label>새로운 비밀번호</label>
-        <input class="new_pass_ipt" type="password" name="password"placeholder="Create password" required> 
+        <input class="new_pass_ipt" type="password" name="NewUserPassword"placeholder="Create password" required> 
         <span id="error4"></span>
           
       </div>
@@ -60,7 +60,7 @@
 		} else if(result.equals("CPfailure3")){
 %>		
 		<script>
-		alert("비밀번호 변경 실패: 입력하신 현재 비밀번호가 틀립니다.");
+		alert("오류가 발생했습니다. 다시 시도하거나 다음에 시도해주세요.");
 		</script>
 <% 
 		}
