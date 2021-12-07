@@ -35,7 +35,7 @@ public class LoginController extends HttpServlet {
 		if(service.login(dto)) {
 			//로그인 성공
 			session.setAttribute("UserID", dto.getUserID());
-			response.sendRedirect("/WEB-INF/jsp/main/main.jsp");
+			response.sendRedirect("/");
 		} else {
 			//로그인 실패
 			request.setAttribute("result", "failure");
