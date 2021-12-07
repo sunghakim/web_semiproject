@@ -12,10 +12,9 @@ import com.web.model.NoticeManageDAO;
 @WebServlet("/noticeWrite")
 public class NoticeWriteController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    NoticeManageDAO manage;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        manage = new NoticeManageDAO();
+    	NoticeManageDAO manage = new NoticeManageDAO();
 
         String view = "/WEB-INF/jsp/manager/noticeWrite.jsp";
 
