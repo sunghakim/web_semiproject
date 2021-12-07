@@ -13,9 +13,9 @@ public class binOracle {
 			e.printStackTrace();
 		}
 	}	
-	private static String dbURL = "";
-	private static String dbID = "";
-	private static String dbPassword = "";
+	private static String dbURL = "jdbc:oracle:thin:@localhost:1521/XEPDB1";
+	private static String dbID = "TEST_USER2";
+	private static String dbPassword = "1234";
 	
 	public static Connection getConnection() throws SQLException {
 		

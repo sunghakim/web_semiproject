@@ -24,15 +24,25 @@ public class MainpageController extends HttpServlet {
 			throws ServletException, IOException {
 		int one_page = 1;
 		String page_num_str = "";
+<<<<<<< HEAD
 		page_num_str = request.getParameter("page_num");
+=======
+		page_num_str = request.getParameter("page_num"); //페이지수 받아오기
+>>>>>>> refs/remotes/origin/김성하
 		
+<<<<<<< HEAD
 		MainpageService service = new MainpageService();//서비스 불러오기
 		 
 		if(!(page_num_str == null || page_num_str =="")) {
+=======
+		MainpageService service = new MainpageService();//서비스 불러오기		
+		
+		if(!(page_num_str == null || page_num_str == "")) {
+>>>>>>> refs/remotes/origin/김성하
 			int page_num = Integer.parseInt(page_num_str);
 			List<MainpageDTO> mainlist = service.searchPage(page_num); //전체 카테고리 게시글 10개 받아오기
 			request.setAttribute("boardlist", mainlist ); //메인.jsp 콘텐츠에 전체게시판 리스트 셋
-		}else {
+		} else {
 			List<MainpageDTO> mainlist = service.searchPage(one_page);
 			request.setAttribute("boardlist", mainlist);
 		}

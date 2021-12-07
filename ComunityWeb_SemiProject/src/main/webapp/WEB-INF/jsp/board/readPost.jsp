@@ -344,7 +344,7 @@ p {
 	              <form action="/Writeview" method="post" class="comment-form">
 	                <textarea  class="form-control" id="comment_textarea" placeholder="댓글을 입력하세요"></textarea>
 	                <div class="comment_btn_case">
-	                  <input type="hidden" name="post_id" value="${sessionScope.UserID}">
+	                  <input type="hidden" name="post_id" value="${post_info.getPost_num()}">
 	                  <input type="hidden" name="date" value="${now}">
 	                  <button class="btn btn-outline-primary" type="submit" id="comment_btn">댓글등록</button>
 	                </div>

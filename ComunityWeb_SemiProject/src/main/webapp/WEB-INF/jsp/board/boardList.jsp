@@ -235,6 +235,7 @@ select:hover {
           </div>
           <div class="navBar-right">
             <ul class="navBar-item">
+<<<<<<< HEAD
             <c:choose>
             	<c:when test="${!empty sessionScope.UserID}">
               		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("s_login_user")%>님 환영합니다.</a></li>
@@ -245,6 +246,8 @@ select:hover {
                    	<li><button  type="button" class="SignUp_btn" onclick="location.href='/join'">Sign Up</button></li>
             	</c:otherwise>
             </c:choose>
+=======
+>>>>>>> refs/remotes/origin/김성하
             </ul>
           </div>
 

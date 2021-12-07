@@ -28,8 +28,12 @@ public class WriteviewController extends HttpServlet {
 		CommentService service = new CommentService();
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 		commentList = service.getCommentList(postId);
-		
 		request.setAttribute("cList", commentList);
+		
+		//카테고리 리스트 불러오기
+		BoardManageDAO b_service = new BoardManageDAO();
+		List<BoardManageDTO> b_list = b_service.boardList();
+		request.setAttribute("blist", b_list);
 		
 		String view = "/WEB-INF/jsp/board/readPost.jsp"; //게시글 상세보기 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
@@ -46,7 +50,9 @@ public class WriteviewController extends HttpServlet {
 		String commentId = request.getParameter("comment_id");
 		
 		CommentService service = new CommentService();
-		if(commentId.equals("null")) {
+		
+		
+		if(commentId == null || commentId == "") {
 			CommentDTO dto = new CommentDTO();
 			dto.setWriteId(postId);
 			dto.setWriter(writerId);
@@ -101,9 +107,12 @@ public class WriteviewController extends HttpServlet {
 		request.setAttribute("post_info", dto);
 		
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
-		commentList = service.getCommentList(postId); //개인 TEST 용
-		
+		commentList = service.getCommentList(postId);
 		request.setAttribute("cList", commentList);
+		
+		BoardManageDAO b_service = new BoardManageDAO();
+		List<BoardManageDTO> b_list = b_service.boardList();
+		request.setAttribute("blist", b_list);
 		
 		String view = "/WEB-INF/jsp/board/readPost.jsp"; //게시글 상세보기 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
