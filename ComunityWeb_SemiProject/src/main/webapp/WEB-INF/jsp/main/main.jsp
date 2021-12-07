@@ -101,7 +101,7 @@
 			   for(MainpageDTO dto : boardlist){
             
                 %>
-                  <td style="width: 15%;"><a href="/<%= %>"><%=dto.getBOARD_NAME() %></a></td>
+                  <td style="width: 15%;"><a href="/BoardSelectController?board_select=<%=<dto.getBoard_num> %>"><%=dto.getBOARD_NAME() %></a></td>
                   <td style="width: 50%;"><a href="/<%= %>"><%=dto.getPost_title() %></a></td>
                   <td style="width: 15%;"><a href="/<%= %>"><%=dto.getUser_id() %></a></td>
                   <td style="width: 20%;"><a href="/<%= %>"><%=dto.getPost_date() %></a></td>
