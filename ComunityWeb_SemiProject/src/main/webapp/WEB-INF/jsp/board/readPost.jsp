@@ -179,7 +179,7 @@ function delete(post_id){
 	              <form action="/Writeview" method="post" class="comment-form">
 	                <textarea  class="form-control" id="comment_textarea" placeholder="댓글을 입력하세요"></textarea>
 	                <div class="comment_btn_case">
-	                  <input tyep="hidden" name="user_id" value="${sessionScope.UserID}">
+	                  <input tyep="hidden" name="post_id" value="${post_info.getPost_num()}">
 	                  <input tyep="hidden" name="date" value="<%= new Date() %>">
 	                  <button class="btn btn-outline-primary" type="submit" id="comment_btn">댓글등록</button>
 	                </div>
