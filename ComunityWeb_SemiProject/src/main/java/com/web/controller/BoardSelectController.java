@@ -35,7 +35,7 @@ public class BoardSelectController extends HttpServlet {
 		request.setAttribute("cate_list", cate_list); //메인.jsp 카테고리에 게시판 리스트 셋
 		
 		
-		String view = "WEB-INF/jsp/board/boardList.jsp"; //포워드 페이지(
+		String view = "WEB-INF/jsp/board/boardList.jsp"; //포워드 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response); //포워드
 	}

@@ -26,8 +26,14 @@ public class MainpageController extends HttpServlet {
 		Integer page_num = Integer.parseInt(request.getParameter("page_num")); //페이지수 받아오기
 		
 		MainpageService service = new MainpageService();//서비스 불러오기
-		List<MainpageDTO> mainlist = service.searchPage(page_num); //전체 카테고리 게시글 10개 받아오기
-		request.setAttribute("boardlist", mainlist ); //메인.jsp 콘텐츠에 전체게시판 리스트 셋
+		 
+		if(page_num != null) {
+			List<MainpageDTO> mainlist = service.searchPage(page_num); //전체 카테고리 게시글 10개 받아오기
+			request.setAttribute("boardlist", mainlist ); //메인.jsp 콘텐츠에 전체게시판 리스트 셋
+		}else {
+			List<MainpageDTO> mainlist = service.searchPage(one_page);
+			request.setAttribute("boardlist", mainlist ); //메인.jsp 콘텐츠에 전체게시판 리스트 셋
+		}
 		
 		
 		BoardManageDAO category = new BoardManageDAO(); //카테고리 받아오는것
