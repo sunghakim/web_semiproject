@@ -14,7 +14,7 @@ import com.web.model.*;
 
 
 
-@WebServlet("/MainpageController")
+@WebServlet("/")
 public class MainpageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
