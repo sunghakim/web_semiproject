@@ -234,8 +234,8 @@ ul {
             
                 %>
                  <tr>
-	                  <td style="width: 15%;"><a href="/BoardSelectController?board_select=<%= dto.getBoard_num() %>&page_num=1"><%= dto.getBoard_name() %></a></td>
-	                  <td style="width: 50%;"><a href="/<%= %>"><%=dto.getPost_title() %></a></td>
+	                  <td style="width: 15%;"><a href="/BoardSelectController?board_num=<%= dto.getBoard_num() %>&page_num=1"><%= dto.getBoard_name() %></a></td>
+	                  <td style="width: 50%;"><a href="/Writerview?post_id=<%= dto.getPost_num() %>"><%=dto.getPost_title() %></a></td>
 	                  <td style="width: 15%;"><%=dto.getUser_id() %></td>
 	                  <td style="width: 20%;"><%=dto.getPost_date() %></td>
                   </tr>
