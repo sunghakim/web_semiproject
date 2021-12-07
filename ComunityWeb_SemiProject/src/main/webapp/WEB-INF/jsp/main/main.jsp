@@ -211,7 +211,11 @@ ul {
                   <div>
                       <h1>Feel Free to Post <br>Anything You Want</h1>
                       <%
+<<<<<<< HEAD
                       if(request.getSession().getAttribute("UserID") != null){
+=======
+			        	if(request.getSession().getAttribute("UserID") != null){
+>>>>>>> refs/remotes/origin/최진휘
 			           %> 
                        <button class="btn btn-primary btn-lg" onclick="location.href='/boardList'">Start now</button>
                     
@@ -242,7 +246,11 @@ ul {
 			for(BoardManageDTO dto : datas){
             
             %>
+<<<<<<< HEAD
               <li><a href="/BoardSelectController?board_num=<%= dto.getBOARD_NUM() %>&page_num=1"><%= dto.getBOARD_NAME() %></a></li>
+=======
+              <li><a href="/BoardSelectController?board_select=<%= dto.getBOARD_NUM() %>"><%= dto.getBOARD_NAME() %></a></li>
+>>>>>>> refs/remotes/origin/최진휘
               <%
 			}
               %>
