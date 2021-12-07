@@ -243,7 +243,7 @@ p {
             <ul class="navBar-item">
               <c:choose>
             	<c:when test="${!empty sessionScope.UserID}">
-              		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("s_login_user")%>님 환영합니다.</a></li>
+              		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("UserID")%>님 환영합니다.</a></li>
               		<li><button  type="submit" class="LogOut_btn">Log Out</button></li>
             	</c:when>
             	<c:otherwise>
