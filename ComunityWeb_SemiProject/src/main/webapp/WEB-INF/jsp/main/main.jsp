@@ -242,7 +242,7 @@ ul {
 			for(BoardManageDTO dto : datas){
             
             %>
-              <li><a href="/BoardSelectController?board_select=<%= dto.getBOARD_NUM() %>&page_num=1"><%= dto.getBOARD_NAME() %></a></li>
+              <li><a href="/BoardSelectController?board_num=<%= dto.getBOARD_NUM() %>&page_num=1"><%= dto.getBOARD_NAME() %></a></li>
               <%
 			}
               %>
