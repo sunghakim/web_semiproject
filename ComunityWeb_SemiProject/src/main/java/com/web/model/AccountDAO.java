@@ -10,7 +10,7 @@ public class AccountDAO {
 	private OracleConnect oc;
 
 	public AccountDAO() {
-		this.oc = new OracleConnect(true);
+		this.oc = new OracleConnect(false);
 	}
 	
 	public List<AccountDTO> select(String UserID) {
@@ -19,16 +19,21 @@ public class AccountDAO {
 		ResultSet res = oc.select(query);
 		
 		List<AccountDTO> datas = new ArrayList<AccountDTO>();
-		try {
-			while(res.next()) {
-				AccountDTO dto = new AccountDTO();
-				dto.setUserID(res.getString("USER_ID"));
-				dto.setUserPassword(res.getString("PASSWORD"));
-				datas.add(dto);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
+		if(res == null) {
 		}
+		else {
+			try {
+				while(res.next()) {
+					AccountDTO dto = new AccountDTO();
+					dto.setUserID(res.getString("USER_ID"));
+					dto.setUserPassword(res.getString("PASSWORD"));
+					datas.add(dto);
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		return datas;
 	}
 

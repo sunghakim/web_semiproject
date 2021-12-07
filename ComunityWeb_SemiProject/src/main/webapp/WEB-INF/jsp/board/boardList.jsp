@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@page import="java.util.*" %>
-<%@page import="semi.PostDB" %>
+<%@page import="com.web.model.PostDTO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -9,16 +9,18 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="/css/boardList.css">
+<link rel="stylesheet" type="text/css" href="/static/css/boardList.css">
+
+
 
 <title>게시판</title>
 </head>
 <body>
 <div style="display: flex; margin: 10px 10px; width: 95%;">
-	<%@include file="/layout/category.jsp" %>
+	<c:import url="./category.jsp" />
 
     <div id="content">
-        <h1>카테고리1</h1>
+        <h1></h1>
         <fmt:formatDate value="<%=new Date() %>" pattern="yyMMdd" var="now" />
         <div class="boardTable">
             <table class="table table-hover">
@@ -31,24 +33,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>제목3</td>
-                    <td>작성자2</td>
-                    <td>2021-11-30</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>제목2</td>
-                    <td>작성자1</td>
-                    <td>2021-11-30</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>제목1</td>
-                    <td>작성자1</td>
-                    <td>2021-11-30</td>
-                    </tr>
+	                <c:if test ="${not empty datas}">
+	                	<c:forEach var="i" items="${datas}">
+	                    <tr>
+	                    <th scope="row">${i.getPost_num()}</th>
+	                    <td><a href="/Writeview?post_id=${i.getPost_num()}">${i.getPost_title()}</a></td>
+	                    <td>${i.getUser_id()}</td>
+                        <fmt:formatDate value="${i.getPost_date()}" pattern="yyMMdd" var="date" />
+	                    <td>
+	                    <c:if test="${date eq now}">
+                            <fmt:formatDate value="${i.getPost_date()}" type="time" pattern="HH:mm" />
+                        </c:if>
+                        <c:if test="${date lt now}">
+                           	<fmt:formatDate value="${i.getPost_date()}" type="date" pattern="yy-MM-dd" />
+                        </c:if>
+                        </td>
+	                    </tr>
+	                    </c:forEach>
+	                </c:if>
                 </tbody>
             </table>
         </div> <!-- boardTable end -->

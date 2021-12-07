@@ -20,7 +20,7 @@
     <nav class="navBar">
       <div class="navBar-container">
         <div class="navBar-home">
-          <a href="#"><i class="fas fa-home"> home</i></a>
+          <a href="/main"><i class="fas fa-home"> home</i></a>
         </div>
         <div class="navBar-right">
            <ul class="navBar-item">
@@ -109,7 +109,10 @@
 
 <footer class="footer">
   <div class="footer-container">
-   <hr>
+    <div class="social">
+
+    </div>
+    <p></p>
   </div>
   
 </footer>

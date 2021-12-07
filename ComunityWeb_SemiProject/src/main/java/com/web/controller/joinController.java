@@ -21,7 +21,6 @@ public class joinController extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
-
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -30,15 +29,31 @@ public class joinController extends HttpServlet {
 		
 		AccountDTO dto = new AccountDTO(UserID, UserPassword);
 		AccountService service = new AccountService();
-		if(service.add(dto)) {
-			response.sendRedirect("/");
-		} else {//DB내에서 잘못된 값 감지
-
-			request.setAttribute("init", dto);
-			String view = "/WEB-INF/jsp/account/join.jsp";
-
-			RequestDispatcher rd = request.getRequestDispatcher(view);
+		String view = "/WEB-INF/jsp/account/join.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(view);
+		if(service.checkID(dto) == 0) {
+			//중복되는 아이디 없음
+			if(service.add(dto)) {
+				//회원가입 성공
+				response.sendRedirect("/");
+			} else {
+				//DB내에서 잘못된 값 감지
+				request.setAttribute("UserID", dto.getUserID());
+				request.setAttribute("result", "1");
+				rd.forward(request, response);
+			}
+		} else if(service.checkID(dto) == 1) {
+			//중복되는 아이디 발견
+			request.setAttribute("UserID", dto.getUserID());
+			request.setAttribute("result", "2");
+			rd.forward(request, response);
+		} else {
+			//DB내에서 잘못된 데이터 검출
+			request.setAttribute("UserID", dto.getUserID());
+			request.setAttribute("result", "1");
 			rd.forward(request, response);
 		}
+		
+		
 	}
 }

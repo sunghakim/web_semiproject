@@ -67,8 +67,3 @@ function quiteCommunity(){
     }
 
 }
-
-function updateBoard(){
-   let new_board =  prompt("변경할 게시판 이름을 입력하세요.");
-   alert("변경된 이름 : " + new_board);
-}
