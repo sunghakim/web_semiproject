@@ -116,9 +116,9 @@ textarea {
             <div class="writeHd">
                 <select class="frm" id="writeSelect" name="board" style="margin-right: 5px;" required>
                     <option value="">카테고리 선택</option>
-                    <%--<c:forEach var="i" items="${board}">
-                    	<option value="${i.boardNum}">${i.boardName}</option>
-                    </c:forEach> --%>
+                    <c:forEach var="i" items="${category}">
+                    	<option value="${i.getBOARD_NUM()}">${i.getBOARD_NAME()}</option>
+                    </c:forEach>
                 </select>
                 <input class="frm" id="writeTitle" name="post_title" placeholder="제목" style="margin-left: 4px;" required>
             </div>

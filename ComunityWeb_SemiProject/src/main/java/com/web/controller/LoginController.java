@@ -32,11 +32,17 @@ public class LoginController extends HttpServlet {
 		AccountService service = new AccountService();
 		HttpSession session = request.getSession();
 		
-		if(service.login(dto)) {
-			//로그인 성공
+		switch(service.login(dto)) {
+		case(1)://관리자 로그인 성공
+			session.setAttribute("UserID", dto.getUserID());
+			response.sendRedirect("/memberlist");
+			break;
+		case(2)://일반회원 로그인 성공
 			session.setAttribute("UserID", dto.getUserID());
 			response.sendRedirect("/");
-		} else {
+			break;
+		case(3):
+		case(4):
 			//로그인 실패
 			request.setAttribute("result", "failure");
 			String view = "/WEB-INF/jsp/account/login.jsp";

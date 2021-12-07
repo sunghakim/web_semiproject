@@ -63,7 +63,7 @@ public class OracleConnect {
 	private void Connect() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			this.conn = DriverManager.getConnection(
+			this.conn = DriverManager.getConnection(//에러발생
 					this.info.getProperty("Local-url"),
 					this.info.getProperty("user"), 
 					this.info.getProperty("password"));
@@ -80,7 +80,7 @@ public class OracleConnect {
 	public ResultSet select(String query) {
 		ResultSet rs = null;
 		try {
-			rs = this.stat.executeQuery(query);
+			rs = this.stat.executeQuery(query);//에러발생
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
