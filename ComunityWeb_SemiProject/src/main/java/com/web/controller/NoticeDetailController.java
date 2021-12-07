@@ -14,10 +14,8 @@ import com.web.model.NoticeManageDAO;
 public class NoticeDetailController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    NoticeManageDAO manage;
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        manage = new NoticeManageDAO();
+    	NoticeManageDAO manage = new NoticeManageDAO();
 
         int postNum = Integer.parseInt(req.getParameter("postNum"));
 

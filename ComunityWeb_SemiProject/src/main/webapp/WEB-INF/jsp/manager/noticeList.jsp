@@ -182,8 +182,8 @@ ul {
                 %>
                 <tr>
                   <td style="width: 15%;"><%=dto.getPost_num() %></td>
-                  <td style="width: 50%;"><a href="notice?postNum=<%=dto.getPost_num()%>"><%=dto.getPost_title() %></a></td>                  
-                  <td style="width: 15%;"><%=dto.getUser_id() %></td>
+                  <td style="width: 50%;"><a href="notice?postNum=<%=dto.getPost_num()%>"><%=dto.getUser_id() %></a></td>
+                  <td style="width: 15%;"><%=dto.getPost_title() %></td>                  
                   <td style="width: 20%;"><%=dto.getPost_date() %></td>
                 </tr>
                   

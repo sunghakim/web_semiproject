@@ -31,6 +31,7 @@ public class OracleConnect {
 			e.printStackTrace();
 		}
 	}
+	
 
 	public OracleConnect() {
 		this.Connect();
@@ -43,6 +44,7 @@ public class OracleConnect {
 			this.Connect();
 		}
 	}
+	
 	//	Wallet 정보로 데이터베이스 연결
 	private void walletConnect() {
 		OracleDataSource ods;
@@ -63,7 +65,7 @@ public class OracleConnect {
 	private void Connect() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			this.conn = DriverManager.getConnection(//에러발생
+			this.conn = DriverManager.getConnection(
 					this.info.getProperty("Local-url"),
 					this.info.getProperty("user"), 
 					this.info.getProperty("password"));
@@ -76,11 +78,16 @@ public class OracleConnect {
 		}
 	}
 	
+	//커넥션 가져오기 - 김한빈 수정
+	public Connection getConn() {
+		return conn;
+	}
+
 	//SELECT 쿼리문 가능
 	public ResultSet select(String query) {
 		ResultSet rs = null;
 		try {
-			rs = this.stat.executeQuery(query);//에러발생
+			rs = this.stat.executeQuery(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -130,4 +137,5 @@ public class OracleConnect {
 			e.printStackTrace();
 		}
 	}
+	
 }

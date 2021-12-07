@@ -1,30 +1,26 @@
 package com.web.model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.db.conn.binOracle;
+import com.db.conn.OracleConnect;
 
 public class NoticeManageDAO {
-
+	private OracleConnect oc;
     public NoticeManageDAO() {
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        oc = new OracleConnect();
     }
 
     public List<PostDTO> noticeList() {
         List<PostDTO> noticeList = new ArrayList<>();
-        String SQL = "SELECT POST_NUM,USER_ID,POST_TITLE,POST_DATE FROM POSTDB WHERE BOARD_NUM = 0";
+        String SQL = "SELECT POST_NUM,USER_ID,POST_TITLE,POST_DATE FROM POSTDB WHERE BOARD_NUM = 0 ORDER BY POST_NUM DESC";
 
-        try (// db 접속, 쿼리 try-with-resource 사용
-             Connection conn = binOracle.getConnection();
+        try (Connection conn = oc.getConn();
              PreparedStatement pstmt = conn.prepareStatement(SQL);
              ResultSet rs = pstmt.executeQuery();) {
 
@@ -46,7 +42,7 @@ public class NoticeManageDAO {
 
     public int postNotice(PostDTO notice) {
         String SQL = "INSERT INTO POSTDB VALUES(POSTNUM_SEQ.NEXTVAL,?,?,?,TO_DATE(?),0)";
-        try (Connection conn = binOracle.getConnection();
+        try (Connection conn = oc.getConn();
              PreparedStatement pstmt = conn.prepareStatement(SQL);) {
 
             pstmt.setString(1, notice.getUser_id());
@@ -63,7 +59,7 @@ public class NoticeManageDAO {
 
     public PostDTO getCurrentPage(int postNum) {
         String SQL = "SELECT POST_TITLE,POST_DATE,POST_CONTENT FROM POSTDB WHERE POST_NUM = ?";
-        try (Connection conn = binOracle.getConnection();
+        try (Connection conn = oc.getConn();
              PreparedStatement pstmt = conn.prepareStatement(SQL);) {
 
             pstmt.setInt(1, postNum);
@@ -87,8 +83,8 @@ public class NoticeManageDAO {
 
     public int updatePost(String title, String content, int num) {
         String SQL = "UPDATE POSTDB SET POST_TITLE = ?, POST_CONTENT = ? WHERE POST_NUM = ?";
-        try (Connection conn = binOracle.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL);) {
+        try (Connection conn = oc.getConn();
+        	 PreparedStatement pstmt = conn.prepareStatement(SQL);) {
             pstmt.setString(1, title);
             pstmt.setString(2, content);
             pstmt.setInt(3, num);
@@ -104,8 +100,8 @@ public class NoticeManageDAO {
 
     public int deletePost(int delete) {
         String SQL = "DELETE FROM POSTDB WHERE POST_NUM = ?";
-        try (Connection conn = binOracle.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL);) {
+        try (Connection conn = oc.getConn();
+        	 PreparedStatement pstmt = conn.prepareStatement(SQL);) {
 
             pstmt.setInt(1, delete);
             return pstmt.executeUpdate();
