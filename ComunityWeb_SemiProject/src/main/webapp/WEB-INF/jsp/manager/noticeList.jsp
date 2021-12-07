@@ -17,35 +17,31 @@
 </head>
 <body>
     <div class="wrap">
-        <nav class="navBar">
-            <div class="navBar-container">
-              <div class="navBar-home">
-                <a href="main.html"><i class="fas fa-home"> home</i></a>
-              </div>
-              <div class="navBar-right">
-                <ul class="navBar-item">
-      
-                   <li><button type="button" class="SignIn_btn" onclick="location.href='/login'">Sign In</button></li>
-                   <li><button  type="button" class="SignUp_btn" onclick="location.href='/join'">Sign Up</button></li>
-                 </ul>
-               </div>
-             </div>
-      
-             
-             </nav>
+       <nav class="navBar">
+    	<div class="navBar-container">
+      		<div class="navBar-home">
+        		<a href="/index.jsp"><i class="fas fa-home"> home</i></a>
+      		</div>
+      	<div class="navBar-right">
+         <ul class="navBar-item">
+            <li>관리자님 환영합니다.</li>
+            <li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
+          </ul>
+   		</div>
+
+       </div>
+      </nav>
        
       <!-- main -->
-      <section class="bg-dark text-light p-5 text-center">
-          <div class="container">
-              <div class="d-sm-flex">
-                  <div>
-                      <h1>Feel Free to Post <br>Anything You Want</h1>
-                      <button class="btn btn-primary btn-lg" onclick="location.href='/join'">Start now</button>
-                  </div>
-                  <img class="img-fluid w-50" src="/static/imgsss.jpg" alt="" style="box-shadow:5px 5px 10px black;">
-              </div>
-          </div>
-      </section>
+<section class="main">
+   <!-- categories -->
+    <div id="catecol" class="d-flex align-items-start col-lg-3 col-md-3">
+        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="false" onclick="location.href='/memberlist'">회원관리</button>
+          <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" onclick="location.href='/board'">게시판관리</button>
+          <button class="nav-link active" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="true" onclick="location.href='/noticeList'">공지사항</button>
+        </div>
+    </div>
       
       
           <!-- main_contents -->
@@ -84,7 +80,7 @@
         
         <!-- send to noticeWrite -->
 		<button onclick="location.href='noticeWrite?name=post'">게시글 등록</button>
-
+</section>
         <!-- footer? -->
     <footer class="footer">
         <div class="footer-container">
