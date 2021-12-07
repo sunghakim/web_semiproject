@@ -236,29 +236,17 @@ select:hover {
           </div>
           <div class="navBar-right">
             <ul class="navBar-item">
-<<<<<<< HEAD
-            <c:choose>
-=======
 			<c:choose>
->>>>>>> refs/remotes/origin/김성하
             	<c:when test="${!empty sessionScope.UserID}">
               		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("UserID")%>님 환영합니다.</a></li>
-<<<<<<< HEAD
               		<li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
-=======
-              		<li><button  type="submit" class="LogOut_btn">Log Out</button></li>
->>>>>>> refs/remotes/origin/김성하
             	</c:when>
             	<c:otherwise>
             		<li><button type="button" class="SignIn_btn" onclick="location.href='/login'">Sign In</button></li>
                    	<li><button  type="button" class="SignUp_btn" onclick="location.href='/join'">Sign Up</button></li>
             	</c:otherwise>
             </c:choose>
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/김성하
-            </ul>
+			</ul>
           </div>
 
             </div>
