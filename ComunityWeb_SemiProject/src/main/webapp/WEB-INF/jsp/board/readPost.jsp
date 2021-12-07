@@ -10,6 +10,133 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <style type="text/css">
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.wrap {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 60px;
+}
+
+.navBar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.navBar-home > a {
+  list-style: none;
+  margin-left: 10px;
+}
+
+.navBar-right {
+  margin-top: 15px;
+}
+.navBar ul {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+.navBar ul li {
+  margin-right: 10px;
+}
+.navBar-right .navBar-item > li > button {
+  cursor: pointer;
+  display: inline-block;
+  border: 1px #000 solid;
+  border-radius: 50px;
+  padding: 7px 16px;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.SignIn_btn {
+  background-color: white;
+  color: black;
+}
+.SignIn_btn:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.SignUp_btn,
+.LogOut_btn {
+  background-color: black;
+  color: white;
+}
+.SignUp_btn:hover {
+  background-color: #333;
+}
+.nav_right .na .navBar a {
+  color: #000;
+  text-decoration: none;
+}
+
+.catecol {
+    margin-right: 20px;
+}
+
+#writePost {
+    display:block;
+    padding:.5rem 1rem;
+    color:#ffffff;
+    height: 50px;
+    width: 200px;
+    font-size: 17px;
+    font-weight: bold;
+
+    flex:1 1 auto;
+    text-align:center;
+    margin-bottom:-1px;
+
+    background:0 0;
+    background-color: #3D84A8;
+    border:1px solid transparent;
+    border-radius:.25rem;
+}
+
+#writePost:hover{
+    color:#3D84A8;
+    border-color:#e9ecef #e9ecef #dee2e6;
+    background-color: #ffffff;
+    isolation:isolate
+}
+
+.category{
+    display:block;
+    padding:.5rem 1rem;
+    color:#46CDCF;
+    height: 50px;
+    width: 200px;
+    font-size: 17px;
+    font-weight: bold;
+
+    flex:1 1 auto;
+    text-align:center;
+    margin-bottom:-1px;
+
+    background:0 0;
+    border:1px solid transparent;
+    border-radius:.25rem;
+}
+
+.category:focus,.category:hover{
+    color:#46CDCF;
+    border-color:#e9ecef #e9ecef #dee2e6;
+    isolation:isolate
+}
+
+.category.active, .show>.category{
+    color:#fff;
+    background-color:#46CDCF;
+}
 #content {
     width: 60%;
     height: 800px;
@@ -93,22 +220,59 @@ p {
   display: flex;
   justify-content: space-between;
 }
+
+.footer-container {
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 </style>
-<script type="text/javascript">
-function change(post_id) {
-	location.href="/PostChange?post_id=" + post_id;
-}
 
-function delete(post_id){
-	location.href="/PostDelete?post_id=" + post_id;
-}
-
-</script>
 <title>${post_info.getPost_title()}</title>
 </head>
 <body>
-<div style="display: flex; margin: 10px 10px; width: 95%;">
-	<c:import url="./category.jsp" />
+ <div class="wrap">
+    <nav class="navBar">
+        <div class="navBar-container">
+          <div class="navBar-home">
+            <a href="/main"><i class="fas fa-home"> home</i></a>
+          </div>
+          <div class="navBar-right">
+            <ul class="navBar-item">
+              <c:choose>
+            	<c:when test="${!empty sessionScope.UserID}">
+              		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("s_login_user")%>님 환영합니다.</a></li>
+              		<li><button  type="submit" class="LogOut_btn">Log Out</button></li>
+            	</c:when>
+            	<c:otherwise>
+            		<li><button type="button" class="SignIn_btn" onclick="location.href='/login'">Sign In</button></li>
+                   	<li><button  type="button" class="SignUp_btn" onclick="location.href='/join'">Sign Up</button></li>
+            	</c:otherwise>
+            </c:choose>
+            </ul>
+          </div>
+
+            </div>
+      </nav>
+
+	<div style="display: flex; margin: 10px 10px; width: 95%;">
+	
+	<div class="catecol">
+    <div style="margin-bottom: 10px;">
+        <button id="writePost" type="button" onclick="location.href='/PostController'">글쓰기</button>
+    </div>
+    <div class="tab-list">
+      <button class="category active">공지사항</button>
+      <c:if test="${not empty blist}">
+      	<c:forEach var="i" items="${blist}">
+      		<button class="category" onclick="location.href='/BoardSelectController?board_select=${i.getBOARD_NUM()}&page_num=1'">${i.getBOARD_NAME()}</button>
+      	</c:forEach>
+      </c:if>
+    </div>
+  </div>
+  
 	 <div id="content">
 	     <div style="display: flex; justify-content: space-between;">
 	         <div style="display: flex; justify-content: left; height: 100px; margin: 0; padding: 10px 0;">
@@ -118,8 +282,8 @@ function delete(post_id){
 	             </div>
 	         </div>
 	         <div style="display: flex; align-items: flex-end; margin: 0 20px; padding: 10px 0;">
-			             <button class="btnn md" id="change" onclick="change(${post_info.getPost_num()})"><i class="fas fa-eraser"></i></button>
-			             <button class="btnn delete" id="del" onclick="delete(${post_info.getPost_num()})"><i class="fas fa-trash-alt"></i></button>
+			             <button class="btnn md" id="change" onclick="location.href='/postChange?post_id=${post_info.getPost_num()}'"><i class="fas fa-eraser"></i></button>
+			             <button class="btnn delete" id="del" onclick="location.href='/postDelete?post_id=${post_info.getPost_num()}'"><i class="fas fa-trash-alt"></i></button>
 			         </div>
 	         <%--<c:if test="${!empty sessionScope.UserID}">
 		         <c:if test="${post_info.getUser_id eq sessionScope.UserID}">
@@ -171,6 +335,7 @@ function delete(post_id){
 			</c:forEach>
 			</ul>
 	            <div class="comment_write">
+	            <fmt:formatDate value="<%=new Date() %>" pattern="yy-MM-dd" var="now" />
 	            <c:choose>
 	            <c:when test="${empty sessionScope.UserID}">
 		            <a  id="unlogInedcase_comment" class="form-control" href="/join">로그인 후 이용해주세요.</a>
@@ -179,8 +344,8 @@ function delete(post_id){
 	              <form action="/Writeview" method="post" class="comment-form">
 	                <textarea  class="form-control" id="comment_textarea" placeholder="댓글을 입력하세요"></textarea>
 	                <div class="comment_btn_case">
-	                  <input tyep="hidden" name="user_id" value="${sessionScope.UserID}">
-	                  <input tyep="hidden" name="date" value="<%= new Date() %>">
+	                  <input type="hidden" name="post_id" value="${sessionScope.UserID}">
+	                  <input type="hidden" name="date" value="${now}">
 	                  <button class="btn btn-outline-primary" type="submit" id="comment_btn">댓글등록</button>
 	                </div>
 	              </form>
@@ -194,6 +359,15 @@ function delete(post_id){
 	
 	      </section>
 	 </div> <!-- content end -->
+	 
+	 <footer class="footer">
+        <div class="footer-container">
+            <hr>
+
+        </div>
+
+      </footer>
 </div>	      
+</div>
  </body>
  </html>
