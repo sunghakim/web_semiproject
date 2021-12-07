@@ -243,7 +243,7 @@ p {
             <ul class="navBar-item">
               <c:choose>
             	<c:when test="${!empty sessionScope.UserID}">
-              		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("s_login_user")%>님 환영합니다.</a></li>
+              		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("UserID")%>님 환영합니다.</a></li>
               		<li><button  type="submit" class="LogOut_btn">Log Out</button></li>
             	</c:when>
             	<c:otherwise>
@@ -267,7 +267,7 @@ p {
       <button class="category active">공지사항</button>
       <c:if test="${not empty blist}">
       	<c:forEach var="i" items="${blist}">
-      		<button class="category" onclick="location.href='/BoardSelectController?board_select=${i.getBOARD_NUM()}&page_num=1'">${i.getBOARD_NAME()}</button>
+      		<button class="category" onclick="location.href='/BoardSelectController?board_num=${i.getBOARD_NUM()}&page_num=1'">${i.getBOARD_NAME()}</button>
       	</c:forEach>
       </c:if>
     </div>
@@ -335,14 +335,14 @@ p {
 			</c:forEach>
 			</ul>
 	            <div class="comment_write">
-	            <fmt:formatDate value="<%=new Date() %>" pattern="yy-MM-dd" var="now" />
+	            <fmt:formatDate value="<%=new Date() %>" pattern="YYYY-MM-dd" var="now" />
 	            <c:choose>
 	            <c:when test="${empty sessionScope.UserID}">
 		            <a  id="unlogInedcase_comment" class="form-control" href="/join">로그인 후 이용해주세요.</a>
 	            </c:when>
 	            <c:otherwise>
 	              <form action="/Writeview" method="post" class="comment-form">
-	                <textarea  class="form-control" id="comment_textarea" placeholder="댓글을 입력하세요"></textarea>
+	                <textarea  class="form-control" id="comment_textarea" name="context" placeholder="댓글을 입력하세요"></textarea>
 	                <div class="comment_btn_case">
 	                  <input type="hidden" name="post_id" value="${post_info.getPost_num()}">
 	                  <input type="hidden" name="date" value="${now}">
