@@ -168,9 +168,21 @@ ul {
               </div>
               <div class="navBar-right">
                 <ul class="navBar-item">
-      
+            <%
+            boolean logined = (boolean) request.getAttribute("logined");
+        	if(logined){
+           %> 
+                    <li><a href="/mypage"><%=(String) request.getSession().getAttribute("s_login_user")%>님 환영합니다.</a></li>
+                    <li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
+        
+           <%		
+        	} else{
+           %>
                    <li><button type="button" class="SignIn_btn" onclick="location.href='/login'">Sign In</button></li>
                    <li><button  type="button" class="SignUp_btn" onclick="location.href='/join'">Sign Up</button></li>
+           <%        
+        	}
+           %>
                  </ul>
                </div>
              </div>
@@ -184,7 +196,19 @@ ul {
               <div class="d-sm-flex">
                   <div>
                       <h1>Feel Free to Post <br>Anything You Want</h1>
-                      <button class="btn btn-primary btn-lg" onclick="location.href='/join'">Start now</button>
+                      <%
+			        	if(logined){
+			           %> 
+                       <button class="btn btn-primary btn-lg" onclick="location.href='/boardList'">Start now</button>
+                    
+			           <%		
+			        	} else{
+			           %>
+                        <button class="btn btn-primary btn-lg" onclick="location.href='/join'">Start now</button>
+                 
+			           <%        
+			        	}
+			           %>
                   </div>
                   <img class="img-fluid w-50" src="/static/imgsss.jpg" alt="" style="box-shadow:5px 5px 10px black;">
               </div>
