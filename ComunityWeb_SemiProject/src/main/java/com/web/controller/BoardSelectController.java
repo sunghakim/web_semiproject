@@ -28,7 +28,7 @@ public class BoardSelectController extends HttpServlet {
 		List<BoardDTO> datas = service.searchBoard(board_select, page_num);
 		
 		request.setAttribute("datas", datas); //리스트 datas를 리퀘스트 객체에 셋
-		String view = "WEB-INF/jsp/board/board.jsp"; //포워드 페이지(
+		String view = "WEB-INF/jsp/board/boardList.jsp"; //포워드 페이지(
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}

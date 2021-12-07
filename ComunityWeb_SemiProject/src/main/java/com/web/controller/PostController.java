@@ -18,12 +18,12 @@ public class PostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PostService service = new PostService(); //서비스 클래스 객체
-		List<PostDTO> datas = service.searchAll(); //리스트 가져오기
+		BoardManageDAO category = new BoardManageDAO();
+		List<BoardManageDTO> cate_list = category.boardList();
 		
-		request.setAttribute("datas", datas);
+		request.setAttribute("category", cate_list);
 		
-		String view = "/WEB-INF/jsp/board/boardList.jsp"; //게시글 리스트 페이지
+		String view = "/WEB-INF/jsp/board/boardWrite.jsp"; //게시글 리스트 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
