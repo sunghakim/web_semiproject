@@ -13,10 +13,10 @@ import com.web.model.MemberManageDAO;
 @WebServlet("/memberlist")
 public class MemberManageController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    
+    MemberManageDAO manage;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	MemberManageDAO manage = new MemberManageDAO();
+        manage = new MemberManageDAO();
 
         req.setAttribute("datas", manage.memberList());
         req.getRequestDispatcher("/WEB-INF/jsp/manager/memberlist.jsp").forward(req, resp);
@@ -25,7 +25,6 @@ public class MemberManageController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String[] deleteIdList = req.getParameterValues("deleteUserId");
-        MemberManageDAO manage = new MemberManageDAO();
 
         System.out.println("넘겨받은 아이디 : ");
         for (String s : deleteIdList)

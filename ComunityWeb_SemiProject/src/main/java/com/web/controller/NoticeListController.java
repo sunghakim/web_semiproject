@@ -17,8 +17,10 @@ import com.web.model.PostDTO;
 public class NoticeListController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    private NoticeManageDAO noticeManage;
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	NoticeManageDAO noticeManage = new NoticeManageDAO();
+        noticeManage = new NoticeManageDAO();
 
         req.setAttribute("postList", noticeManage.noticeList());
         req.getRequestDispatcher("/WEB-INF/jsp/manager/noticeList.jsp").forward(req, resp);
@@ -30,7 +32,7 @@ public class NoticeListController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
 
-        NoticeManageDAO noticeManage = new NoticeManageDAO();
+        noticeManage = new NoticeManageDAO();
 
         String send = req.getParameter("send");
 

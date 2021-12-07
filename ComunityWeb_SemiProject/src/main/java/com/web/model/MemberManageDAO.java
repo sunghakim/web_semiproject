@@ -1,6 +1,7 @@
 package com.web.model;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,20 +9,30 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.db.conn.OracleConnect;
-
 public class MemberManageDAO {
-	private OracleConnect oc;
+
+    //db 주소
+    private String dbURL = "";
+    private String dbID = "";
+    private String dbPassword = "";
+
     public MemberManageDAO() {
-    	oc = new OracleConnect();
+
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public List<AccountDTO> memberList() {
         List<AccountDTO> memberList = new ArrayList<>();
         String SQL = "SELECT USER_ID, PASSWORD FROM ACCOUNTDB ORDER BY USER_ID";
-        
-        try (Connection conn = oc.getConn();
-        	 PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+        try (// db 접속, 쿼리 try-with-resource 사용
+             Connection conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+             PreparedStatement pstmt = conn.prepareStatement(SQL);
              ResultSet rs = pstmt.executeQuery();) {
 
             while (rs.next()) {
@@ -50,10 +61,9 @@ public class MemberManageDAO {
         }
 
         String SQL = "DELETE ACCOUNTDB WHERE USER_ID IN (" + id.toString() + ")";
-        
-                
-        try (Connection conn = oc.getConn();
-        	 Statement stmt = conn.createStatement();) {
+
+        try (Connection conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+             Statement stmt = conn.createStatement();) {
 
             System.out.println("삭제한 ID : " + id);
 
@@ -64,5 +74,5 @@ public class MemberManageDAO {
         }
         return -1;
     }
-	
+
 }
