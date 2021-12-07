@@ -13,13 +13,13 @@ import com.web.model.BoardManageDAO;
 @WebServlet("/board")
 public class BoardManageController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    BoardManageDAO manage;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        manage = new BoardManageDAO();
-
+    	BoardManageDAO manage = new BoardManageDAO();
+    	
         req.setAttribute("datas", manage.boardList());
+
         req.getRequestDispatcher("/WEB-INF/jsp/manager/board.jsp").forward(req, resp);
 
     }
@@ -29,7 +29,9 @@ public class BoardManageController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         String send = req.getParameter("send");
-
+        
+        BoardManageDAO manage = new BoardManageDAO();
+        
         switch (send) {
             case "createSubmit": {
                 String[] create = req.getParameterValues("create");
@@ -37,7 +39,7 @@ public class BoardManageController extends HttpServlet {
                 String categoryName = create[1];
 
                 int result = manage.insertCategory(categoryId, categoryName);
-
+                
                 System.out.println("쿼리 반환값 : " + result);
                 System.out.println("추가한 카테고리 ID : " + create[0] + "\n카테고리 이름 : " + create[1]);
                 break;
@@ -64,7 +66,7 @@ public class BoardManageController extends HttpServlet {
 
                 System.out.println("수정 전 카테고리 : " + currentCategoryNum + " " + currentCategoryName);
                 int result = manage.updateCategory(updateCategoryName, updateCategoryNum, currentCategoryNum);
-
+                
                 System.out.println("쿼리 반환값 : " + result);
                 System.out.println("수정된 카테고리 : " + updateCategoryNum + " " + updateCategoryName);
                 break;
@@ -79,14 +81,14 @@ public class BoardManageController extends HttpServlet {
                 }
 
                 int result = manage.deleteCategory(delete);
-
+                
                 System.out.println("쿼리 반환값 : " + result);
                 System.out.println("지운 카테고리 : " + delete);
                 break;
             }
         }
-
+        
         resp.sendRedirect("board");
-
+        
     }
 }
