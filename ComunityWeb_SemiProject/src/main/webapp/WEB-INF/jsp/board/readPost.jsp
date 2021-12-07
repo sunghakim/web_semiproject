@@ -10,11 +10,14 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <link href="/static/css/readPost.css" type="text/css" rel="stylesheet">
 <script type="text/javascript">
-$(document).ready(function() {
-	$("#change").click(function(){
-		$(location).attr('href', '/PostChange')
-	})
-})
+function change(post_id) {
+	location.href="/PostChange?post_id=" + post_id;
+}
+
+function delete(post_id){
+	location.href="/PostDelete?post_id=" + post_id;
+}
+
 </script>
 <title>${post_info.getPost_title()}</title>
 </head>
@@ -29,14 +32,18 @@ $(document).ready(function() {
 	                 <h1 style="margin: 0;"><label class="textLabel" style="font-weight: bold;">${post_info.getPost_title()}</label></h1>
 	             </div>
 	         </div>
-	         <c:if test="${!empty sessionScope.UserID}">
+	         <div style="display: flex; align-items: flex-end; margin: 0 20px; padding: 10px 0;">
+			             <button class="btnn md" id="change" onclick="change(${post_info.getPost_num()})"><i class="fas fa-eraser"></i></button>
+			             <button class="btnn delete" id="del" onclick="delete(${post_info.getPost_num()})"><i class="fas fa-trash-alt"></i></button>
+			         </div>
+	         <!--<c:if test="${!empty sessionScope.UserID}">
 		         <c:if test="${post_info.getUser_id eq sessionScope.UserID}">
 			         <div style="display: flex; align-items: flex-end; margin: 0 20px; padding: 10px 0;">
 			             <button class="btnn md" id="change"><i class="fas fa-eraser"></i></button>
 			             <button class="btnn delete" id="del" action="/PostDelete"><i class="fas fa-trash-alt"></i></button>
 			         </div>
 		         </c:if>
-	         </c:if>
+	         </c:if>-->
 	     </div>
 	     <div id="postInfo">
 	         <label>작성자 ${post_info.getUser_id()}</label> |
@@ -69,7 +76,7 @@ $(document).ready(function() {
 						<c:if test="${empty sessionScope.UserID}">
 		         			<c:if test="${i.getWriter() ne sessionScope.UserID}">
 			         			<div style="display: flex; flex-direction:row-reverse; margin: 0 4px; padding: 10px 0;">
-			             			<button class="btnn del" id="deleteCmt" action="/PostDelete"><i class="fas fa-trash-alt"></i></button>
+			             			<button class="btnn del" id="deleteCmt"><i class="fas fa-trash-alt"></i></button>
 			             			<button class="btnn md" id="changeCmt"><i class="fas fa-eraser"></i></button>
 			         			</div>
 		         			</c:if>
@@ -86,7 +93,7 @@ $(document).ready(function() {
 	                  <button class="btn btn-outline-primary" type="submit" id="comment_btn">댓글등록</button>
 	                </div>
 	              </form>
-	                <a  id="unlogInedcase_comment" class="form-control" href="/account/join.html">로그인 후 이용해주세요.</a>
+	                <a  id="unlogInedcase_comment" class="form-control" href="/join">로그인 후 이용해주세요.</a>
 	            </div>
 	
 	          </div>
