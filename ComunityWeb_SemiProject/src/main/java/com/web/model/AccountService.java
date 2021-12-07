@@ -34,23 +34,32 @@ public class AccountService {
 		}
 	}
 
-	public boolean login(AccountDTO dto) {
+	public int login(AccountDTO dto) {
 		AccountDAO dao = new AccountDAO();
 		List<AccountDTO> data = dao.select(dto.getUserID());
 		if(data.size() == 1) {
 			AccountDTO DBData = data.get(0);
+			dto.setManager(DBData.getManager());
+			System.out.println(DBData.getManager());
+			if(dto.getManager()) {
+				System.out.println("dto: true");
+			} else {
+				System.out.println("dto: false");
+			}
+			
 			if(dto.getUserPassword().equals(DBData.getUserPassword())) {
 				//로그인 성공
-				dto.setUserID(DBData.getUserID());
-				dto.setUserPassword("");
-				return true;
+				if (DBData.getManager()) {
+					return 1;//관리자 로그인
+				} else {
+					return 2;//일반회원 로그인
+				}
 			} else {
-				//비밀번호 다름
-				return false;
+				return 3;//비밀번호 다름
 			}
 		} else {
 			//DB 데이터 오류(관리자에게 보고할것)
-			return false;
+			return 4;
 		}
 	}
 	

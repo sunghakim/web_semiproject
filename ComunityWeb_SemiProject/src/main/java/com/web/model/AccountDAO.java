@@ -7,6 +7,7 @@ import java.util.List;
 import com.db.conn.OracleConnect;
 
 public class AccountDAO {
+	
 	private OracleConnect oc;
 
 	public AccountDAO() {
@@ -27,6 +28,8 @@ public class AccountDAO {
 					AccountDTO dto = new AccountDTO();
 					dto.setUserID(res.getString("USER_ID"));
 					dto.setUserPassword(res.getString("PASSWORD"));
+					dto.setManager(res.getInt("IS_MANAGER"));
+					System.out.println(res.getInt("IS_MANAGER"));//1
 					datas.add(dto);
 				}
 			}catch(SQLException e) {
