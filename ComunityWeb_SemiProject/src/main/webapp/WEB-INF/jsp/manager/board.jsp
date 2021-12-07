@@ -73,14 +73,8 @@ td {
   padding: 3px 10px;
   position: absolute;
   right: 40px;
-  color: #10caf0;
-  border-color: #10caf0;
 }
-.addboard_form > button:hover {
-  background-color: #10caf0;
-  color: white;
-  border-color: #10caf0;
-}
+
 
 
 /* footer */
@@ -280,7 +274,7 @@ ul {
             <input type="text" name="create" id="board_name" placeholder="게시판 아이디">
             <input type="text" name="create" id="board_name" placeholder="게시판 이름">
             
-            <button type="submit" name="send" value="createSubmit" id="addboard_btn" class="btn btn-outline-primary" onclick="boardAdd()">등록</button>
+            <button type="submit" name="send" value="createSubmit" id="addboard_btn" class="btn btn-outline-secondary" onclick="boardAdd()">등록</button>
 
         </form>
 

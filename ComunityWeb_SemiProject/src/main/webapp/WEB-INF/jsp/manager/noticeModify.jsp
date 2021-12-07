@@ -200,7 +200,7 @@ ul {
         </div>
       	<input type="hidden" name="date">
         <div class="mb-3">
-          <button id="notic-btn"class="btn btn-outline-primary" type="submit" name="send" value="modify" onclick="modify()">수정</button>
+          <button id="notic-btn"class="btn btn-outline-secondary" type="submit" name="send" value="modify" onclick="modify()">수정</button>
         </div>
       </form>
     </div>
