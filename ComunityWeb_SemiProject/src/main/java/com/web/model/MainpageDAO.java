@@ -22,7 +22,7 @@ public class MainpageDAO {
 				+ "ORDER BY POST_NUM DESC )"
 				+ "WHERE RNUM BETWEEN"
 				+ "'" + ((page_num - 1) * 10 + 1) +"' AND "
-				+ "'" +(page_num * 10) + "';";
+				+ "'" +(page_num * 10) + "'";
 		// N page = ((n-1) * 10 +1) ~ (n * 10); 페이징 로직 
 		List<MainpageDTO> pagedatas = new ArrayList<MainpageDTO>();
 		ResultSet pageres = oc.select(query);
