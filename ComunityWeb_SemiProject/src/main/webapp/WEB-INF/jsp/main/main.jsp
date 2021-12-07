@@ -68,7 +68,7 @@
 			for(MainpageDTO dto : datas){
             
             %>
-              <li><a href="#"><%=dto.getBoard_name() %></a></li>
+              <li><a href="#"><%= dto.getBoard_name() %></a></li>
               <%
 			}
               %>
