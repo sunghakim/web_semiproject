@@ -211,10 +211,6 @@ ul {
  
             </ul>
           </div>
-
-
-       
-      
       
           <!-- main_contents -->
           <section class="container latestboard">
@@ -231,21 +227,22 @@ ul {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+               
                 <%
                 List<MainpageDTO> boardlist = (List<MainpageDTO>) request.getAttribute("boardlist");					 
 			   for(MainpageDTO dto : boardlist){
             
                 %>
-                  <td style="width: 15%;"><a href="/BoardSelectController?board_select=<%= dto.getBoard_num() %>&page_num=1"><%= dto.getBoard_name() %></a></td>
-                  <td style="width: 50%;"><a href="/<%= %>"><%=dto.getPost_title() %></a></td>
-                  <td style="width: 15%;"><%=dto.getUser_id() %></td>
-                  <td style="width: 20%;"><%=dto.getPost_date() %></td>
-                  
+                 <tr>
+	                  <td style="width: 15%;"><a href="/BoardSelectController?board_select=<%= dto.getBoard_num() %>&page_num=1"><%= dto.getBoard_name() %></a></td>
+	                  <td style="width: 50%;"><a href="/<%= %>"><%=dto.getPost_title() %></a></td>
+	                  <td style="width: 15%;"><%=dto.getUser_id() %></td>
+	                  <td style="width: 20%;"><%=dto.getPost_date() %></td>
+                  </tr>
                   <%
 			    }
                   %>
-                </tr>
+                
               </tbody>
             </table>
  
