@@ -20,8 +20,11 @@ public class MainpageController extends HttpServlet {
        
 
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		int one_page = 1;
 		Integer page_num = Integer.parseInt(request.getParameter("page_num")); //페이지수 받아오기
+		
 		MainpageService service = new MainpageService();//서비스 불러오기
 		List<MainpageDTO> datas = service.searchPage(page_num); //전체 카테고리 게시글 10개 받아오기
 		
@@ -32,7 +35,8 @@ public class MainpageController extends HttpServlet {
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		
 	}
 
