@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false" %>
+<%@page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -8,7 +9,91 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<link href="/static/css/readPost.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+#content {
+    width: 60%;
+    height: 800px;
+    padding: 5px;
+}
+
+label {
+    margin: 0 10px;
+    padding: 0;
+}
+
+#postInfo {
+    margin: 0 20px;
+    font-size: 14px;
+    color: rgb(110, 110, 110);
+}
+
+#postInfo > label {
+    margin: 0;
+}
+
+#contentBox {
+    margin: 0 20px;
+    padding: 5px 10px;
+    width: 95%;
+}
+
+p {
+    width: 100%;
+}
+
+.btnn {
+    outline: none;
+    color: #46CDCF;
+    font-weight: bold;
+    border: 1px solid rgba(0, 0, 0, 0.418);
+    border-radius: 4px;
+    border-color: rgba(230, 230, 230, 0.527);
+    background-color: white;
+
+    margin-left: 5px;
+    padding: 5px 10px;
+}
+
+.btnn.back {
+    background-color: #46CDCF;
+}
+
+.btnn:hover {
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #46CDCF;
+}
+
+
+/* comments */
+.comments {
+  width: 80%;
+}
+.comment_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#unlogInedcase_comment {
+  width: 100%;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+#comment_textarea {
+  width: 100%;
+}
+
+#comment_btn {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.comment_btn_case {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
 <script type="text/javascript">
 function change(post_id) {
 	location.href="/PostChange?post_id=" + post_id;
@@ -36,14 +121,14 @@ function delete(post_id){
 			             <button class="btnn md" id="change" onclick="change(${post_info.getPost_num()})"><i class="fas fa-eraser"></i></button>
 			             <button class="btnn delete" id="del" onclick="delete(${post_info.getPost_num()})"><i class="fas fa-trash-alt"></i></button>
 			         </div>
-	         <!--<c:if test="${!empty sessionScope.UserID}">
+	         <%--<c:if test="${!empty sessionScope.UserID}">
 		         <c:if test="${post_info.getUser_id eq sessionScope.UserID}">
 			         <div style="display: flex; align-items: flex-end; margin: 0 20px; padding: 10px 0;">
 			             <button class="btnn md" id="change"><i class="fas fa-eraser"></i></button>
 			             <button class="btnn delete" id="del" action="/PostDelete"><i class="fas fa-trash-alt"></i></button>
 			         </div>
 		         </c:if>
-	         </c:if>-->
+	         </c:if>--%>
 	     </div>
 	     <div id="postInfo">
 	         <label>작성자 ${post_info.getUser_id()}</label> |
@@ -57,7 +142,7 @@ function delete(post_id){
 	
 	 
 	      <hr>
-	      <section class="response">
+	      <section class="response"></section>
 	        <div class="container">
 	          <header class="section-header">
 	            <h6 class="section-title">${cList.size()}개의 댓글</h6>
@@ -86,14 +171,21 @@ function delete(post_id){
 			</c:forEach>
 			</ul>
 	            <div class="comment_write">
+	            <c:choose>
+	            <c:when test="${empty sessionScope.UserID}">
+		            <a  id="unlogInedcase_comment" class="form-control" href="/join">로그인 후 이용해주세요.</a>
+	            </c:when>
+	            <c:otherwise>
 	              <form action="/Writeview" method="post" class="comment-form">
 	                <textarea  class="form-control" id="comment_textarea" placeholder="댓글을 입력하세요"></textarea>
 	                <div class="comment_btn_case">
-	                  <div class=""></div>
+	                  <input tyep="hidden" name="user_id" value="${sessionScope.UserID}">
+	                  <input tyep="hidden" name="date" value="<%= new Date() %>">
 	                  <button class="btn btn-outline-primary" type="submit" id="comment_btn">댓글등록</button>
 	                </div>
 	              </form>
-	                <a  id="unlogInedcase_comment" class="form-control" href="/join">로그인 후 이용해주세요.</a>
+				</c:otherwise>
+	            </c:choose>
 	            </div>
 	
 	          </div>

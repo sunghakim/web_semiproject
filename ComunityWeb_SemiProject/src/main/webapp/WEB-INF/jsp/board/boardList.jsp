@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@page import="java.util.*" %>
-<%@page import="com.web.model.PostDTO" %>
+<%@page import="com.web.model.BoardDTO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -9,11 +9,184 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="/static/css/boardList.css">
+<style type="text/css">
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
+.wrap {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 60px;
+}
+
+ul {
+  list-style: none;
+}
+
+.navBar {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%), 0 2px 2px rgb(0 0 0 / 6%),
+    0 0 2px rgb(0 0 0 / 7%);
+}
+
+.navBar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.navBar-home > a {
+  list-style: none;
+  margin-left: 10px;
+}
+
+.navBar-right {
+  margin-top: 15px;
+}
+.navBar ul {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+.navBar ul li {
+  margin-right: 10px;
+}
+.navBar-right .navBar-item > li > button {
+  cursor: pointer;
+  display: inline-block;
+  border: 1px #000 solid;
+  border-radius: 50px;
+  padding: 7px 16px;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.SignIn_btn {
+  background-color: white;
+  color: black;
+}
+.SignIn_btn:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.SignUp_btn,
+.LogOut_btn {
+  background-color: black;
+  color: white;
+}
+.SignUp_btn:hover {
+  background-color: #333;
+}
+.nav_right .na .navBar a {
+  color: #000;
+  text-decoration: none;
+}
+#content {
+    width: 100%;
+    height: 800px;
+    margin: 10px;
+    padding: 20px;
+}
+
+h1 {
+    color: #46CDCF;
+    font-weight: bold;
+}
+
+tbody > tr > th, td:nth-child(3), td:nth-child(4) {
+    text-align: center;
+}
+
+#search {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+select {
+    outline: none;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.418);
+    border-radius: 4px;
+    margin: 4px;
+    padding: 3px 8px;
+}
+
+select:hover {
+    border-color: #46CDCF;
+}
+
+.search {
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.418);
+    border-radius: 4px;
+    margin: 4px;
+    padding: 3px 8px;
+}
+
+.search:hover {
+    border-color: #46CDCF;
+}
+
+.searchBtn {
+    outline: none;
+    color: #46CDCF;
+    font-weight: bold;
+    border: 1px solid rgba(0, 0, 0, 0.418);
+    border-radius: 4px;
+    background-color: white;
+    margin: 4px;
+    padding: 3px 8px;
+}
+
+.searchBtn:hover {
+    color: #ffffff;
+    font-weight: bold;
+    border: 1px solid rgba(160, 160, 160, 0.418);
+    background-color: #46CDCF;
+}
+
+.footer-container {
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+</style>
 <title>게시판</title>
 </head>
 <body>
+
+ <div class="wrap">
+    <nav class="navBar">
+        <div class="navBar-container">
+          <div class="navBar-home">
+            <a href="/main"><i class="fas fa-home"> home</i></a>
+          </div>
+          <div class="navBar-right">
+            <ul class="navBar-item">
+            <c:choose>
+            	<c:when test="${request.getSession().getAttribute("s_login_user")}">
+              		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("s_login_user")%>님 환영합니다.</a></li>
+              		<li><button  type="submit" class="LogOut_btn">Log Out</button></li>
+            	</c:when>
+            </c:choose>
+            </ul>
+          </div>
+
+            </div>
+      </nav>
+
 <div style="display: flex; margin: 10px 10px; width: 95%;">
 	<c:import url="./category.jsp" />
 
@@ -52,7 +225,7 @@
                 </tbody>
             </table>
         </div> <!-- boardTable end -->
-        <form action="" method="post">
+        <form action="/BoardSelectController" method="post">
             <div id="search">
                 <select name="searchKeyword">
                     <option value="0">제목 + 작성자</option>
@@ -64,6 +237,12 @@
             </div> <!-- serch end -->
         </form>
     </div> <!-- content end -->
+</div>
+<footer class="footer">
+	<div class="footer-container">
+	    <hr>
+	</div>
+</footer>
 </div>
 </body>
 </html>
