@@ -24,7 +24,7 @@ public class BoardSelectController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		Integer board_select = Integer.parseInt(request.getParameter("board_select")); //보드 번호 받아오기
+		Integer board_select = Integer.parseInt(request.getParameter("board_num")); //보드 번호 받아오기
 		Integer page_num = Integer.parseInt(request.getParameter("page_num")); //페이지수 받아오기
 		BoardService service = new BoardService(); //보드 서비스 불러오기
 		List<BoardDTO> datas = service.searchBoard(board_select, page_num); //게시판넘버랑 게시글 번호 매개변수 받아서 게시글 불러오기 
