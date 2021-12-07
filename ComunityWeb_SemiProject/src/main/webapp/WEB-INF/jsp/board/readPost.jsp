@@ -11,18 +11,11 @@
 <link href="/static/css/readPost.css" type="text/css" rel="stylesheet">
 <script type="text/javascript">
 function change(post_id) {
-	var frm = document.createElement('form');
-	frm.setAttribute('method', 'get');
-	frm.setAttribute('action', '/PostChange');
-	document.charset = "utf-8";
-	var sendFild = document.createElement('input');
-	sendFild.setAttribute('type', 'hidden');
-	sendFild.setAttribute('name', 'post_id');
-	sendFild.setAttribute('value', post_id);
-	frm.appendChild(sendFild);
-	document.body.appendChild(frm)
-	
-	frm.submit();
+	location.href="/PostChange?post_id=" + post_id;
+}
+
+function delete(post_id){
+	location.href="/PostDelete?post_id=" + post_id;
 }
 
 </script>
@@ -40,8 +33,8 @@ function change(post_id) {
 	             </div>
 	         </div>
 	         <div style="display: flex; align-items: flex-end; margin: 0 20px; padding: 10px 0;">
-			             <button class="btnn md" id="change" onclic="change(${post_info.getPost_num()})"><i class="fas fa-eraser"></i></button>
-			             <button class="btnn delete" id="del" action="/PostDelete"><i class="fas fa-trash-alt"></i></button>
+			             <button class="btnn md" id="change" onclick="change(${post_info.getPost_num()})"><i class="fas fa-eraser"></i></button>
+			             <button class="btnn delete" id="del" onclick="delete(${post_info.getPost_num()})"><i class="fas fa-trash-alt"></i></button>
 			         </div>
 	         <!--<c:if test="${!empty sessionScope.UserID}">
 		         <c:if test="${post_info.getUser_id eq sessionScope.UserID}">
