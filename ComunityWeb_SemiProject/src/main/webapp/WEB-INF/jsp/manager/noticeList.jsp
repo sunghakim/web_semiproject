@@ -193,7 +193,7 @@ ul {
               </tbody>
             </table>
             
- 		<button class="btn btn-outline-secondary" style="font-size:13px;" onclick="location.href='noticeWrite?name=post'">게시글 등록</button>
+ 		<button class="btn btn-outline-secondary" style="font-size:13px; color:black;" onclick="location.href='noticeWrite?name=post'">게시글 등록</button>
  
         </section>
         

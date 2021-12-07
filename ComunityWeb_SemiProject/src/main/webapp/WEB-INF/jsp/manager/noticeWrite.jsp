@@ -169,7 +169,7 @@ ul {
         </div>
       
         <div class="mb-3">
-          <button id="notic-btn"class="btn btn-outline-secondary" type="submit" name="send" value="write" onclick="noticeAdd()">등록</button>
+          <button id="notic-btn"class="btn btn-outline-secondary"  style="color:black;"type="submit" name="send" value="write" onclick="noticeAdd()">등록</button>
         </div>
       </form>
     </div>

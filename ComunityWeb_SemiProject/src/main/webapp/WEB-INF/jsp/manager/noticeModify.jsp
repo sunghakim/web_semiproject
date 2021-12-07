@@ -41,31 +41,6 @@ body {
 }
 
 
-/* board */
-
-.container > hr {
-  width: 80%;
-}
-
-.addboard_form > input {
-  width: 60%;
-  margin: 0 10px 20px 40px;
-}
-
-.addboard_form > button {
-  font-size: 16px;
-  padding: 3px 10px;
-  position: absolute;
-  right: 40px;
-  color: #10caf0;
-  border-color: #10caf0;
-}
-.addboard_form > button:hover {
-  background-color: #10caf0;
-  color: white;
-  border-color: #10caf0;
-}
-
 /* notice */
 #notice_form {
   width: 55%;
@@ -200,7 +175,7 @@ ul {
         </div>
       	<input type="hidden" name="date">
         <div class="mb-3">
-          <button id="notic-btn"class="btn btn-outline-secondary" type="submit" name="send" value="modify" onclick="modify()">수정</button>
+          <button id="notic-btn"class="btn btn-outline-secondary" style="color: black;" type="submit" name="send" value="modify" onclick="modify()">수정</button>
         </div>
       </form>
     </div>

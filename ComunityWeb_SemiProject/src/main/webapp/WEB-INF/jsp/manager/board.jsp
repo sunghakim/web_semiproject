@@ -73,6 +73,7 @@ td {
   padding: 3px 10px;
   position: absolute;
   right: 40px;
+  color:black;
 }
 
 
