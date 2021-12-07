@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.web.model.BoardManageDAO;
 
-@WebServlet("/boardmanage")
+@WebServlet("/board")
 public class BoardManageController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     BoardManageDAO manage;

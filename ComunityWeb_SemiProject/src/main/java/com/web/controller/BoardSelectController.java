@@ -17,7 +17,7 @@ import com.web.model.BoardService;
 import com.web.model.MainpageDTO;
 
 
-@WebServlet("/board")
+@WebServlet("/BoardSelectController")
 public class BoardSelectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
