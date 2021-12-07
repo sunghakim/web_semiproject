@@ -41,6 +41,7 @@ public class BoardDAO {
 				dto.setPost_content(pageres.getString("POST_CONTENT"));
 				dto.setPost_date(pageres.getDate("POST_DATE"));
 				dto.setBoard_num(pageres.getInt("BOARD_NUM"));
+				dto.setBoard_name(pageres.getString("BOARD_NAME"));
 				datas.add(dto); //결과들 더하는 작업 dto에
 				
 			}
