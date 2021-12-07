@@ -27,6 +27,21 @@ body {
   min-width: 700px;
 }
 
+/* categories */
+.main {
+  padding: 20px;
+  display: flex;
+  margin-top: 30px;
+}
+
+#catecol {
+  margin-right: 50px;
+}
+.nav-link {
+  height: 50px;
+  width: 200px;
+  font-size: 17px;
+}
 /* footer */
 .wrap {
   min-height: 100%;
@@ -241,7 +256,7 @@ ul {
       
             <!-- list of board -->
             <table class="table table-hover">
-            <h3>최신글</h3>
+            <h5>최신글 보기</h5>
               <thead>
                 <tr>
                   <th scope="col" class="text-center">카테고리</th>
