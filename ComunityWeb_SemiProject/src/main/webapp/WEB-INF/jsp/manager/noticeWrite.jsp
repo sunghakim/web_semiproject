@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 작성</title>
+<title>공지사항</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
     <script src="/static/js/main.js" defer></script>
@@ -16,7 +16,7 @@
   <nav class="navBar">
     <div class="navBar-container">
       <div class="navBar-home">
-        <a href="/main"><i class="fas fa-home"> home</i></a>
+        <a href="/index.jsp"><i class="fas fa-home"> home</i></a>
       </div>
       <div class="navBar-right">
          <ul class="navBar-item">
@@ -32,14 +32,14 @@
    <!-- categories -->
     <div id="catecol" class="d-flex align-items-start col-lg-3 col-md-3">
         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-          <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="false" onclick="location.href=''">회원관리</button>
-          <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" onclick="location.href=''">게시판관리</button>
-          <button class="nav-link active" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="true" onclick="location.href=''">공지사항</button>
+          <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="false" onclick="location.href='/memberlist'">회원관리</button>
+          <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" onclick="location.href='/board'">게시판관리</button>
+          <button class="nav-link active" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="true" onclick="location.href='/noticeList'">공지사항</button>
         </div>
     </div>
    <!-- notice form -->
     <div class="container col-md-12">
-    <form id="notice_form" class="" action="noticeWrite" method="post">
+    <form id="notice_form" class="" action="noticeList" method="post">
         <div class="mb-3">
           <label for="notice_form" class="form-label">공지사항</label>
           <input  id="notice_title" class="form-control" type="text" placeholder="제목" name="title">
@@ -49,7 +49,7 @@
         </div>
       
         <div class="mb-3">
-          <button id="notic-btn"class="btn btn-outline-primary" type="submit" onclick="noticeAdd()">등록</button>
+          <button id="notic-btn"class="btn btn-outline-primary" type="submit" name="send" value="write" onclick="noticeAdd()">등록</button>
         </div>
       </form>
     </div>
@@ -67,6 +67,7 @@
   function noticeAdd(){
 	    if(noticeTitle.value===''){
 	        alert('제목을 입력하세요.');
+	        console.log("ehlsi");
 	        return;
 	    } else if(noticeContent.value===''){
 	        alert('내용을 입력하세요');
