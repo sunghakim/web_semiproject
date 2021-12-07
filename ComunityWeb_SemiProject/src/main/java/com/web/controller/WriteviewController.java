@@ -50,7 +50,7 @@ public class WriteviewController extends HttpServlet {
 		String commentId = request.getParameter("comment_id");
 		
 		CommentService service = new CommentService();
-		
+		System.out.println(date);
 		
 		if(commentId == null || commentId == "") {
 			CommentDTO dto = new CommentDTO();

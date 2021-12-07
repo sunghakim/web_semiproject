@@ -267,7 +267,7 @@ p {
       <button class="category active">공지사항</button>
       <c:if test="${not empty blist}">
       	<c:forEach var="i" items="${blist}">
-      		<button class="category" onclick="location.href='/BoardSelectController?board_select=${i.getBOARD_NUM()}&page_num=1'">${i.getBOARD_NAME()}</button>
+      		<button class="category" onclick="location.href='/BoardSelectController?board_num=${i.getBOARD_NUM()}&page_num=1'">${i.getBOARD_NAME()}</button>
       	</c:forEach>
       </c:if>
     </div>
@@ -342,7 +342,7 @@ p {
 	            </c:when>
 	            <c:otherwise>
 	              <form action="/Writeview" method="post" charset="utf-8" class="comment-form">
-	                <textarea  class="form-control" id="comment_textarea" placeholder="댓글을 입력하세요"></textarea>
+	                <textarea  class="form-control" id="comment_textarea" name="context" placeholder="댓글을 입력하세요"></textarea>
 	                <div class="comment_btn_case">
 	                  <input type="hidden" name="post_id" value="${post_info.getPost_num()}">
 	                  <input type="hidden" name="date" value="${now}">

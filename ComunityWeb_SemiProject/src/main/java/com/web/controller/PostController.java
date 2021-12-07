@@ -20,6 +20,7 @@ public class PostController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardManageDAO category = new BoardManageDAO();
 		List<BoardManageDTO> cate_list = category.boardList();
+		cate_list.remove(0);
 		
 		request.setAttribute("category", cate_list);
 		
