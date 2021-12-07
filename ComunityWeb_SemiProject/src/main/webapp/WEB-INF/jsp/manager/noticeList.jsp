@@ -75,11 +75,11 @@
                   %>
               </tbody>
             </table>
+ 		<button onclick="location.href='noticeWrite?name=post'">게시글 등록</button>
  
         </section>
         
         <!-- send to noticeWrite -->
-		<button onclick="location.href='noticeWrite?name=post'">게시글 등록</button>
 </section>
         <!-- footer? -->
     <footer class="footer">
