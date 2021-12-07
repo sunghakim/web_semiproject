@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>공지사항 작성</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
     <script src="/static/js/main.js" defer></script>
@@ -136,7 +136,7 @@ ul {
   <nav class="navBar">
     <div class="navBar-container">
       <div class="navBar-home">
-        <a href="/index.jsp"><i class="fas fa-home"> home</i></a>
+        <a href="/memberlist"><i class="fas fa-home"> home</i></a>
       </div>
       <div class="navBar-right">
          <ul class="navBar-item">
