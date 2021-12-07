@@ -184,10 +184,9 @@ ul {
               <div class="navBar-right">
                 <ul class="navBar-item">
             <%
-            boolean logined = (boolean) request.getAttribute("logined");
-        	if(logined){
+        	if(request.getSession().getAttribute("UserID") != null){
            %> 
-                    <li><a href="/mypage"><%=(String) request.getSession().getAttribute("s_login_user")%>님 환영합니다.</a></li>
+                    <li><a href="/mypage"><%=(String) request.getSession().getAttribute("UserID")%>님 환영합니다.</a></li>
                     <li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
         
            <%		
@@ -212,7 +211,7 @@ ul {
                   <div>
                       <h1>Feel Free to Post <br>Anything You Want</h1>
                       <%
-			        	if(logined){
+                      if(request.getSession().getAttribute("UserID") != null){
 			           %> 
                        <button class="btn btn-primary btn-lg" onclick="location.href='/boardList'">Start now</button>
                     
