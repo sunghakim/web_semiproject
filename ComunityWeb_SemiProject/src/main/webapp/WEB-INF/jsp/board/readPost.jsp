@@ -243,8 +243,8 @@ p {
             <ul class="navBar-item">
               <c:choose>
             	<c:when test="${!empty sessionScope.UserID}">
-              		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("s_login_user")%>님 환영합니다.</a></li>
-              		<li><button  type="submit" class="LogOut_btn">Log Out</button></li>
+              		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("UserID")%>님 환영합니다.</a></li>
+              		<li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
             	</c:when>
             	<c:otherwise>
             		<li><button type="button" class="SignIn_btn" onclick="location.href='/login'">Sign In</button></li>
@@ -277,26 +277,26 @@ p {
 	     <div style="display: flex; justify-content: space-between;">
 	         <div style="display: flex; justify-content: left; height: 100px; margin: 0; padding: 10px 0;">
 	             <div style="display: flex; flex-direction: column; align-content: flex-end;">
-	                 <label style="color:#46CDCF; font: size 10px;">${post_info.getPost_num()}</label>
+	                 <label style="color:#46CDCF; font: size 10px;">
+	                 	<c:forEach var="i" items="${blist}">
+	                 		<c:if test="${post_info.getPost_num() eq i.getBOARD_NUM()}">${i.getBOARD_NAME()}</c:if>
+	                 	</c:forEach>
+	                 </label>
 	                 <h1 style="margin: 0;"><label class="textLabel" style="font-weight: bold;">${post_info.getPost_title()}</label></h1>
 	             </div>
 	         </div>
-	         <div style="display: flex; align-items: flex-end; margin: 0 20px; padding: 10px 0;">
+	         <c:if test="${!empty sessionScope.UserID}">
+		         <c:if test="${post_info.getUser_id() eq sessionScope.UserID}">
+			         <div style="display: flex; align-items: flex-end; margin: 0 20px; padding: 10px 0;">
 			             <button class="btnn md" id="change" onclick="location.href='/postChange?post_id=${post_info.getPost_num()}'"><i class="fas fa-eraser"></i></button>
 			             <button class="btnn delete" id="del" onclick="location.href='/postDelete?post_id=${post_info.getPost_num()}'"><i class="fas fa-trash-alt"></i></button>
 			         </div>
-	         <%--<c:if test="${!empty sessionScope.UserID}">
-		         <c:if test="${post_info.getUser_id eq sessionScope.UserID}">
-			         <div style="display: flex; align-items: flex-end; margin: 0 20px; padding: 10px 0;">
-			             <button class="btnn md" id="change"><i class="fas fa-eraser"></i></button>
-			             <button class="btnn delete" id="del" action="/PostDelete"><i class="fas fa-trash-alt"></i></button>
-			         </div>
 		         </c:if>
-	         </c:if>--%>
+	         </c:if>
 	     </div>
 	     <div id="postInfo">
 	         <label>작성자 ${post_info.getUser_id()}</label> |
-	         <label>작성일 <fmt:formatDate value="${post_info.getPost_date()}" type="date" pattern="yy-MM-dd HH:mm" /></label>
+	         <label>작성일 <fmt:formatDate value="${post_info.getPost_date()}" type="date" pattern="yy-MM-dd" /></label>
 	     </div>
 	     <hr>
 	     <div id="contentBox">
@@ -317,7 +317,7 @@ p {
 					<div style="border: 1px solid transparent; border-radius:4px; border-color: #e9ecef; margin: 0; padding: 4px 8px;">
 						<div style="display: flex; justify-content: space-between; margin: 0 4px; padding: 10px 0;">
 							<label>${i.getWriter()}</label>
-							<label><fmt:formatDate value="${i.getCommentDate()}" type="date" pattern="yyyy.MM.dd HH:mm" /></label>
+							<label><fmt:formatDate value="${i.getCommentDate()}" type="date" pattern="yyyy.MM.dd" /></label>
 						</div>
 						<div style="margin: 0 14px;">
 							<p>${i.getComment()}</p>
@@ -335,13 +335,13 @@ p {
 			</c:forEach>
 			</ul>
 	            <div class="comment_write">
-	            <fmt:formatDate value="<%=new Date() %>" pattern="yy-MM-dd" var="now" />
+	            <fmt:formatDate value="<%=new Date() %>" pattern="YYYY-MM-dd" var="now" />
 	            <c:choose>
 	            <c:when test="${empty sessionScope.UserID}">
 		            <a  id="unlogInedcase_comment" class="form-control" href="/join">로그인 후 이용해주세요.</a>
 	            </c:when>
 	            <c:otherwise>
-	              <form action="/Writeview" method="post" class="comment-form">
+	              <form action="/Writeview" method="post" charset="utf-8" class="comment-form">
 	                <textarea  class="form-control" id="comment_textarea" placeholder="댓글을 입력하세요"></textarea>
 	                <div class="comment_btn_case">
 	                  <input type="hidden" name="post_id" value="${post_info.getPost_num()}">

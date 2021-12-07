@@ -105,11 +105,19 @@ textarea {
 }
  </style>
  
+ <script type="text/javascript">
+
+function back() {
+ window.history.back();
+}
+
+</script>
+ 
 <title>글쓰기</title>
 </head>
 <div id="content">
         <div style="display: flex; justify-content: left; margin: 0 20px; padding: 10px 0;">
-            <button class="btnn back">  </button>
+            <button class="btnn back" onclick="back();">  </button>
             <h1><label class="textLabel">글쓰기</label></h1>
         </div>
         <form class="frmWrite">
@@ -127,7 +135,7 @@ textarea {
               <textarea class="frm" id="writeContent" placeholder="내용" name="post_content" style="overflow: auto;" required></textarea>
             </div>
             <div style="display: flex; justify-content: space-between; margin: 0 20px; padding: 10px 0;">
-              <button class="btnn back2">취소</button>
+              <button class="btnn back2" onclick="back();">취소</button>
               <span>
                 <button class="btnn reset" type="reset">다시 작성</button>
                 <button class="btnn submit" type="submit">작성</button>
