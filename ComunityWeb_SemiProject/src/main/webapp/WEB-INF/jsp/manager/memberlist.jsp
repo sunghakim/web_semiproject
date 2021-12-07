@@ -246,6 +246,29 @@ ul {
 
 </div>
 
+<script>
+
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const clearAlll = document.querySelectorAll('#memberlist-clearall');
+const noticeTitle = document.querySelector('#notice_title');
+const noticeContent = document.querySelector('#notice_textarea');
+const boardTitle = document.querySelector('#board_name');
+
+function selectAll(selectAll){
+    checkboxes.forEach((checkbox)=>{
+        checkbox.checked = selectAll.checked;
+    })
+
+}
+function deleteallMember(){
+    if(confirm("선택된 회원을 삭제하시겠습니까?")==true){
+        document.form.submit();
+    }else{
+        return;
+    }
+
+}
+</script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
