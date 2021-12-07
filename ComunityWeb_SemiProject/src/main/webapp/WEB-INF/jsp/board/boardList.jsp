@@ -90,6 +90,66 @@ ul {
   color: #000;
   text-decoration: none;
 }
+
+.catecol {
+    margin-right: 20px;
+}
+
+#writePost {
+    display:block;
+    padding:.5rem 1rem;
+    color:#ffffff;
+    height: 50px;
+    width: 200px;
+    font-size: 17px;
+    font-weight: bold;
+
+    flex:1 1 auto;
+    text-align:center;
+    margin-bottom:-1px;
+
+    background:0 0;
+    background-color: #3D84A8;
+    border:1px solid transparent;
+    border-radius:.25rem;
+}
+
+#writePost:hover{
+    color:#3D84A8;
+    border-color:#e9ecef #e9ecef #dee2e6;
+    background-color: #ffffff;
+    isolation:isolate
+}
+
+.category{
+    display:block;
+    padding:.5rem 1rem;
+    color:#46CDCF;
+    height: 50px;
+    width: 200px;
+    font-size: 17px;
+    font-weight: bold;
+
+    flex:1 1 auto;
+    text-align:center;
+    margin-bottom:-1px;
+
+    background:0 0;
+    border:1px solid transparent;
+    border-radius:.25rem;
+}
+
+.category:focus,.category:hover{
+    color:#46CDCF;
+    border-color:#e9ecef #e9ecef #dee2e6;
+    isolation:isolate
+}
+
+.category.active, .show>.category{
+    color:#fff;
+    background-color:#46CDCF;
+}
+
 #content {
     width: 100%;
     height: 800px;
@@ -176,10 +236,14 @@ select:hover {
           <div class="navBar-right">
             <ul class="navBar-item">
             <c:choose>
-            	<c:when test="${request.getSession().getAttribute("s_login_user")}">
+            	<c:when test="${!empty sessionScope.UserID}">
               		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("s_login_user")%>님 환영합니다.</a></li>
               		<li><button  type="submit" class="LogOut_btn">Log Out</button></li>
             	</c:when>
+            	<c:otherwise>
+            		<li><button type="button" class="SignIn_btn" onclick="location.href='/login'">Sign In</button></li>
+                   	<li><button  type="button" class="SignUp_btn" onclick="location.href='/join'">Sign Up</button></li>
+            	</c:otherwise>
             </c:choose>
             </ul>
           </div>
@@ -188,7 +252,19 @@ select:hover {
       </nav>
 
 <div style="display: flex; margin: 10px 10px; width: 95%;">
-	<c:import url="./category.jsp" />
+	<div class="catecol">
+    <div style="margin-bottom: 10px;">
+        <button id="writePost" type="button" onclick="location.href='/PostController'">글쓰기</button>
+    </div>
+    <div class="tab-list">
+      <button class="category active">공지사항</button>
+      <c:if test="${not empty cate_list}">
+      	<c:forEach var="i" items="${cate_list}">
+      		<button class="category" onclick="location.href='/BoardSelectController?board_select=${i.getBOARD_NUM()}&page_num=1'">${i.getBOARD_NAME()}</button>
+      	</c:forEach>
+      </c:if>
+    </div>
+  </div>
 
     <div id="content">
         <h1></h1>
