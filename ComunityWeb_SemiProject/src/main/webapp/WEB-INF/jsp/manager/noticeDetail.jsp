@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.web.model.*" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -41,26 +43,30 @@
         </div>
     </div>
    <!-- notice form -->
-   
+   <% PostDTO data = (PostDTO) request.getAttribute("detail");%>					 
    <div class="container my-1">
 	<div class="row">
 		<table class="table">
 			<thead>
-				<tr class="table-active">
-					<th scope="col" style="width: 80%">제목</th>
-					<th scope="col" style="width: 20%" class="text-right">작성일</th>
+				<tr class="table-active"> 							
+					<th scope="col" style="width: 80%"><%=data.getPost_title() %></th>
+					<th scope="col" style="width: 20%" class="text-right"><%=data.getPost_date() %></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td><pre>내용</pre></td>
+					<td><pre><%=data.getPost_content() %></pre></td>
                     <td></td>
 				</tr>
 			</tbody>
 		</table>
         <div class="mb-3">
-            <button class="btn btn-outline-primary" type="submit" onclick='history.back()'>목록</button>
-            <button id="noticCon-btn"class="btn btn-outline-primary" type="submit" onclick="/noticeModify">수정</button>
+            <button class="btn btn-outline-primary" type="submit" onclick="location.href='noticeList'">목록</button>
+            <button id="noticCon-btn"class="btn btn-outline-primary" onclick="location.href='noticeWrite?updateNum=<%=data.getPost_num()%>&name=modify'">수정</button>
+            <form  action="noticeList" method="post" >
+            <button class="btn btn-outline-primary" type="submit" name="send" value="delete">삭제</button>
+            <input type="hidden" name="deletePost" value="<%=data.getPost_num()%>">
+            </form>
           </div>
 	</div>
 </div>

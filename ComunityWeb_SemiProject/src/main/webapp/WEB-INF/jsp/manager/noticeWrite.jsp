@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 작성</title>
+<title>공지사항</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
     <script src="/static/js/main.js" defer></script>
@@ -16,7 +16,7 @@
   <nav class="navBar">
     <div class="navBar-container">
       <div class="navBar-home">
-        <a href="/main"><i class="fas fa-home"> home</i></a>
+        <a href="/index.jsp"><i class="fas fa-home"> home</i></a>
       </div>
       <div class="navBar-right">
          <ul class="navBar-item">
@@ -39,7 +39,7 @@
     </div>
    <!-- notice form -->
     <div class="container col-md-12">
-    <form id="notice_form" class="" action="noticeWrite" method="post">
+    <form id="notice_form" class="" action="noticeList" method="post">
         <div class="mb-3">
           <label for="notice_form" class="form-label">공지사항</label>
           <input  id="notice_title" class="form-control" type="text" placeholder="제목" name="title">
@@ -49,7 +49,7 @@
         </div>
       
         <div class="mb-3">
-          <button id="notic-btn"class="btn btn-outline-primary" type="submit" onclick="noticeAdd()">등록</button>
+          <button id="notic-btn"class="btn btn-outline-primary" type="submit" name="send" value="write" onclick="noticeAdd()">등록</button>
         </div>
       </form>
     </div>
@@ -67,6 +67,7 @@
   function noticeAdd(){
 	    if(noticeTitle.value===''){
 	        alert('제목을 입력하세요.');
+	        console.log("ehlsi");
 	        return;
 	    } else if(noticeContent.value===''){
 	        alert('내용을 입력하세요');

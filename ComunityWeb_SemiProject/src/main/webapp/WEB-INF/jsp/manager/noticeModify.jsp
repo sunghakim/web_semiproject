@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.web.model.*" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,18 +40,20 @@
         </div>
     </div>
    <!-- notice form -->
+    <% PostDTO data = (PostDTO) request.getAttribute("current");%>					 
     <div class="container col-md-12">
-    <form id="notice_form" class="" action="/notice">
+    <form id="notice_form" class="" action="noticeList" method="post">
+        <input name="num" type="hidden" value="<%=data.getPost_num()%>">
         <div class="mb-3">
           <label for="notice_form" class="form-label">공지사항 수정</label>
-          <input  id="notice_title" class="form-control" type="text" value="제목">
+          <input name="title" id="notice_title" class="form-control" type="text" value="<%=data.getPost_title()%>">
         </div>
         <div class="mb-3">
-          <textarea class="form-control" id="notice_textarea" style="height: 400px;">내용</textarea>
+          <textarea name="content" class="form-control" id="notice_textarea" style="height: 400px;"><%=data.getPost_content()%></textarea>
         </div>
-      
+      	<input type="hidden" name="date">
         <div class="mb-3">
-          <button id="notic-btn"class="btn btn-outline-primary" type="button" onclick="modify()">수정</button>
+          <button id="notic-btn"class="btn btn-outline-primary" type="submit" name="send" value="modify" onclick="modify()">수정</button>
         </div>
       </form>
     </div>
