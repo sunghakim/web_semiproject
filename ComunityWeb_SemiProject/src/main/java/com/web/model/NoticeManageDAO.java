@@ -18,7 +18,7 @@ public class NoticeManageDAO {
 
     public List<PostDTO> noticeList() {
         List<PostDTO> noticeList = new ArrayList<>();
-        String SQL = "SELECT POST_NUM,USER_ID,POST_TITLE,POST_DATE FROM POSTDB WHERE BOARD_NUM = 0";
+        String SQL = "SELECT POST_NUM,USER_ID,POST_TITLE,POST_DATE FROM POSTDB WHERE BOARD_NUM = 0 ORDER BY POST_NUM DESC";
 
         try (Connection conn = oc.getConn();
              PreparedStatement pstmt = conn.prepareStatement(SQL);
