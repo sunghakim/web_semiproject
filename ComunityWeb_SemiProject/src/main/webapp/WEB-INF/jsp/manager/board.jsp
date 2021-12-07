@@ -13,6 +13,163 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
+<style>
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  min-width: 700px;
+}
+
+/* categories */
+.main {
+  padding: 20px;
+  display: flex;
+}
+
+#catecol {
+  margin-right: 50px;
+}
+.nav-link {
+  height: 50px;
+  width: 200px;
+  font-size: 17px;
+}
+
+/* memberlist */
+.card {
+  width: 80%;
+  border: none;
+}
+#memberlist-clear,
+#memberlist-clearall,
+#memberlist-edit {
+  font-size: 14px;
+  padding: 5px 8px;
+}
+tr,
+td {
+  text-align: center;
+}
+
+/* board */
+
+.container > hr {
+  width: 80%;
+}
+
+.addboard_form > input {
+  width: 60%;
+  margin: 0 10px 20px 40px;
+}
+
+.addboard_form > button {
+  font-size: 16px;
+  padding: 3px 10px;
+  position: absolute;
+  right: 40px;
+  color: #10caf0;
+  border-color: #10caf0;
+}
+.addboard_form > button:hover {
+  background-color: #10caf0;
+  color: white;
+  border-color: #10caf0;
+}
+
+
+/* footer */
+.wrap {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 60px;
+}
+
+.footer-container {
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+/* nav */
+ul {
+  list-style: none;
+}
+
+.navBar {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%), 0 2px 2px rgb(0 0 0 / 6%),
+    0 0 2px rgb(0 0 0 / 7%);
+}
+
+.navBar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.navBar-home > a {
+  list-style: none;
+  margin-left: 10px;
+}
+
+.navBar-right {
+  margin-top: 15px;
+}
+.navBar ul {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+.navBar ul li {
+  margin-right: 10px;
+}
+.navBar-right .navBar-item > li > button {
+  cursor: pointer;
+  display: inline-block;
+  border: 1px #000 solid;
+  border-radius: 50px;
+  padding: 7px 16px;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.SignIn_btn {
+  background-color: white;
+  color: black;
+}
+.SignIn_btn:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.SignUp_btn,.LogOut_btn {
+  background-color: black;
+  color: white;
+}
+.SignUp_btn:hover {
+  background-color: #333;
+}
+.nav_right .na .navBar a {
+  color: #000;
+  text-decoration: none;
+}
+
+
+
+
+
+
+</style>
 <body>
   <div class="wrap">
     <!-- nav -->

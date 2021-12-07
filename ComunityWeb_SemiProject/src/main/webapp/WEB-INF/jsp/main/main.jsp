@@ -16,6 +16,142 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <style>
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  min-width: 700px;
+}
+
+/* footer */
+.wrap {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 60px;
+}
+
+.footer-container {
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+/* nav */
+ul {
+  list-style: none;
+}
+
+.navBar {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%), 0 2px 2px rgb(0 0 0 / 6%),
+    0 0 2px rgb(0 0 0 / 7%);
+}
+
+.navBar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.navBar-home > a {
+  list-style: none;
+  margin-left: 10px;
+}
+
+.navBar-right {
+  margin-top: 15px;
+}
+.navBar ul {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+.navBar ul li {
+  margin-right: 10px;
+}
+.navBar-right .navBar-item > li > button {
+  cursor: pointer;
+  display: inline-block;
+  border: 1px #000 solid;
+  border-radius: 50px;
+  padding: 7px 16px;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.SignIn_btn {
+  background-color: white;
+  color: black;
+}
+.SignIn_btn:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.SignUp_btn,.LogOut_btn {
+  background-color: black;
+  color: white;
+}
+.SignUp_btn:hover {
+  background-color: #333;
+}
+.nav_right .na .navBar a {
+  color: #000;
+  text-decoration: none;
+}
+
+
+
+
+/* main */
+
+.d-sm-flex {
+  justify-content: space-around;
+}
+
+.d-sm-flex > img {
+  max-width: 400px;
+}
+.d-sm-flex > div > h1 {
+  margin-bottom: 50px;
+}
+
+.sidebar {
+  padding-left: 50px;
+}
+.sidebar > header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.sidebar > ul > li > a {
+  text-decoration: none;
+  color: darkgrey;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+
+  font-size: 18px;
+  transition: 0.4s;
+  margin-bottom: 10px;
+}
+
+.sidebar > ul > li:hover a {
+  padding-left: 5px;
+  color: #000;
+}
+
+.container.latestboard {
+  width: 60%;
+}
   table>tbody>tr>td>a{
     text-decoration: none;
     color:black;
@@ -64,11 +200,11 @@
             <header>Category</header>
             <ul>
             <%
-            List<MainpageDTO> datas = (List<MainpageDTO>) request.getAttribute("datas");					 
-			for(MainpageDTO dto : datas){
+            List<BoardManageDTO> datas = (List<BoardManageDTO>) request.getAttribute("datas");					 
+			for(BoardManageDTO dto : datas){
             
             %>
-              <li><a href="#"><%= dto.getBoard_name() %></a></li>
+              <li><a href="/BoardSelectController?board_select=<%= dto.getBOARD_NUM() %>&page_num=1"><%= dto.getBOARD_NAME() %></a></li>
               <%
 			}
               %>
@@ -103,8 +239,8 @@
                 %>
                   <td style="width: 15%;"><a href="/BoardSelectController?board_select=<%= dto.getBoard_num() %>&page_num=1"><%= dto.getBoard_name() %></a></td>
                   <td style="width: 50%;"><a href="/<%= %>"><%=dto.getPost_title() %></a></td>
-                  <td style="width: 15%;"><a href="/<%= %>"><%=dto.getUser_id() %></a></td>
-                  <td style="width: 20%;"><a href="/<%= %>"><%=dto.getPost_date() %></a></td>
+                  <td style="width: 15%;"><%=dto.getUser_id() %></td>
+                  <td style="width: 20%;"><%=dto.getPost_date() %></td>
                   
                   <%
 			    }
