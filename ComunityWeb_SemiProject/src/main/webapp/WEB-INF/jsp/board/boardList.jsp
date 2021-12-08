@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/static/js/jquery-3.6.0.min.js"></script>
 <style type="text/css">
 html,
@@ -53,6 +53,7 @@ ul {
 .navBar-right {
   margin-top: 15px;
 }
+
 .navBar ul {
   display: flex;
   align-items: center;
@@ -62,6 +63,7 @@ ul {
 .navBar ul li {
   margin-right: 10px;
 }
+
 .navBar-right .navBar-item > li > button {
   cursor: pointer;
   display: inline-block;
@@ -91,6 +93,11 @@ ul {
 }
 .nav_right .na .navBar a {
   color: #000;
+  text-decoration: none;
+}
+
+.navBar-right .navBar-item > li > a {
+  color: black;
   text-decoration: none;
 }
 
@@ -188,6 +195,12 @@ select:hover {
     border-color: #46CDCF;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
 .search {
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.418);
@@ -240,6 +253,11 @@ function writeCheck() {
         location.replace("/PostController");
      }
 }
+
+function goDetail(post_num) {
+	location.href="/Writeview?post_id="+post_num;
+}
+
 </script>
 
  <div class="wrap">
@@ -299,9 +317,9 @@ function writeCheck() {
                 <tbody>
 	                <c:if test ="${not empty datas}">
 	                	<c:forEach var="i" items="${datas}">
-	                    <tr>
+	                    <tr onclick="goDetail(${i.getPost_num()});">
 	                    <th scope="row">${i.getPost_num()}</th>
-	                    <td><a href="/Writeview?post_id=${i.getPost_num()}">${i.getPost_title()}</a></td>
+	                    <td>${i.getPost_title()}</td>
 	                    <td>${i.getUser_id()}</td>
 	                    <td><fmt:formatDate value="${i.getPost_date()}" type="date" pattern="yy-MM-dd" /></td>
 	                    </tr>
@@ -311,6 +329,16 @@ function writeCheck() {
             </table>
         </div> <!-- boardTable end -->
         
+        <c:set var="n" value='${page_num}' />
+        
+		  <ul class="pagination">
+		    <c:forEach var="i" begin='1' end='10' step='1'>
+		    	<c:if test="${i eq n}"><li class="page-item"><a class="page-link" style="background-color: #F2F2F2;"  href="/BoardSelectController?board_num=${board_num}&page_num=${i}">${i}</a></li></c:if>
+		    	<c:if test="${i ne n}"><li class="page-item"><a class="page-link" href="/BoardSelectController?board_num=${board_num}&page_num=${i}">${i}</a></li></c:if>
+		    </c:forEach>
+		   
+		  </ul>
+		  
         <form action="/BoardSelectController" method="post">
             <div id="search">
                 <select name="searchKeyword">

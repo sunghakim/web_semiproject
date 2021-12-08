@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
 <style type="text/css">
 html,
 body {
@@ -58,6 +58,12 @@ ul {
 .navBar ul li {
   margin-right: 10px;
 }
+
+.navBar-right .navBar-item > li > a {
+  color: black;
+  text-decoration: none;
+}
+
 .navBar-right .navBar-item > li > button {
   cursor: pointer;
   display: inline-block;
