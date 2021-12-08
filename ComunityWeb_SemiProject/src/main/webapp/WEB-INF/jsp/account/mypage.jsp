@@ -200,11 +200,9 @@ h4 {
 
         <div class="info_details">
           <div class="info_id">
-<<<<<<< HEAD
+
             <h4>ID : <%=(String) request.getSession().getAttribute("UserID")%></h4>
-=======
-            <h4><%=(String) request.getSession().getAttribute("UserID")%></h4>
->>>>>>> refs/remotes/origin/김승원
+
           </div>
           <a href="/changepsw">비밀번호 변경</a>
           <button id="info_psw_change_btn" class="btn btn-outline-primary" type="button" onclick="quiteCommunity()"> 탈퇴하기 </button>
