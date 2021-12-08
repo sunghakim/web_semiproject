@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <title>내정보</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
