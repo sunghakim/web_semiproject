@@ -288,8 +288,8 @@ p {
 	         <c:if test="${!empty sessionScope.UserID}">
 		         <c:if test="${post_info.getUser_id() eq sessionScope.UserID}">
 			         <div style="display: flex; align-items: flex-end; margin: 0 20px; padding: 10px 0;">
-			             <button class="btnn md" id="change" onclick="location.href='/postChange?post_id=${post_info.getPost_num()}'"><i class="fas fa-eraser"></i></button>
-			             <button class="btnn delete" id="del" onclick="location.href='/postDelete?post_id=${post_info.getPost_num()}'"><i class="fas fa-trash-alt"></i></button>
+			             <button class="btnn md" id="change" onclick="location.href='/PostController?post_id=${post_info.getPost_num()}'"><i class="fas fa-eraser"></i></button>
+			             <button class="btnn delete" id="del" onclick="location.href='/PostDelete?post_id=${post_info.getPost_num()}'"><i class="fas fa-trash-alt"></i></button>
 			         </div>
 		         </c:if>
 	         </c:if>
@@ -341,7 +341,7 @@ p {
 		            <a  id="unlogInedcase_comment" class="form-control" href="/join">로그인 후 이용해주세요.</a>
 	            </c:when>
 	            <c:otherwise>
-	              <form action="/Writeview" method="post" charset="utf-8" class="comment-form">
+	              <form action="/Writeview" method="post" class="comment-form">
 	                <textarea  class="form-control" id="comment_textarea" name="context" placeholder="댓글을 입력하세요"></textarea>
 	                <div class="comment_btn_case">
 	                  <input type="hidden" name="post_id" value="${post_info.getPost_num()}">
