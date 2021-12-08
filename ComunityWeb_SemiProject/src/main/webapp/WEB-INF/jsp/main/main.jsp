@@ -216,7 +216,7 @@ ul {
                        <%
 						if(request.getSession().getAttribute("UserID") != null){
 			           %> 
-                       <button class="btn btn-primary btn-lg" onclick="location.href='/boardList'">Start now</button>
+                       <button class="btn btn-primary btn-lg" onclick="location.href='/PostController'">Start now</button>
                     
 			           <%		
 			        	} else{
