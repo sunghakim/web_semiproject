@@ -142,6 +142,7 @@ ul {
 .sidebar {
   padding-left: 50px;
   width: 15%;
+  min-width: 210px
 }
 .sidebar > header {
   font-size: 20px;
@@ -167,6 +168,7 @@ ul {
 
 .container.latestboard {
   width: 60%;
+  min-width: 800px
 }
   table>tbody>tr>td>a{
     text-decoration: none;
@@ -184,20 +186,20 @@ ul {
               </div>
               <div class="navBar-right">
                 <ul class="navBar-item">
-            <%
+             <%
         	if(request.getSession().getAttribute("UserID") != null){
-           %> 
-                    <li><a href="/mypage"><%=(String) request.getSession().getAttribute("UserID")%>님 환영합니다.</a></li>
+           %>  
+                    <li><a href="/mypage"> <%=(String) request.getSession().getAttribute("UserID")%> 님 환영합니다.</a></li>
                     <li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
         
-           <%		
+            <%		
         	} else{
            %>
                    <li><button type="button" class="SignIn_btn" onclick="location.href='/login'">Sign In</button></li>
                    <li><button  type="button" class="SignUp_btn" onclick="location.href='/join'">Sign Up</button></li>
            <%        
         	}
-           %>
+           %> 
                  </ul>
                </div>
              </div>
@@ -211,19 +213,18 @@ ul {
               <div class="d-sm-flex">
                   <div>
                       <h1>Feel Free to Post <br>Anything You Want</h1>
-                      <%
+                       <%
 						if(request.getSession().getAttribute("UserID") != null){
 			           %> 
                        <button class="btn btn-primary btn-lg" onclick="location.href='/boardList'">Start now</button>
                     
 			           <%		
 			        	} else{
-			           %>
+			           %> 
                         <button class="btn btn-primary btn-lg" onclick="location.href='/join'">Start now</button>
-                 
-			           <%        
+                 	<%        
 			        	}
-			           %>
+			           %> 
                   </div>
                   <img class="img-fluid w-50" src="/static/imgsss.jpg" alt="" style="box-shadow:5px 5px 10px black;">
               </div>
@@ -238,15 +239,15 @@ ul {
           <div class="sidebar">
             <header>Category</header>
             <ul>
-            <%
+              <%
             List<BoardManageDTO> datas = (List<BoardManageDTO>) request.getAttribute("datas");					 
 			for(BoardManageDTO dto : datas){
             
-            %>
+            %> 
 				<li><a href="/BoardSelectController?board_num=<%= dto.getBOARD_NUM() %>&page_num=1"><%= dto.getBOARD_NAME() %></a></li>
-              <%
+          <%
 			}
-              %>
+              %>  
  
             </ul>
           </div>
@@ -267,7 +268,7 @@ ul {
               </thead>
               <tbody>
                
-                <%
+                 <%
                 List<MainpageDTO> boardlist = (List<MainpageDTO>) request.getAttribute("boardlist");					 
 			   for(MainpageDTO dto : boardlist){
             
@@ -280,7 +281,7 @@ ul {
                   </tr>
                   <%
 			    }
-                  %>
+                  %> 
                 
               </tbody>
             </table>
