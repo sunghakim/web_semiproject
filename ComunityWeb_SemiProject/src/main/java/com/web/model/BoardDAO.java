@@ -27,7 +27,9 @@ public class BoardDAO {
 		ResultSet pageres = oc.select(query);//검색 결과
 		
 		List<BoardDTO> datas = new ArrayList<BoardDTO>(); //여러 데이터 담을 컬렉션
-		
+		BoardDTO pageset = new BoardDTO();
+		pageset.setPage_num(page_num);
+		datas.add(pageset);
 		
 		try {
 			while(pageres.next()) { //게시글 번호, 유저아이디, 게시글 제목, 내용, 날짜, 게시판 번호
