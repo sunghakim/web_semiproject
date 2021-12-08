@@ -40,13 +40,6 @@ public class AccountService {
 		if(data.size() == 1) {
 			AccountDTO DBData = data.get(0);
 			dto.setManager(DBData.getManager());
-			System.out.println(DBData.getManager());
-			if(dto.getManager()) {
-				System.out.println("dto: true");
-			} else {
-				System.out.println("dto: false");
-			}
-			
 			if(dto.getUserPassword().equals(DBData.getUserPassword())) {
 				//로그인 성공
 				if (DBData.getManager()) {
@@ -90,28 +83,60 @@ public class AccountService {
 			return 4;
 		}
 	}
-	
-	public boolean quitCommunity(AccountDTO dto) {
+	public boolean deleteAllComments(AccountDTO dto) {
 		CommentDAO Cdao = new CommentDAO();
-		Cdao.deleteUsersAllPost(dto);
-		
-		PostDAO Pdao = new PostDAO();
-		Pdao.deleteUsersAllPost(dto);
-		
-		AccountDAO dao = new AccountDAO();
-		boolean result = dao.deleteUser(dto);
-		
-		if(result) {
-			//유저 삭제 성공
-			dao.commit();
-			dao.close();
+		int searchedComments = Cdao.searchUsersAllComments(dto);
+		int deletedComments = Cdao.deleteUsersAllComments(dto);
+		if (searchedComments == deletedComments) {
+			//검색된 댓글 삭제 성공
+			Cdao.commit();
+			Cdao.close();
 			return true;
 		} else {
-			//유저 삭제 실패
-			dao.rollback();
-			dao.close();
+			//검색된 댓글 삭제 실패
+			Cdao.rollback();
+			Cdao.close();
+			return false;
+		} 
+	}
+	
+	public boolean deleteAllPosts(AccountDTO dto) {
+		PostDAO Pdao = new PostDAO();
+		int searchedPosts = Pdao.searchUsersAllPosts(dto);
+		int deletedPosts = Pdao.deleteUsersAllPosts(dto);
+		if (searchedPosts == deletedPosts) {
+			//검색된 게시글 삭제 성공
+			Pdao.commit();
+			Pdao.close();
+			return true;
+		} else {
+			//검색된 게시글 삭제 실패
+			Pdao.rollback();
+			Pdao.close();
 			return false;
 		}
+	}
+	
+	public boolean quitCommunity(AccountDTO dto) {
+		if (deleteAllComments(dto)) {
+			if (deleteAllPosts(dto)) {
+				AccountDAO dao = new AccountDAO();
+				boolean result = dao.deleteUser(dto);
+				if(result) {
+					//유저 삭제 성공
+					dao.commit();
+					dao.close();
+					return true;
+				} else {
+					//유저 삭제 실패
+					dao.rollback();
+					dao.close();
+					return false;
+				}
+			}
+		}
+		//댓글이나 게시글 삭제실패
+		return false;
 	}
 	
 	public int checkID(AccountDTO dto) {

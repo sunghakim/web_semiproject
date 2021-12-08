@@ -31,7 +31,6 @@ public class LoginController extends HttpServlet {
 		AccountDTO dto = new AccountDTO(UserID, UserPassword);
 		AccountService service = new AccountService();
 		HttpSession session = request.getSession();
-		
 		switch(service.login(dto)) {
 		case(1)://관리자 로그인 성공
 			session.setAttribute("UserID", dto.getUserID());
@@ -42,8 +41,7 @@ public class LoginController extends HttpServlet {
 			response.sendRedirect("/");
 			break;
 		case(3):
-		case(4):
-			//로그인 실패
+		case(4)://로그인 실패
 			request.setAttribute("UserID", UserID);
 			request.setAttribute("result", "failure");
 			String view = "/WEB-INF/jsp/account/login.jsp";

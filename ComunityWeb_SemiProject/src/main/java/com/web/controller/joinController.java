@@ -36,7 +36,7 @@ public class joinController extends HttpServlet {
 		
 		if (UserPassword.equals(ConfirmUserPassword)) {
 			//비밀번호와 재확인비밀번호가 같음
-			if(service.checkID(dto) == 0) {//오류발생
+			if(service.checkID(dto) == 0) {
 				//중복되는 아이디 없음
 				if(service.add(dto)) {
 					//회원가입 성공
