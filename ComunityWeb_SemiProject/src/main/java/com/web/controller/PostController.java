@@ -1,7 +1,7 @@
 package com.web.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,12 +17,37 @@ import com.web.model.*;
 public class PostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardManageDAO category = new BoardManageDAO();
-		List<BoardManageDTO> cate_list = category.boardList();
-		cate_list.remove(0);
-		
-		request.setAttribute("category", cate_list);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		String postNum = request.getParameter("post_id");
+		if(postNum == null) { //post_id 라는 parameter가 없으면(일반 글쓰기이면)
+			BoardManageDAO category = new BoardManageDAO();
+			List<BoardManageDTO> cate_list = category.boardList();
+			cate_list.remove(0);
+			
+			request.setAttribute("category", cate_list);
+		}
+		else { //글 수정이면
+			PostService service = new PostService();
+			PostDTO dto = service.searchPost(Integer.parseInt(postNum));
+			
+			BoardManageDAO cate_dao = new BoardManageDAO();
+			List<BoardManageDTO> cate_list = cate_dao.boardList();
+			String cate_name = "";
+			for(BoardManageDTO find: cate_list) {
+				if(find.getBOARD_NUM() == dto.getBoard_num()) {
+					cate_name = find.getBOARD_NAME();
+					break;
+				}
+			}
+			
+			BoardManageDTO b_dto = new BoardManageDTO(dto.getBoard_num(), cate_name);
+			List<BoardManageDTO> category = new ArrayList<BoardManageDTO>();
+			category.add(b_dto);
+			System.out.println(category);
+			request.setAttribute("post_title", dto.getPost_title());
+			request.setAttribute("post_content", dto.getPost_content());
+			request.setAttribute("category", category); // 원래 카테고리 하나만 보이게 함.
+		}		
 		
 		String view = "/WEB-INF/jsp/board/boardWrite.jsp"; //게시글 리스트 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
@@ -72,7 +97,7 @@ public class PostController extends HttpServlet {
 		List<PostDTO> datas = service.searchAll(); //리스트 가져오기
 		request.setAttribute("datas", datas);
 		
-		String view = "/WEB-INF/jsp/board/boardList.jsp"; //게시글 리스트 페이지
+		String view = "BoardSelectController?board_num=" + postBoard + "&page_num=1"; //게시글 리스트 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}

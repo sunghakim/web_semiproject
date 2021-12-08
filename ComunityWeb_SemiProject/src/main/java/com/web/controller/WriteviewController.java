@@ -41,6 +41,8 @@ public class WriteviewController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8"); //한글이 깨져서 들어와서 해결방안
+		
 		int postId = Integer.parseInt(request.getParameter("post_id"));
 		HttpSession session = request.getSession();
 		String writerId = (String)session.getAttribute("UserID");
@@ -50,7 +52,6 @@ public class WriteviewController extends HttpServlet {
 		String commentId = request.getParameter("comment_id");
 		
 		CommentService service = new CommentService();
-		System.out.println(date);
 		
 		if(commentId == null || commentId == "") {
 			CommentDTO dto = new CommentDTO();
