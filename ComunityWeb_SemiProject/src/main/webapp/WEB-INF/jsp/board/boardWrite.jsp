@@ -152,6 +152,7 @@ function back() {
             	<c:if test="${not empty post_content}"><textarea class="frm" id="writeContent" placeholder="내용" name="post_content" style="overflow: auto;" required>${post_content}</textarea></c:if>
             </div>
             <input type="hidden" name="date" value="${now}">
+            <input type="hidden" name="post_id" value="${post_id}">
             <div style="display: flex; justify-content: space-between; margin: 0 20px; padding: 10px 0;">
               <button class="btnn back2" onclick="back();">취소</button>
               <span>
