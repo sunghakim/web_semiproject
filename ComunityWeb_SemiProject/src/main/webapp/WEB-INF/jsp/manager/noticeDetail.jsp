@@ -219,6 +219,7 @@ margin-right: 10px;
             <form  action="noticeList" method="post" >
             <button class="btn btn-primary" type="submit" name="send" value="delete">삭제</button>
             <input type="hidden" name="deletePost" value="<%=data.getPost_num()%>">
+            <input type="hidden" name="postWriter" value="<%=data.getUser_id()%>">
             </form>
           </div>
 	</div>

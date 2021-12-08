@@ -77,12 +77,27 @@ public class BoardManageDAO {
 
 
     public boolean updateCategory(String changeName, int changeCategoryNumber, int currentCategoryNumber) {
-        try (Connection conn = oc.getConn()) {
-
-			if (tempCategory(changeName, changeCategoryNumber, conn) >= 1
-					&& updatePost(currentCategoryNumber, changeCategoryNumber, conn) >= 1
-					&& deleteCurrentCategory(currentCategoryNumber, conn) >= 1)
-				return true;
+    	
+    	try (Connection conn = oc.getConn()) {
+    		
+			if (tempCategory(changeName, changeCategoryNumber, conn) < 1) {
+				System.out.println("createCategory실패");
+				return false;
+			}
+			
+			int result = updatePost(currentCategoryNumber, changeCategoryNumber, conn);
+			if(result < 0) {				
+				System.out.println(result);
+				System.out.println("updatePost실패");
+				return false;
+			}
+			
+			if(deleteCurrentCategory(currentCategoryNumber, conn) < 1) {
+				System.out.println("deleteCurrentCategory 실패");
+				return false;
+			}
+			
+			return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
