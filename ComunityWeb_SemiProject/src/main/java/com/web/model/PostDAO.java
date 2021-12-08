@@ -14,12 +14,12 @@ public class PostDAO {
 	}
 	
 	public boolean add(PostDTO dto) { //게시글 추가 작업
-		String query = "INSERT INTO POSTDB VALUES(POSTNUM_SEQ.NEXTVAL,"
-				+ "'" + dto.getUser_id() + "',"
-				+ "'" + dto.getPost_title() + "',"
-				+ "'" + dto.getPost_content() + "',"
-				+ "SYSDATE"
-				+ "'" + dto.getBoard_name() + "'";
+		String query = "INSERT INTO POSTDB VALUES(POSTNUM_SEQ.NEXTVAL, "
+				+ "'" + dto.getUser_id() + "', "
+				+ "'" + dto.getPost_title() + "', "
+				+ "'" + dto.getPost_content() + "', "
+				+ "TO_DATE('" + dto.getPost_date() + "', 'YYYY-MM-DD'), "
+				+ "'" + dto.getBoard_num() + "')";
 		
 				
 		int res = oc.insert(query);
