@@ -58,6 +58,12 @@ ul {
 .navBar ul li {
   margin-right: 10px;
 }
+
+.navBar-right .navBar-item > li > a {
+  color: black;
+  text-decoration: none;
+}
+
 .navBar-right .navBar-item > li > button {
   cursor: pointer;
   display: inline-block;
