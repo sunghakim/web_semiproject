@@ -2,8 +2,6 @@ package com.web.model;
 
 import java.util.List;
 
-import com.web.model.PostDTO;
-
 public class MainpageService {
 	
 	public List<MainpageDTO> searchPage(int page_num){
