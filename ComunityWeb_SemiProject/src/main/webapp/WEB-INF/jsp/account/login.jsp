@@ -112,12 +112,17 @@ font-size: 5px;
 
 </style>
 <body>
-
+<%
+	String preUserID = "";
+	if (request.getAttribute("UserID") != null) {
+		preUserID = (String)request.getAttribute("UserID");
+	}
+%>
 <div class="wrapper">
     <h2>로그인</h2>
     <form action="/login" method="post">
       <div class="input-box">
-        <input type="text" id="confirmed_id" name="UserID" placeholder="insert ID" required>
+        <input type="text" id="confirmed_id" name="UserID" value="<%=preUserID%>" placeholder="insert ID" required>
       </div>
       <div class="input-box">
         <input class="pass_ipt" type="password" name="UserPassword" placeholder="insert password" required>   
