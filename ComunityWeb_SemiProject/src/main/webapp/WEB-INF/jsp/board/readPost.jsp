@@ -23,6 +23,17 @@ body {
   padding-bottom: 60px;
 }
 
+ul {
+  list-style: none;
+}
+
+.navBar {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%), 0 2px 2px rgb(0 0 0 / 6%),
+    0 0 2px rgb(0 0 0 / 7%);
+}
+
 .navBar-container {
   display: flex;
   justify-content: space-between;
@@ -264,10 +275,12 @@ p {
         <button id="writePost" type="button" onclick="location.href='/PostController'">글쓰기</button>
     </div>
     <div class="tab-list">
-      <button class="category active">공지사항</button>
+      <button class="category active" onclick="location.href='/BoardSelectController?board_num=0&page_num=1'">공지사항</button>
       <c:if test="${not empty blist}">
       	<c:forEach var="i" items="${blist}">
-      		<button class="category" onclick="location.href='/BoardSelectController?board_num=${i.getBOARD_NUM()}&page_num=1'">${i.getBOARD_NAME()}</button>
+      		<c:if test="${i.getBOARD_NUM() ne 0}">
+      			<button class="category" onclick="location.href='/BoardSelectController?board_num=${i.getBOARD_NUM()}&page_num=1'">${i.getBOARD_NAME()}</button>
+      		</c:if>
       	</c:forEach>
       </c:if>
     </div>
@@ -288,8 +301,8 @@ p {
 	         <c:if test="${!empty sessionScope.UserID}">
 		         <c:if test="${post_info.getUser_id() eq sessionScope.UserID}">
 			         <div style="display: flex; align-items: flex-end; margin: 0 20px; padding: 10px 0;">
-			             <button class="btnn md" id="change" onclick="location.href='/postChange?post_id=${post_info.getPost_num()}'"><i class="fas fa-eraser"></i></button>
-			             <button class="btnn delete" id="del" onclick="location.href='/postDelete?post_id=${post_info.getPost_num()}'"><i class="fas fa-trash-alt"></i></button>
+			             <button class="btnn md" id="change" onclick="location.href='/PostController?post_id=${post_info.getPost_num()}'"><i class="fas fa-eraser"></i></button>
+			             <button class="btnn delete" id="del" onclick="location.href='/PostDelete?post_id=${post_info.getPost_num()}'"><i class="fas fa-trash-alt"></i></button>
 			         </div>
 		         </c:if>
 	         </c:if>
@@ -306,7 +319,7 @@ p {
 	
 	 
 	      <hr>
-	      <section class="response"></section>
+	      <section class="response">
 	        <div class="container">
 	          <header class="section-header">
 	            <h6 class="section-title">${cList.size()}개의 댓글</h6>
@@ -319,20 +332,22 @@ p {
 							<label>${i.getWriter()}</label>
 							<label><fmt:formatDate value="${i.getCommentDate()}" type="date" pattern="yyyy.MM.dd" /></label>
 						</div>
-						<div style="margin: 0 14px;">
-							<p>${i.getComment()}</p>
-						</div>
-						<c:if test="${empty sessionScope.UserID}">
-		         			<c:if test="${i.getWriter() ne sessionScope.UserID}">
-			         			<div style="display: flex; flex-direction:row-reverse; margin: 0 4px; padding: 10px 0;">
-			             			<button class="btnn del" id="deleteCmt"><i class="fas fa-trash-alt"></i></button>
-			             			<button class="btnn md" id="changeCmt"><i class="fas fa-eraser"></i></button>
-			         			</div>
+						<div style="display: flex; justify-content: space-between;">	
+							<div style="width=80%; margin: 0 14px;">
+								<p>${i.getComment()}</p>
+							</div>
+							<c:if test="${!empty sessionScope.UserID}">
+			         			<c:if test="${i.getWriter() eq sessionScope.UserID}">
+				         			<div style="margin: 0 4px; padding: 10px 0;">
+				             			<button class="btnn md" id="changeCmt" onclick="location.href='/CommentChange?comment_id=${i.getCommentId()}'"><i class="fas fa-eraser"></i></button>
+				             			<button class="btnn del" id="deleteCmt"><i class="fas fa-trash-alt"></i></button>
+				         			</div>
+			         			</c:if>
 		         			</c:if>
-	         			</c:if>
+		         		</div>
 					</div>
 				</li>
-			</c:forEach>
+				</c:forEach>
 			</ul>
 	            <div class="comment_write">
 	            <fmt:formatDate value="<%=new Date() %>" pattern="YYYY-MM-dd" var="now" />
@@ -341,7 +356,7 @@ p {
 		            <a  id="unlogInedcase_comment" class="form-control" href="/join">로그인 후 이용해주세요.</a>
 	            </c:when>
 	            <c:otherwise>
-	              <form action="/Writeview" method="post" charset="utf-8" class="comment-form">
+	              <form action="/Writeview" method="post" accept-charset="utf-8" class="comment-form">
 	                <textarea  class="form-control" id="comment_textarea" name="context" placeholder="댓글을 입력하세요"></textarea>
 	                <div class="comment_btn_case">
 	                  <input type="hidden" name="post_id" value="${post_info.getPost_num()}">
@@ -354,10 +369,7 @@ p {
 	            </div>
 	
 	          </div>
-	
-	        </div>
-	
-	      </section>
+	      </section> <!-- response end -->
 	 </div> <!-- content end -->
 	 
 	 <footer class="footer">

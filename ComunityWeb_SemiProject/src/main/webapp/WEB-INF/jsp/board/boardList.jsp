@@ -258,10 +258,12 @@ select:hover {
         <button id="writePost" type="button" onclick="location.href='/PostController'">글쓰기</button>
     </div>
     <div class="tab-list">
-      <button class="category active">공지사항</button>
+      <button class="category active" onclick="location.href='/BoardSelectController?board_num=0&page_num=1'">공지사항</button>
       <c:if test="${not empty cate_list}">
       	<c:forEach var="i" items="${cate_list}">
-      		<button class="category" onclick="location.href='/BoardSelectController?board_num=${i.getBOARD_NUM()}&page_num=1'">${i.getBOARD_NAME()}</button>
+      		<c:if test="${i.getBOARD_NUM() ne 0}">
+      			<button class="category" onclick="location.href='/BoardSelectController?board_num=${i.getBOARD_NUM()}&page_num=1'">${i.getBOARD_NAME()}</button>
+      		</c:if>
       	</c:forEach>
       </c:if>
     </div>
