@@ -118,11 +118,10 @@ ul {
 .SignUp_btn:hover {
   background-color: #333;
 }
-.nav_right .na .navBar a {
-  color: #000;
+.navBar-right .navBar-item > li > a {
+  color: black;
   text-decoration: none;
 }
-
 
 
 

@@ -137,10 +137,7 @@ ul {
 .SignUp_btn:hover {
   background-color: #333;
 }
-.nav_right .na .navBar a {
-  color: #000;
-  text-decoration: none;
-}
+
 
 
 
@@ -164,6 +161,7 @@ ul {
 .mb-3.NoBtn{
 display: flex;
 }
+
 
 </style>
 <body>
