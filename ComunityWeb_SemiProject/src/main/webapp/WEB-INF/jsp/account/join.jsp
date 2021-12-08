@@ -152,7 +152,7 @@ font-size: 5px;
 		        <span id="error"><%=PWresult%></span>
 			</div>
 			<div class="input-box button">
-		        <input class="submit_btn"type="button" value="Sign Up Now" onclick="signUp()">
+		        <input class="submit_btn"type="submit" value="Sign Up Now">
 			</div>
 			<div class="text">
 		        <h3>가입된 계정이 있으신가요? <a href="/login">Sign In</a></h3>
@@ -185,13 +185,7 @@ font-size: 5px;
 	    }
 	});
 	
-	function signUp(){
-		if(pass.value !== passCon.value){
-			return;
-		} else{
-			form.submit();
-			}
-		}
+
 	
 	</script>
 	

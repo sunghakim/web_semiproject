@@ -132,7 +132,7 @@ font-size: 5px;
       </div>
 
       <div class="input-box button">
-        <input class="submit_btn"type="button" value="비밀번호 변경하기" onclick="passwdCheck(passForm);">
+        <input class="submit_btn"type="submit" value="비밀번호 변경하기" onclick="passwdCheck(passForm);">
       </div>
       <div class="text">
         <h3>변경 취소 <a href="/mypage">My Page</a></h3>
@@ -219,11 +219,8 @@ function passwdCheck(form){
         form.currPasswd.focus();
         return;
 
-    } else if(new_pass.value !== new_passCon.value){
-    	return;
-    	}
-    }
-    form.submit();
+    } 
+    
 }
 </script>
 </body>
