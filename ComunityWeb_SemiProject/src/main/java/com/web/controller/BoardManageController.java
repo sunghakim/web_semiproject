@@ -62,13 +62,22 @@ public class BoardManageController extends HttpServlet {
 
                 int updateCategoryNum = Integer.parseInt(update[1]);
                 String updateCategoryName = update[2];
-
-
-                System.out.println("수정 전 카테고리 : " + currentCategoryNum + " " + currentCategoryName);
-                int result = manage.updateCategory(updateCategoryName, updateCategoryNum, currentCategoryNum);
                 
-                System.out.println("쿼리 반환값 : " + result);
-                System.out.println("수정된 카테고리 : " + updateCategoryNum + " " + updateCategoryName);
+                System.out.println("수정 전 카테고리 : " + currentCategoryNum + " " + currentCategoryName);
+                
+                if(currentCategoryNum == updateCategoryNum) {
+                	if(manage.updateCategory(updateCategoryName, currentCategoryNum) >= 1) {	
+                	System.out.println("카테고리 수정 성공");
+					System.out.println("수정된 카테고리 : " + updateCategoryNum + " " + updateCategoryName);
+                	}
+                	break;
+                }
+
+				if (manage.updateCategory(updateCategoryName, updateCategoryNum, currentCategoryNum)) {
+					System.out.println("카테고리 수정 성공");
+					System.out.println("수정된 카테고리 : " + updateCategoryNum + " " + updateCategoryName);
+				}
+                
                 break;
             }
 
