@@ -4,6 +4,7 @@
 <%@page import="com.web.model.BoardDTO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -309,12 +310,12 @@ function writeCheck() {
                 </tbody>
             </table>
         </div> <!-- boardTable end -->
+        
         <form action="/BoardSelectController" method="post">
             <div id="search">
                 <select name="searchKeyword">
-                    <option value="0">제목 + 작성자</option>
-                    <option value="1">제목</option>
-                    <option value="2">작성자</option>
+                    <option value="0">제목</option>
+                    <option value="1">작성자</option>
                 </select>
                 <input type="text" class="search" name="search" placeholder="검색어 입력" />
                 <button class="searchBtn">검색</button>

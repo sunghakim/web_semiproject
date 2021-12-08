@@ -24,7 +24,7 @@ public class MainpageController extends HttpServlet {
 			throws ServletException, IOException {
 		int one_page = 1;
 		String page_num_str = "";
-
+		
 		page_num_str = request.getParameter("page_num"); //페이지수 받아오기
 		MainpageService service = new MainpageService();//서비스 불러오기
 		 
