@@ -174,6 +174,8 @@ ul {
           <textarea name="content" class="form-control" id="notice_textarea" style="height: 400px;"><%=data.getPost_content()%></textarea>
         </div>
       	<input type="hidden" name="date">
+      	<input type="hidden" name="Writer" value="<%=data.getUser_id()%>">
+      	
         <div class="mb-3">
           <button id="notic-btn"class="btn btn-outline-secondary" style="color: black;" type="submit" name="send" value="modify" onclick="modify()">수정</button>
         </div>

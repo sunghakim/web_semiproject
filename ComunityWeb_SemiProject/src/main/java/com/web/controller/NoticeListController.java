@@ -1,6 +1,7 @@
 package com.web.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -56,6 +57,15 @@ public class NoticeListController extends HttpServlet {
                 break;
             }
             case "modify": {
+            	String writer = req.getParameter("Writer");
+            	System.out.println(writer.equals(id));
+            	
+            	if(!writer.equals(id)) {
+            		PrintWriter pw = resp.getWriter();
+            		pw.println("<script>alert('아이디가 달라 수정 불가'); location.href='"+"noticeList" +"';</script>");
+            		pw.close();
+            		return;
+            	}
                 String title = req.getParameter("title");
                 String content = req.getParameter("content");
                 int num = Integer.parseInt(req.getParameter("num"));
@@ -67,6 +77,14 @@ public class NoticeListController extends HttpServlet {
                 break;
             }
             case "delete": {
+            	String writer = req.getParameter("postWriter");
+            	
+            	if(!writer.equals(id)) {
+            		PrintWriter pw = resp.getWriter();
+            		pw.println("<script>alert('아이디가 달라 삭제 불가'); location.href='"+"noticeList" +"';</script>");
+            		pw.close();
+            		return;
+            	}
                 int delete = Integer.parseInt(req.getParameter("deletePost"));
                 if (noticeManage.deletePost(delete) >= 1) {
                     System.out.println("삭제 성공");
