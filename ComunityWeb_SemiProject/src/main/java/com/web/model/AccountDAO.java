@@ -11,7 +11,7 @@ public class AccountDAO {
 	private OracleConnect oc;
 
 	public AccountDAO() {
-		this.oc = new OracleConnect(true);
+		this.oc = new OracleConnect(false);
 	}
 	
 	public List<AccountDTO> select(String UserID) {
