@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <title>내정보</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
@@ -169,7 +168,7 @@ h4 {
     <nav class="navBar">
       <div class="navBar-container">
         <div class="navBar-home">
-          <a href="index.jsp"><i class="fas fa-home"> home</i></a>
+          <a href="/main"><i class="fas fa-home"> home</i></a>
         </div>
         <div class="navBar-right">
           <ul class="navBar-item">
@@ -201,10 +200,9 @@ h4 {
 
         <div class="info_details">
           <div class="info_id">
-            <h4>ID</h4>
-          </div>
-          <div class="info_psw">
-            <h4>PassWord</h4>
+
+            <h4>ID : <%=(String) request.getSession().getAttribute("UserID")%></h4>
+
           </div>
           <a href="/changepsw">비밀번호 변경</a>
           <button id="info_psw_change_btn" class="btn btn-outline-primary" type="button" onclick="quiteCommunity()"> 탈퇴하기 </button>

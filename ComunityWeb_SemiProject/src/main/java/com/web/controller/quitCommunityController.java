@@ -26,7 +26,7 @@ public class quitCommunityController extends HttpServlet {
 			//삭제 성공
 			session.invalidate();
 			request.setAttribute("loginStatus", false);
-			String view = "/WEB-INF/jsp/index.jsp";
+			String view = "/WEB-INF/jsp/main/main.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);
 		} else {

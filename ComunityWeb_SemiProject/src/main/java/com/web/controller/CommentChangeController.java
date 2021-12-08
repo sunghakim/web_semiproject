@@ -29,7 +29,7 @@ public class CommentChangeController extends HttpServlet {
 		request.setAttribute("comments", dto.getComment());
 		
 		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
-		commentList = service.getCommentList(Integer.parseInt(request.getParameter("post_id")));
+		commentList = service.getCommentList(dto.getWriteId());
 		
 		int index = -1;
 		for(int i = 0; i < commentList.size(); i++) {

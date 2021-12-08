@@ -66,7 +66,7 @@ public class OracleConnect {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			this.conn = DriverManager.getConnection(
-					this.info.getProperty("Local-url"),
+					this.info.getProperty("local-url"),
 					this.info.getProperty("user"), 
 					this.info.getProperty("password"));
 			this.conn.setAutoCommit(false);

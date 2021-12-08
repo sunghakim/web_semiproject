@@ -120,6 +120,7 @@ font-size: 5px;
 	}
 	
 	String result = "";
+	String PWresult = "";
 	if (request.getAttribute("result") != null) {
 		switch((String)request.getAttribute("result")) {
 		case ("1"):
@@ -128,6 +129,8 @@ font-size: 5px;
 		case ("2"):
 			result = "이미 존재하는 아이디입니다.";
 			break;
+		case ("3"):
+			PWresult = "재입력한 비밀번호가 다릅니다.";
 		}
 	}
 %>
@@ -141,12 +144,12 @@ font-size: 5px;
 			</div>
 			<div class="input-box">
 		        <input class="pass_ipt" type="password" name="UserPassword" placeholder="Create password" required>   
-			    <span id="error1"></span>
+			    <span id="error1"><%=PWresult%></span>
 			
 			</div>
 			<div class="input-box">
-		        <input class="pass_confirm" type="password" placeholder="Confirm password" required>
-		        <span id="error"></span>
+		        <input class="pass_confirm" type="password" name="ConfirmUserPassword" placeholder="Confirm password" required>
+		        <span id="error"><%=PWresult%></span>
 			</div>
 			<div class="input-box button">
 		        <input class="submit_btn"type="submit" value="Sign Up Now">
@@ -156,6 +159,7 @@ font-size: 5px;
 			</div>
 		</form>
 	</div>
+	
 	<script>
 	const pwconfirm = document.querySelector('#error');
 	const pwcheck =document.querySelector('#error1');
@@ -180,6 +184,9 @@ font-size: 5px;
 	        pwconfirm.style.display = "none";
 	    }
 	});
+	
+
+	
 	</script>
 	
 </body>

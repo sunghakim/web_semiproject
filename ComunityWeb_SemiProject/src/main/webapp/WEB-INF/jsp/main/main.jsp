@@ -118,11 +118,10 @@ ul {
 .SignUp_btn:hover {
   background-color: #333;
 }
-.nav_right .na .navBar a {
-  color: #000;
+.navBar-right .navBar-item > li > a {
+  color: black;
   text-decoration: none;
 }
-
 
 
 
@@ -142,6 +141,7 @@ ul {
 .sidebar {
   padding-left: 50px;
   width: 15%;
+  min-width: 210px
 }
 .sidebar > header {
   font-size: 20px;
@@ -167,6 +167,7 @@ ul {
 
 .container.latestboard {
   width: 60%;
+  min-width: 800px
 }
   table>tbody>tr>td>a{
     text-decoration: none;
@@ -184,20 +185,20 @@ ul {
               </div>
               <div class="navBar-right">
                 <ul class="navBar-item">
-            <%
+             <%
         	if(request.getSession().getAttribute("UserID") != null){
-           %> 
-                    <li><a href="/mypage"><%=(String) request.getSession().getAttribute("UserID")%>님 환영합니다.</a></li>
+           %>  
+                    <li><a href="/mypage"> <%=(String) request.getSession().getAttribute("UserID")%> 님 환영합니다.</a></li>
                     <li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
         
-           <%		
+            <%		
         	} else{
            %>
                    <li><button type="button" class="SignIn_btn" onclick="location.href='/login'">Sign In</button></li>
                    <li><button  type="button" class="SignUp_btn" onclick="location.href='/join'">Sign Up</button></li>
            <%        
         	}
-           %>
+           %> 
                  </ul>
                </div>
              </div>
@@ -211,21 +212,19 @@ ul {
               <div class="d-sm-flex">
                   <div>
                       <h1>Feel Free to Post <br>Anything You Want</h1>
-                      <%
+                       <%
 						if(request.getSession().getAttribute("UserID") != null){
 			           %> 
-                       <button class="btn btn-primary btn-lg" onclick="location.href='/boardList'">Start now</button>
+                       <button class="btn btn-primary btn-lg" onclick="location.href='/PostController'">Start now</button>
                     
 			           <%		
 			        	} else{
-			           %>
+			           %> 
                         <button class="btn btn-primary btn-lg" onclick="location.href='/join'">Start now</button>
-                 
-			           <%        
+                 	<%        
 			        	}
-			           %>
+			           %> 
                   </div>
-                  <img class="img-fluid w-50" src="/static/imgsss.jpg" alt="" style="box-shadow:5px 5px 10px black;">
               </div>
           </div>
       </section>
@@ -238,15 +237,15 @@ ul {
           <div class="sidebar">
             <header>Category</header>
             <ul>
-            <%
+              <%
             List<BoardManageDTO> datas = (List<BoardManageDTO>) request.getAttribute("datas");					 
 			for(BoardManageDTO dto : datas){
             
-            %>
+            %> 
 				<li><a href="/BoardSelectController?board_num=<%= dto.getBOARD_NUM() %>&page_num=1"><%= dto.getBOARD_NAME() %></a></li>
-              <%
+          <%
 			}
-              %>
+              %>  
  
             </ul>
           </div>
@@ -267,20 +266,20 @@ ul {
               </thead>
               <tbody>
                
-                <%
+                 <%
                 List<MainpageDTO> boardlist = (List<MainpageDTO>) request.getAttribute("boardlist");					 
 			   for(MainpageDTO dto : boardlist){
             
                 %>
                  <tr>
-	                  <td style="width: 15%;"><a href="/BoardSelectController?board_num=<%= dto.getBoard_num() %>&page_num=1"><%= dto.getBoard_name() %></a></td>
-	                  <td style="width: 50%;"><a href="/Writeview?post_id=<%= dto.getPost_num() %>"><%=dto.getPost_title() %></a></td>
-	                  <td style="width: 15%;"><%=dto.getUser_id() %></td>
-	                  <td style="width: 20%;"><%=dto.getPost_date() %></td>
+	                  <td style="width: 15%;" class="text-center"><a href="/BoardSelectController?board_num=<%= dto.getBoard_num() %>&page_num=1"><%= dto.getBoard_name() %></a></td>
+	                  <td style="width: 50%;" class="text-center"><a href="/Writeview?post_id=<%= dto.getPost_num() %>"><%=dto.getPost_title() %></a></td>
+	                  <td style="width: 15%;" class="text-center"><%=dto.getUser_id() %></td>
+	                  <td style="width: 20%;" class="text-center"><%=dto.getPost_date() %></td>
                   </tr>
                   <%
 			    }
-                  %>
+                  %> 
                 
               </tbody>
             </table>

@@ -71,8 +71,6 @@ public class AccountService {
 			if(dto.getUserPassword().equals(DBData.getUserPassword())) {
 				if(dao.updatePassword(dto)) {
 					//비밀번호 변경 성공
-//					dto.setUserID(DBData.getUserID());
-//					dto.setUserPassword("");
 					dao.commit();
 					dao.close();
 					return 1;
@@ -94,8 +92,15 @@ public class AccountService {
 	}
 	
 	public boolean quitCommunity(AccountDTO dto) {
+		CommentDAO Cdao = new CommentDAO();
+		Cdao.deleteUsersAllPost(dto);
+		
+		PostDAO Pdao = new PostDAO();
+		Pdao.deleteUsersAllPost(dto);
+		
 		AccountDAO dao = new AccountDAO();
 		boolean result = dao.deleteUser(dto);
+		
 		if(result) {
 			//유저 삭제 성공
 			dao.commit();

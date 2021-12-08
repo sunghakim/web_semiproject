@@ -137,10 +137,7 @@ ul {
 .SignUp_btn:hover {
   background-color: #333;
 }
-.nav_right .na .navBar a {
-  color: #000;
-  text-decoration: none;
-}
+
 
 
 
@@ -159,6 +156,10 @@ ul {
 }
 .input_hidden.visible {
   display: block;
+}
+
+.mb-3.NoBtn{
+display: flex;
 }
 
 
@@ -210,7 +211,7 @@ ul {
 				</tr>
 			</tbody>
 		</table>
-        <div class="mb-3">
+        <div class="mb-3 NoBtn">
             <button class="btn btn-outline-primary" type="submit" onclick="location.href='noticeList'">목록</button>
             <button id="noticCon-btn"class="btn btn-outline-primary" onclick="location.href='noticeWrite?updateNum=<%=data.getPost_num()%>&name=modify'">수정</button>
             <form  action="noticeList" method="post" >

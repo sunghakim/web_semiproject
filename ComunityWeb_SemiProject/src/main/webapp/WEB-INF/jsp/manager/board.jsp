@@ -229,10 +229,12 @@ ul {
                             </td>
                             <td>
                                 <h5 class="font-medium mb-0" id="<%=dto.getBOARD_NUM() %>"><%=dto.getBOARD_NAME() %></h5>
-<                               <div class="input_hidden">
-								  <input type="hidden" name="update" value="<%=dto.getBOARD_NUM() + " " +dto.getBOARD_NAME()%>"/>
-                                  <input type="text" name="update" placeholder="게시판 아이디"/>
-                                  <input type="text" name="update" placeholder="게시판 이름"/>
+
+                                <div class="input_hidden">
+
+								  <input type="hidden" name="update" value="<%=dto.getBOARD_NUM() + " " +dto.getBOARD_NAME()%>">
+                                  <input type="text" name="update" placeholder="게시판 아이디">
+                                  <input type="text" name="update" placeholder="게시판 이름">
                                   <button class="hidden_input_Btn" type="submit" name="send" value="updateSubmit"><i class="fas fa-check"></i></button>
                                 </div>
                             </td>

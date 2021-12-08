@@ -44,6 +44,7 @@ public class LoginController extends HttpServlet {
 		case(3):
 		case(4):
 			//로그인 실패
+			request.setAttribute("UserID", UserID);
 			request.setAttribute("result", "failure");
 			String view = "/WEB-INF/jsp/account/login.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(view);

@@ -121,13 +121,13 @@ font-size: 5px;
       </div>
       <div class="input-box">
         <label>새로운 비밀번호</label>
-        <input class="new_pass_ipt" type="password" name="NewUserPassword"placeholder="Create password" required> 
+        <input class="new_pass_ipt" type="password" name="NewUserPassword" placeholder="Create password" required> 
         <span id="error4"></span>
           
       </div>
       <div class="input-box">
         <label>비밀번호 확인</label>
-        <input class="new_pass_confirm" type="password" placeholder="Confirm password" required>
+        <input class="new_pass_confirm" type="password" name="ConfirmNewUserPassword" placeholder="Confirm password" required>
         <span id="error3"></span>
       </div>
 
@@ -167,9 +167,14 @@ font-size: 5px;
 		alert("오류가 발생했습니다. 다시 시도하거나 다음에 시도해주세요.");
 		</script>
 <% 
+		} else if(result.equals("CPfailure4")){
+%>
+		<script>
+		alert("새비밀번호와 재입력한 새비밀번호가 같지 않습니다");
+		</script>
+<% 
 		}
 %>
-
 
 <script type="text/javascript">
 
@@ -214,8 +219,8 @@ function passwdCheck(form){
         form.currPasswd.focus();
         return;
 
-    }
-    form.submit();
+    } 
+    
 }
 </script>
 </body>
