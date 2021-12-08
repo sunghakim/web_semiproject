@@ -116,8 +116,25 @@ public class PostDAO {
 	}
 	
 	//승원 작업
-	//USER_ID를 기준으로 작성된 POST_NUM 삭제
-	public int deleteUsersAllPost(AccountDTO dto) {
+	//USER_ID를 기준으로 작성된 게시글 갯수 반환
+	public int searchUsersAllPosts(AccountDTO dto) {
+		String query = "SELECT POST_NUM FROM POSTDB WHERE USER_ID = '" + dto.getUserID() + "'";
+		ResultSet res = oc.select(query);
+		int count = 0; 
+		if(res == null) {
+		}else {
+			try {
+				while(res.next()) {
+					count = count + 1;
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
+	}
+	//USER_ID를 기준으로 작성된 게시글 삭제
+	public int deleteUsersAllPosts(AccountDTO dto) {
 	String query = "DELETE FROM POSTDB WHERE USER_ID = '" + dto.getUserID() + "'";
 		return oc.delete(query);
 	}

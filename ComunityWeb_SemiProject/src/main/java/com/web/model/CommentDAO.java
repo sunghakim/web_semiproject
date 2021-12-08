@@ -112,8 +112,25 @@ public class CommentDAO {
 	}
 	
 	//승원 작업
-	//USER_ID를 기준으로 작성된 POST_NUM 삭제
-	public int deleteUsersAllPost(AccountDTO dto) {
+	//USER_ID를 기준으로 작성된 댓글 갯수 반환
+	public int searchUsersAllComments(AccountDTO dto) {
+		String query = "SELECT COMMENT_NUM FROM COMMENTDB WHERE USER_ID = '" + dto.getUserID() + "'";
+		ResultSet res = oc.select(query);
+		int count = 0; 
+		if(res == null) {
+		}else {
+			try {
+				while(res.next()) {
+					count = count + 1;
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
+	}
+	//USER_ID를 기준으로 작성된 댓글 삭제
+	public int deleteUsersAllComments(AccountDTO dto) {
 		String query = "DELETE FROM COMMENTDB WHERE USER_ID = '" + dto.getUserID() + "'";
 		return oc.delete(query);
 	}
