@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.web.model.NoticeManageDAO;
 import com.web.model.PostDTO;
@@ -19,7 +20,7 @@ public class NoticeListController extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	NoticeManageDAO noticeManage = new NoticeManageDAO();
-
+    	
         req.setAttribute("postList", noticeManage.noticeList());
         req.getRequestDispatcher("/WEB-INF/jsp/manager/noticeList.jsp").forward(req, resp);
 
@@ -29,9 +30,10 @@ public class NoticeListController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
-
+        
+        HttpSession session = req.getSession();
+        String id = (String) session.getAttribute("UserID");
         NoticeManageDAO noticeManage = new NoticeManageDAO();
-
         String send = req.getParameter("send");
 
         switch (send) {
@@ -40,7 +42,7 @@ public class NoticeListController extends HttpServlet {
                 String content = req.getParameter("content");
 
                 PostDTO post = new PostDTO();
-                post.setUser_id("manager");
+                post.setUser_id(id);
                 post.setPost_title(title);
                 post.setPost_content(content);
                 post.setPost_date(new Date(System.currentTimeMillis()));
