@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script type="text/javascript" src="/static/js/jquery-3.6.0.min.js"></script>
 <style type="text/css">
 html,
 body {
@@ -227,6 +228,18 @@ select:hover {
 <title>게시판</title>
 </head>
 <body>
+<script>
+function writeCheck() {
+	 var login ='<%=(String)session.getAttribute("UserID")%>';
+
+     if(login == "null"){ 
+        alert("로그인 후 가능합니다."); 
+     }
+     else{
+        location.replace("/PostController");
+     }
+}
+</script>
 
  <div class="wrap">
     <nav class="navBar">
@@ -255,7 +268,7 @@ select:hover {
 <div style="display: flex; margin: 10px 10px; width: 95%;">
 	<div class="catecol">
     <div style="margin-bottom: 10px;">
-        <button id="writePost" type="button" onclick="location.href='/PostController'">글쓰기</button>
+        <button id="writePost" type="button" onclick="writeCheck()">글쓰기</button>
     </div>
     <div class="tab-list">
       <button class="category active" onclick="location.href='/BoardSelectController?board_num=0&page_num=1'">공지사항</button>
@@ -289,15 +302,7 @@ select:hover {
 	                    <th scope="row">${i.getPost_num()}</th>
 	                    <td><a href="/Writeview?post_id=${i.getPost_num()}">${i.getPost_title()}</a></td>
 	                    <td>${i.getUser_id()}</td>
-                        <fmt:formatDate value="${i.getPost_date()}" pattern="yyMMdd" var="date" />
-	                    <td>
-	                    <c:if test="${date eq now}">
-                            <fmt:formatDate value="${i.getPost_date()}" type="time" pattern="HH:mm" />
-                        </c:if>
-                        <c:if test="${date lt now}">
-                           	<fmt:formatDate value="${i.getPost_date()}" type="date" pattern="yy-MM-dd" />
-                        </c:if>
-                        </td>
+	                    <td><fmt:formatDate value="${i.getPost_date()}" type="date" pattern="yy-MM-dd" /></td>
 	                    </tr>
 	                    </c:forEach>
 	                </c:if>

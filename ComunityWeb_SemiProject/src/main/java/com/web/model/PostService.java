@@ -18,13 +18,12 @@ public class PostService {
 		return res; //res는 참 거짓
 		
 	}
-	
 
 	public List<PostDTO> searchAll() { 
 		PostDAO dao = new PostDAO();
 		return dao.getList(); //DAO 리스트 반환
 	}
-
+	
 	//성하 작업
 	public PostDTO searchPost(int postNum) {
 		PostDAO dao = new PostDAO();

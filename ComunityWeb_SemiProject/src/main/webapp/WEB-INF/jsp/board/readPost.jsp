@@ -240,6 +240,18 @@ p {
   right: 0;
 }
 </style>
+<script>
+function writeCheck() {
+	 var login ='<%=(String)session.getAttribute("UserID")%>';
+
+     if(login == "null"){ 
+        alert("로그인 후 가능합니다."); 
+     }
+     else{
+        location.replace("/PostController");
+     }
+}
+</script>
 
 <title>${post_info.getPost_title()}</title>
 </head>
@@ -272,7 +284,7 @@ p {
 	
 	<div class="catecol">
     <div style="margin-bottom: 10px;">
-        <button id="writePost" type="button" onclick="location.href='/PostController'">글쓰기</button>
+        <button id="writePost" type="button" onclick="writeCheck()">글쓰기</button>
     </div>
     <div class="tab-list">
       <button class="category active" onclick="location.href='/BoardSelectController?board_num=0&page_num=1'">공지사항</button>
@@ -290,11 +302,7 @@ p {
 	     <div style="display: flex; justify-content: space-between;">
 	         <div style="display: flex; justify-content: left; height: 100px; margin: 0; padding: 10px 0;">
 	             <div style="display: flex; flex-direction: column; align-content: flex-end;">
-	                 <label style="color:#46CDCF; font: size 10px;">
-	                 	<c:forEach var="i" items="${blist}">
-	                 		<c:if test="${post_info.getPost_num() eq i.getBOARD_NUM()}">${i.getBOARD_NAME()}</c:if>
-	                 	</c:forEach>
-	                 </label>
+	                 <label style="color:#46CDCF; font: size 10px;">${post_info.getBoard_name()}</label>
 	                 <h1 style="margin: 0;"><label class="textLabel" style="font-weight: bold;">${post_info.getPost_title()}</label></h1>
 	             </div>
 	         </div>
@@ -313,11 +321,11 @@ p {
 	     </div>
 	     <hr>
 	     <div id="contentBox">
-	         <p name="Content" placeholder="내용" style="overflow: auto;" required>${post_info.getPost_content()}</p>
+	         <p style="overflow: auto;">${post_info.getPost_content()}</p>
 	     </div>
 	    
 	
-	 
+	 	<c:if test="${post_info.getBoard_num() ne 0}">
 	      <hr>
 	      <section class="response">
 	        <div class="container">
@@ -340,7 +348,7 @@ p {
 			         			<c:if test="${i.getWriter() eq sessionScope.UserID}">
 				         			<div style="margin: 0 4px; padding: 10px 0;">
 				             			<button class="btnn md" id="changeCmt" onclick="location.href='/CommentChange?comment_id=${i.getCommentId()}'"><i class="fas fa-eraser"></i></button>
-				             			<button class="btnn del" id="deleteCmt"><i class="fas fa-trash-alt"></i></button>
+				             			<button class="btnn del" id="deleteCmt" onclick="location.href='/CommentDelete?comment_id=${i.getCommentId()}'"><i class="fas fa-trash-alt"></i></button>
 				         			</div>
 			         			</c:if>
 		         			</c:if>
@@ -353,15 +361,16 @@ p {
 	            <fmt:formatDate value="<%=new Date() %>" pattern="YYYY-MM-dd" var="now" />
 	            <c:choose>
 	            <c:when test="${empty sessionScope.UserID}">
-		            <a  id="unlogInedcase_comment" class="form-control" href="/join">로그인 후 이용해주세요.</a>
+		            <a  id="unlogInedcase_comment" class="form-control" href="/login">로그인 후 이용해주세요.</a>
 	            </c:when>
 	            <c:otherwise>
 	              <form action="/Writeview" method="post" accept-charset="utf-8" class="comment-form">
-
-	                <textarea  class="form-control" id="comment_textarea" name="context" placeholder="댓글을 입력하세요"></textarea>
+					<c:if test="${empty comments}"><textarea  class="form-control" id="comment_textarea" name="context" placeholder="댓글을 입력하세요"></textarea></c:if>
+					<c:if test="${not empty comments}"><textarea  class="form-control" id="comment_textarea" name="context" placeholder="댓글을 입력하세요">${comments}</textarea></c:if>
 	                <div class="comment_btn_case">
 	                  <input type="hidden" name="post_id" value="${post_info.getPost_num()}">
 	                  <input type="hidden" name="date" value="${now}">
+	                  <input type="hidden" name="comment_id" value="${comment_id}">
 	                  <button class="btn btn-outline-primary" type="submit" id="comment_btn">댓글등록</button>
 	                </div>
 	              </form>
@@ -371,6 +380,7 @@ p {
 	
 	          </div>
 	      </section> <!-- response end -->
+	 </c:if>
 	 </div> <!-- content end -->
 	 
 	 <footer class="footer">
