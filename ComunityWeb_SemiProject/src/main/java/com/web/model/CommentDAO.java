@@ -10,7 +10,7 @@ public class CommentDAO {
 	private OracleConnect oc;
 	
 	public CommentDAO() {
-		this.oc = new OracleConnect();
+		this.oc = new OracleConnect(false);
 	}
 	
 	public List<CommentDTO> selectList(int postNum) {
@@ -109,5 +109,12 @@ public class CommentDAO {
 	}
 	public void close() {
 		oc.close();
+	}
+	
+	//승원 작업
+	//USER_ID를 기준으로 작성된 POST_NUM 삭제
+	public int deleteUsersAllPost(AccountDTO dto) {
+		String query = "DELETE FROM COMMENTDB WHERE USER_ID = '" + dto.getUserID() + "'";
+		return oc.delete(query);
 	}
 }

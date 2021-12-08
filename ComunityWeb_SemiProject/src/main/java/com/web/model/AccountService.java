@@ -94,8 +94,15 @@ public class AccountService {
 	}
 	
 	public boolean quitCommunity(AccountDTO dto) {
+		PostDAO Pdao = new PostDAO();
+		Pdao.deleteUsersAllPost(dto);
+		
+		CommentDAO Cdao = new CommentDAO();
+		Cdao.deleteUsersAllPost(dto);
+		
 		AccountDAO dao = new AccountDAO();
 		boolean result = dao.deleteUser(dto);
+		
 		if(result) {
 			//유저 삭제 성공
 			dao.commit();

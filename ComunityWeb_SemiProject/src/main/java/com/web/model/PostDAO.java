@@ -62,7 +62,7 @@ public class PostDAO {
 	public void close() {
 		oc.close();
 	}
-
+	
 	//성하 작업
 	public PostDTO selectPost(int postNum) {
 		String query = "SELECT * FROM POSTDB WHERE POST_NUM = '" + postNum + "'";
@@ -113,5 +113,12 @@ public class PostDAO {
 		else {
 			return false;
 		}
+	}
+	
+	//승원 작업
+	//USER_ID를 기준으로 작성된 POST_NUM 삭제
+	public int deleteUsersAllPost(AccountDTO dto) {
+	String query = "DELETE FROM POSTDB WHERE USER_ID = '" + dto.getUserID() + "'";
+		return oc.delete(query);
 	}
 }
