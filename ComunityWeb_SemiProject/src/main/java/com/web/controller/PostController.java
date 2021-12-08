@@ -102,6 +102,10 @@ public class PostController extends HttpServlet {
 		int board_select = Integer.parseInt(postBoard);
 		int page_num = 1;
 		
+		
+		request.setAttribute("board_num", board_select);
+		request.setAttribute("page_num", page_num);
+		
 		BoardService b_service = new BoardService(); //보드 서비스 불러오기
 		List<BoardDTO> datas = b_service.searchBoard(board_select, page_num); //게시판넘버랑 게시글 번호 매개변수 받아서 게시글 불러오기 
 		request.setAttribute("datas", datas); //게시글 리스트를 셋

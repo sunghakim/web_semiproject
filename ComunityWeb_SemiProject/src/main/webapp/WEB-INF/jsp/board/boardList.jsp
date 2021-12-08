@@ -239,7 +239,9 @@ select:hover {
   right: 0;
 }
 </style>
-<title>게시판</title>
+<title><c:forEach var="i" items="${cate_list}">
+    	<c:if test="${i.getBOARD_NUM() eq board_num}">${i.getBOARD_NAME()}</c:if>
+		</c:forEach></title>
 </head>
 <body>
 <script>
