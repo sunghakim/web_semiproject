@@ -11,14 +11,17 @@ import java.util.List;
 import com.db.conn.OracleConnect;
 
 public class MemberManageDAO {
+	
 	private OracleConnect oc;
-    public MemberManageDAO() {
+	StringBuffer id;
+	
+	public MemberManageDAO() {
     	oc = new OracleConnect();
     }
 
     public List<AccountDTO> memberList() {
         List<AccountDTO> memberList = new ArrayList<>();
-        String SQL = "SELECT USER_ID, PASSWORD FROM ACCOUNTDB ORDER BY USER_ID";
+        String SQL = "SELECT USER_ID, PASSWORD FROM ACCOUNTDB WHERE IS_MANAGER = 0 ORDER BY USER_ID";
         
         try (Connection conn = oc.getConn();
         	 PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -39,7 +42,7 @@ public class MemberManageDAO {
 
     public int memberDelete(String[] ids) {
 
-        StringBuffer id = new StringBuffer();
+        id = new StringBuffer();
 
         for (int i = 0; i < ids.length; i++) {
             id.append("'");
@@ -48,6 +51,7 @@ public class MemberManageDAO {
             if (i < ids.length - 1)
                 id.append(",");
         }
+        
 
         String SQL = "DELETE ACCOUNTDB WHERE USER_ID IN (" + id.toString() + ")";
         
@@ -55,8 +59,10 @@ public class MemberManageDAO {
         try (Connection conn = oc.getConn();
         	 Statement stmt = conn.createStatement();) {
 
-            System.out.println("삭제한 ID : " + id);
+        	deleteComment(conn);
+        	deletePost(conn);
 
+        	System.out.println("삭제한 ID : " + id);
             return stmt.executeUpdate(SQL);
 
         } catch (Exception e) {
@@ -64,5 +70,29 @@ public class MemberManageDAO {
         }
         return -1;
     }
+    
+	private void deletePost(Connection conn) {
+		String SQL = "DELETE POSTDB WHERE USER_ID IN (" + id.toString() + ")";
+		try (Statement stmt = conn.createStatement();) {
+
+			stmt.executeUpdate(SQL);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void deleteComment(Connection conn) {
+		String SQL = "DELETE COMMENTDB WHERE USER_ID IN (" + id.toString() + ")";
+		
+		try (Statement stmt = conn.createStatement();) {
+
+			stmt.executeUpdate(SQL);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+    
 	
 }
