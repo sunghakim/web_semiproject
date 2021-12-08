@@ -37,7 +37,6 @@ public class MainpageController extends HttpServlet {
 			request.setAttribute("boardlist", mainlist);
 		}
 		
-		
 		BoardManageDAO category = new BoardManageDAO(); //카테고리 받아오는것
 		List<BoardManageDTO> cate_list = category.boardList(); //list 컬렉션으로 board_num, board_name 넣기
 		request.setAttribute("datas", cate_list); //메인.jsp 카테고리에 게시판 리스트 가져오기
