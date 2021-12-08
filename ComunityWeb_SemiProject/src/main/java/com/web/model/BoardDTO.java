@@ -12,14 +12,6 @@ public class BoardDTO {
 	private int board_num; //게시판 번호
 	private String board_name; //게시판 이름
 	
-	private int page_num;
-	
-	public int getPage_num() {
-		return page_num;
-	}
-	public void setPage_num(int page_num) {
-		this.page_num = page_num;
-	}
 	public BoardDTO() {}
 	public BoardDTO(int board_num) {
 		this.board_num = board_num;///
