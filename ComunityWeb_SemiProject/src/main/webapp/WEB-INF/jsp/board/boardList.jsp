@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://kit.fontawesome.com/59bfbac17d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/static/js/jquery-3.6.0.min.js"></script>
 <style type="text/css">
 html,
@@ -63,10 +63,6 @@ ul {
   margin-right: 10px;
 }
 
-.navBar-right .navBar-item > li > a {
-  color: black;
-  text-decoration: none;
-}
 .navBar-right .navBar-item > li > button {
   cursor: pointer;
   display: inline-block;
@@ -96,6 +92,11 @@ ul {
 }
 .nav_right .na .navBar a {
   color: #000;
+  text-decoration: none;
+}
+
+.navBar-right .navBar-item > li > a {
+  color: black;
   text-decoration: none;
 }
 
@@ -245,6 +246,10 @@ function writeCheck() {
         location.replace("/PostController");
      }
 }
+
+function goDetail(post_num) {
+	location.href="/Writeview?post_id="+post_num;
+}
 </script>
 
  <div class="wrap">
@@ -304,9 +309,9 @@ function writeCheck() {
                 <tbody>
 	                <c:if test ="${not empty datas}">
 	                	<c:forEach var="i" items="${datas}">
-	                    <tr>
+	                    <tr onclick="goDetail(${i.getPost_num()});">
 	                    <th scope="row">${i.getPost_num()}</th>
-	                    <td><a href="/Writeview?post_id=${i.getPost_num()}">${i.getPost_title()}</a></td>
+	                    <td>${i.getPost_title()}</td>
 	                    <td>${i.getUser_id()}</td>
 	                    <td><fmt:formatDate value="${i.getPost_date()}" type="date" pattern="yy-MM-dd" /></td>
 	                    </tr>
