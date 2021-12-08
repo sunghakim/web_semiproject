@@ -141,6 +141,7 @@ ul {
 
 .sidebar {
   padding-left: 50px;
+  width: 15%;
 }
 .sidebar > header {
   font-size: 20px;
