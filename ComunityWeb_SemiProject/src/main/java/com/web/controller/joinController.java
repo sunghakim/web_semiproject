@@ -26,34 +26,44 @@ public class joinController extends HttpServlet {
 			throws ServletException, IOException {
 		String UserID = request.getParameter("UserID");
 		String UserPassword = request.getParameter("UserPassword");
+		String ConfirmUserPassword = request.getParameter("ConfirmUserPassword");
+		
+		String view = "/WEB-INF/jsp/account/join.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(view);
 		
 		AccountDTO dto = new AccountDTO(UserID, UserPassword);
 		AccountService service = new AccountService();
-		String view = "/WEB-INF/jsp/account/join.jsp";
-		RequestDispatcher rd = request.getRequestDispatcher(view);
-		if(service.checkID(dto) == 0) {
-			//중복되는 아이디 없음
-			if(service.add(dto)) {
-				//회원가입 성공
-				response.sendRedirect("/");
+		
+		if (UserPassword.equals(ConfirmUserPassword)) {
+			//비밀번호와 재확인비밀번호가 같음
+			if(service.checkID(dto) == 0) {//오류발생
+				//중복되는 아이디 없음
+				if(service.add(dto)) {
+					//회원가입 성공
+					response.sendRedirect("/");
+				} else {
+					//DB내에서 잘못된 값 감지
+					request.setAttribute("UserID", UserID);
+					request.setAttribute("result", "1");
+					rd.forward(request, response);
+				}
+			} else if(service.checkID(dto) == 1) {
+				//중복되는 아이디 발견
+				request.setAttribute("UserID", UserID);
+				request.setAttribute("result", "2");
+				rd.forward(request, response);
 			} else {
-				//DB내에서 잘못된 값 감지
-				request.setAttribute("UserID", dto.getUserID());
+				//DB내에서 잘못된 데이터 검출
+				request.setAttribute("UserID", UserID);
 				request.setAttribute("result", "1");
 				rd.forward(request, response);
 			}
-		} else if(service.checkID(dto) == 1) {
-			//중복되는 아이디 발견
-			request.setAttribute("UserID", dto.getUserID());
-			request.setAttribute("result", "2");
-			rd.forward(request, response);
 		} else {
-			//DB내에서 잘못된 데이터 검출
-			request.setAttribute("UserID", dto.getUserID());
-			request.setAttribute("result", "1");
+			//입력한 비밀번호와 재확인용 비밀번호가 같지 않음
+			request.setAttribute("UserID", UserID);
+			request.setAttribute("result", "3");
 			rd.forward(request, response);
 		}
-		
 		
 	}
 }

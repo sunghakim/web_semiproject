@@ -29,7 +29,6 @@ public class AccountDAO {
 					dto.setUserID(res.getString("USER_ID"));
 					dto.setUserPassword(res.getString("PASSWORD"));
 					dto.setManager(res.getInt("IS_MANAGER"));
-					System.out.println(res.getInt("IS_MANAGER"));//1
 					datas.add(dto);
 				}
 			}catch(SQLException e) {
