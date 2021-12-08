@@ -115,8 +115,8 @@ function back() {
 </script>
  
 <title>
-<c:if test="${empty post_id}">글쓰기</c:if>
-<c:if test="${not empty post_id}">수정하기</c:if>
+<c:if test="${empty post_title}">글쓰기</c:if>
+<c:if test="${not empty post_title}">수정하기</c:if>
 </title>
 </head>
 <div id="content">
@@ -132,19 +132,19 @@ function back() {
                     <c:if test="${empty board}">
 	                    <option value="">카테고리 선택</option>
 	                    <c:forEach var="i" items="${category}">
-	                    	<option value="${i.getBOARD_NUM()}">${i.getBOARD_NAME()}</option>	
-	                    </c:forEach>
-                    </c:if>
-                    <c:if test="${not empty board}">
-                    	<c:forEach var="i" items="${category}">
-	                    <c:if test="${board eq i.getBOARD_NUM()}">
-	                       	<option value="${board}" selected>${i.getBOARD_NAME()}</option>
-	                    </c:if>
+	                    	<c:choose>
+		                    	<c:when test="${category.size() eq 1}">
+		                    		<option value="${i.getBOARD_NUM()}" selected>${i.getBOARD_NAME()}</option>
+		                    	</c:when>
+		                    	<c:otherwise>
+		                    		<option value="${i.getBOARD_NUM()}">${i.getBOARD_NAME()}</option>	
+		                    	</c:otherwise>
+	                    	</c:choose>
 	                    </c:forEach>
                     </c:if>
                 </select>
-                <c:if test="${empty post_id}"><input class="frm" id="writeTitle" name="post_title" placeholder="제목" style="margin-left: 4px;" required></c:if>
-            	<c:if test="${not empty post_id}"><input class="frm" id="writeTitle" name="post_title" placeholder="제목" value="${post_title}" style="margin-left: 4px;" required></c:if>
+                <c:if test="${empty post_title}"><input class="frm" id="writeTitle" name="post_title" placeholder="제목" style="margin-left: 4px;" required></c:if>
+            	<c:if test="${not empty post_title}"><input class="frm" id="writeTitle" name="post_title" placeholder="제목" value="${post_title}" style="margin-left: 4px;" required></c:if>
             </div>
             <hr>
             <div class="writeHd">
@@ -152,11 +152,14 @@ function back() {
             	<c:if test="${not empty post_content}"><textarea class="frm" id="writeContent" placeholder="내용" name="post_content" style="overflow: auto;" required>${post_content}</textarea></c:if>
             </div>
             <input type="hidden" name="date" value="${now}">
+            <input type="hidden" name="post_id" value="${post_id}">
             <div style="display: flex; justify-content: space-between; margin: 0 20px; padding: 10px 0;">
               <button class="btnn back2" onclick="back();">취소</button>
               <span>
                 <button class="btnn reset" type="reset">다시 작성</button>
-                <button class="btnn submit" type="submit">작성</button>
+                <c:if test="${empty post_title}"><button class="btnn submit" type="submit">작성</button></c:if>
+				<c:if test="${not empty post_title}"><button class="btnn submit" type="submit">수정</button></c:if>
+                
               </span>
             </div>
         </form>
