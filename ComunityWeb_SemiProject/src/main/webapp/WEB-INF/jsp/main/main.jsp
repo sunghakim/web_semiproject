@@ -226,7 +226,7 @@ ul {
 			        	}
 			           %> 
                   </div>
-                  <img class="img-fluid w-50" src="/static/imgsss.jpg" alt="" style="box-shadow:5px 5px 10px black;">
+                  <img class="img-fluid w-50" src="imgsss.jpg" alt="" style="box-shadow:5px 5px 10px black;">
               </div>
           </div>
       </section>
