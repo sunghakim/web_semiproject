@@ -194,6 +194,12 @@ select:hover {
     border-color: #46CDCF;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
 .search {
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.418);
@@ -250,6 +256,7 @@ function writeCheck() {
 function goDetail(post_num) {
 	location.href="/Writeview?post_id="+post_num;
 }
+
 </script>
 
  <div class="wrap">
@@ -320,6 +327,17 @@ function goDetail(post_num) {
                 </tbody>
             </table>
         </div> <!-- boardTable end -->
+        
+        <c:set var="n" value='${page_num}' />
+        
+		  <ul class="pagination">
+		    <c:forEach var="i" begin='1' end='10' step='1'>
+		    	<c:if test="${i eq n}"><li class="page-item"><a class="page-link" style="background-color: #F2F2F2;"  href="/BoardSelectController?board_num=${board_num}&page_num=${i}">${i}</a></li></c:if>
+		    	<c:if test="${i ne n}"><li class="page-item"><a class="page-link" href="/BoardSelectController?board_num=${board_num}&page_num=${i}">${i}</a></li></c:if>
+		    </c:forEach>
+		   
+		  </ul>
+        
         <form action="/BoardSelectController" method="post">
             <div id="search">
                 <select name="searchKeyword">
