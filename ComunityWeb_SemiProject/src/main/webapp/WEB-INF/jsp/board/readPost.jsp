@@ -356,11 +356,8 @@ p {
 		            <a  id="unlogInedcase_comment" class="form-control" href="/join">로그인 후 이용해주세요.</a>
 	            </c:when>
 	            <c:otherwise>
-<<<<<<< HEAD
 	              <form action="/Writeview" method="post" accept-charset="utf-8" class="comment-form">
-=======
-	              <form action="/Writeview" method="post" class="comment-form">
->>>>>>> refs/remotes/origin/김성하
+
 	                <textarea  class="form-control" id="comment_textarea" name="context" placeholder="댓글을 입력하세요"></textarea>
 	                <div class="comment_btn_case">
 	                  <input type="hidden" name="post_id" value="${post_info.getPost_num()}">
