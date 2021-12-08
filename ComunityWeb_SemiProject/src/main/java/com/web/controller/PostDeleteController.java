@@ -26,21 +26,21 @@ public class PostDeleteController extends HttpServlet {
 			//성공
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('게시글 및 관련 댓글이 삭제되었습니다.'); location.href='/BoardSelectController?board_num=' + boardNum + '&page_num=1';</script>");
+			out.println("<script>alert('게시글 및 관련 댓글이 삭제되었습니다.'); location.href='/BoardSelectController?board_num=" + boardNum + "&page_num=1';</script>");
 			out.flush();
 		}
 		else if(result == 1){
 			//게시글 삭제 실패
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('게시글 삭제에 실패했습니다.'); location.href='/Writeview?post_id=' + postId';</script>");
+			out.println("<script>alert('게시글 삭제에 실패했습니다.'); location.href='/Writeview?post_id=" + postId + ";</script>");
 			out.flush();
 		}
 		else {
 			//게시글에 있는 댓글 삭제 실패
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('게시글 관련 댓글 삭제에 실패했습니다.'); location.href='/Writeview?post_id=' + postId;</script>");
+			out.println("<script>alert('게시글 관련 댓글 삭제에 실패했습니다.'); location.href='/Writeview?post_id=" + postId + ";</script>");
 			out.flush();
 		}
 	}
