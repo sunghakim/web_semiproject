@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -124,6 +125,7 @@ function back() {
             <c:if test="${empty post_id}"><h1><label class="textLabel">글쓰기</label></h1></c:if>
             <c:if test="${not empty post_id}"><h1><label class="textLabel">수정하기</label></h1></c:if>
         </div>
+        <fmt:formatDate value="<%=new Date() %>" pattern="YYYY-MM-dd" var="now" />
         <form class="frmWrite" action="/PostController" method="post" accept-charset="utf-8">
             <div class="writeHd">
                 <select class="frm" id="writeSelect" name="board" style="margin-right: 5px;" required>
@@ -149,6 +151,7 @@ function back() {
             	<c:if test="${empty post_content}"><textarea class="frm" id="writeContent" placeholder="내용" name="post_content" style="overflow: auto;" required></textarea></c:if>
             	<c:if test="${not empty post_content}"><textarea class="frm" id="writeContent" placeholder="내용" name="post_content" style="overflow: auto;" required>${post_content}</textarea></c:if>
             </div>
+            <input type="hidden" name="date" value="${now}">
             <div style="display: flex; justify-content: space-between; margin: 0 20px; padding: 10px 0;">
               <button class="btnn back2" onclick="back();">취소</button>
               <span>
