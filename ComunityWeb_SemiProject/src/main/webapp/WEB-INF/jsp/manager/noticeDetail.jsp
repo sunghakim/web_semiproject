@@ -171,12 +171,12 @@ ul {
   <nav class="navBar">
     <div class="navBar-container">
       <div class="navBar-home">
-        <a href="#"><i class="fas fa-home"> home</i></a>
+        <a href="/memberlist"><i class="fas fa-home"> home</i></a>
       </div>
       <div class="navBar-right">
         <ul class="navBar-item">
           <li>관리자님 환영합니다.</li>
-          <li><button  type="submit" class="LogOut_btn">Log Out</button></li>
+          <li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
         </ul>
     </div>
 

@@ -140,7 +140,7 @@ ul {
   <nav class="navBar">
     <div class="navBar-container">
       <div class="navBar-home">
-        <a href="/main"><i class="fas fa-home"> home</i></a>
+        <a href="/memberlist"><i class="fas fa-home"> home</i></a>
       </div>
       <div class="navBar-right">
          <ul class="navBar-item">

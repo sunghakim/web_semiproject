@@ -19,17 +19,18 @@ public class PostChangeController extends HttpServlet {
 		int postId = Integer.parseInt(request.getParameter("post_id"));
 		
 		request.setAttribute("post_id", postId);
-		
+		System.out.println("post_id set");
 		PostService service = new PostService();
 		PostDTO dto = new PostDTO();
 		dto = service.searchPost(postId);
-		
+		System.out.println("searchpost");
 		request.setAttribute("post_content", dto.getPost_content());
 		request.setAttribute("post_title", dto.getPost_title());
 		request.setAttribute("board", dto.getBoard_num());
-		
+		System.out.println("sets3");
 		String view = "WEB-INF/jsp/board/boardWrite.jsp"; //게시글 수정 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
+		System.out.println("view 이동");
 		rd.forward(request, response);
 	}
 

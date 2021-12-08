@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <style type="text/css">
 html,
 body {
@@ -235,20 +236,17 @@ select:hover {
           </div>
           <div class="navBar-right">
             <ul class="navBar-item">
-<<<<<<< HEAD
-            <c:choose>
+			<c:choose>
             	<c:when test="${!empty sessionScope.UserID}">
-              		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("s_login_user")%>님 환영합니다.</a></li>
-              		<li><button  type="submit" class="LogOut_btn">Log Out</button></li>
+              		<li><a href="/mypage"><%=(String) request.getSession().getAttribute("UserID")%>님 환영합니다.</a></li>
+              		<li><button  type="submit" class="LogOut_btn" onclick="location.href='/logout'">Log Out</button></li>
             	</c:when>
             	<c:otherwise>
             		<li><button type="button" class="SignIn_btn" onclick="location.href='/login'">Sign In</button></li>
                    	<li><button  type="button" class="SignUp_btn" onclick="location.href='/join'">Sign Up</button></li>
             	</c:otherwise>
             </c:choose>
-=======
->>>>>>> refs/remotes/origin/김성하
-            </ul>
+			</ul>
           </div>
 
             </div>
@@ -263,7 +261,7 @@ select:hover {
       <button class="category active">공지사항</button>
       <c:if test="${not empty cate_list}">
       	<c:forEach var="i" items="${cate_list}">
-      		<button class="category" onclick="location.href='/BoardSelectController?board_select=${i.getBOARD_NUM()}&page_num=1'">${i.getBOARD_NAME()}</button>
+      		<button class="category" onclick="location.href='/BoardSelectController?board_num=${i.getBOARD_NUM()}&page_num=1'">${i.getBOARD_NAME()}</button>
       	</c:forEach>
       </c:if>
     </div>

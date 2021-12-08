@@ -78,7 +78,7 @@ public class OracleConnect {
 		}
 	}
 	
-	//커넥션 가져오기 - 김한빈 수정
+	//커넥션 가져오기 - 김한빈 추가
 	public Connection getConn() {
 		return conn;
 	}
