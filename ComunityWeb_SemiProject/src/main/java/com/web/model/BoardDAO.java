@@ -15,7 +15,6 @@ public class BoardDAO {
 	}
 	
 	public List<BoardDTO> select(int board_num, int page_num){
-		
 		String query = "SELECT * FROM ("
 				+ "SELECT ROWNUM RNUM, TB.*  FROM ("
 				+ "SELECT * FROM POSTDB P JOIN BOARDDB B ON (P.BOARD_NUM = B.BOARD_NUM)  WHERE "
@@ -24,6 +23,7 @@ public class BoardDAO {
 			    + ") WHERE RNUM BETWEEN "
 				+ "'" + ((page_num-1) * 10 + 1) + "'AND "
 				+ "'"+ (page_num * 10) + "'" ;
+
 		// N page = ((n-1) * 10 +1) ~ (n * 10); 페이징 로직 
 		ResultSet pageres = oc.select(query);//검색 결과
 		

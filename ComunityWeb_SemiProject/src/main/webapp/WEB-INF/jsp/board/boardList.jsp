@@ -333,10 +333,12 @@ function goDetail(post_num) {
             </table>
         </div> <!-- boardTable end -->
         
+		  <c:set var="n" value='${page_num}' />
+        
 		  <ul class="pagination">
-		    <c:forEach var="i" begin="1" end="10" step="1">
-		    	<c:if test="${i eq page_num}"><li class="page-item"><a class="page-link" style="background-color: #F2F2F2;"  href="/BoardSelectController?board_num=${board_num}&page_num=${i}">${i}</a></li></c:if>
-		    	<c:if test="${i ne page_num}"><li class="page-item"><a class="page-link" href="/BoardSelectController?board_num=${board_num}&page_num=${i}">${i}</a></li></c:if>
+		    <c:forEach var="i" begin='1' end='10' step='1'>
+		    	<c:if test="${i eq n}"><li class="page-item"><a class="page-link" style="background-color: #F2F2F2;"  href="/BoardSelectController?board_num=${board_num}&page_num=${i}">${i}</a></li></c:if>
+		    	<c:if test="${i ne n}"><li class="page-item"><a class="page-link" href="/BoardSelectController?board_num=${board_num}&page_num=${i}">${i}</a></li></c:if>
 		    </c:forEach>
 		   
 		  </ul>

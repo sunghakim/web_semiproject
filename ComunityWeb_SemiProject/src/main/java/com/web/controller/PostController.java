@@ -102,7 +102,6 @@ public class PostController extends HttpServlet {
 		int board_select = Integer.parseInt(postBoard);
 		int page_num = 1;
 		
-		
 		request.setAttribute("board_num", board_select);
 		request.setAttribute("page_num", page_num);
 		
