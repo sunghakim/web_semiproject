@@ -229,7 +229,11 @@ ul {
                             </td>
                             <td>
                                 <h5 class="font-medium mb-0" id="<%=dto.getBOARD_NUM() %>"><%=dto.getBOARD_NAME() %></h5>
+<<<<<<< HEAD
 <                               <div class="input_hidden">
+=======
+                                <div class="input_hidden">
+>>>>>>> refs/remotes/origin/김성하
 								  <input type="hidden" name="update" value="<%=dto.getBOARD_NUM() + " " +dto.getBOARD_NAME()%>">
                                   <input type="text" name="update" placeholder="게시판 아이디">
                                   <input type="text" name="update" placeholder="게시판 이름">
