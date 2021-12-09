@@ -241,7 +241,6 @@ ul {
 
                             <td>
                               
-                             <button type="button" id="memberlist-edit" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" onclick="updateBoard()"><i class="fas fa-edit"></i></button>
                              <button type="submit" name="send" value="deleteSubmit" id="memberlist-edit" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" onclick="deleteBoard()"><i class="fas fa-trash-alt"></i></button>
                              
                             </td>
