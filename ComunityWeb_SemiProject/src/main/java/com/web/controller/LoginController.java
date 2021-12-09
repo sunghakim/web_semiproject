@@ -33,6 +33,7 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 		switch(service.login(dto)) {
 		case(1)://관리자 로그인 성공
+			session.setAttribute("isManager", dto.getManager());
 			session.setAttribute("UserID", dto.getUserID());
 			response.sendRedirect("/memberlist");
 			break;
