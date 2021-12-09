@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.web.model.PostDTO;
-import com.web.model.PostService;
 import com.web.model.*;
 
 @WebServlet("/CommentChange")
@@ -45,6 +43,10 @@ public class CommentChangeController extends HttpServlet {
 		PostService p_service = new PostService();
 		PostDTO p_dto = p_service.searchPost(dto.getWriteId());
 		request.setAttribute("post_info", p_dto);
+		
+		BoardManageDAO b_service = new BoardManageDAO();
+		List<BoardManageDTO> b_list = b_service.boardList();
+		request.setAttribute("blist", b_list);
 		
 		String view = "WEB-INF/jsp/board/readPost.jsp"; //게시글 상세 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);

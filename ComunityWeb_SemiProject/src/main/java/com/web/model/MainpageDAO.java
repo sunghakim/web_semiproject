@@ -17,13 +17,15 @@ public class MainpageDAO {
 	
 	public List<MainpageDTO> pageList(int page_num){
 		
-		String query = "SELECT * FROM(" //페이징 기법으로 만들기 
-				+ "SELECT ROWNUM AS RNUM, P.*, B.BOARD_NAME "
-				+ "FROM POSTDB P JOIN BOARDDB B ON (P.BOARD_NUM = B.BOARD_NUM) "
-				+ "ORDER BY POST_NUM DESC) "
-				+ "WHERE RNUM BETWEEN"
-				+ "'" + ((page_num - 1) * 10 + 1) + "' AND " 
-				+"'"+(page_num * 10) + "'";
+
+		String query = "SELECT * FROM ("
+				+ "SELECT ROWNUM RNUM, TB.*  FROM ("
+				+ "SELECT * FROM POSTDB P JOIN BOARDDB B ON (P.BOARD_NUM = B.BOARD_NUM)"
+				+ "ORDER BY POST_NUM DESC )TB" 
+			    + ") WHERE RNUM BETWEEN "
+				+ "'" + ((page_num-1) * 10 + 1) + "'AND "
+				+ "'"+ (page_num * 10) + "'" ;
+		// N page = ((n-1) * 10 +1) ~ (n * 10); 페이징 로직 
 		// N page = ((n-1) * 10 +1) ~ (n * 10); 페이징 로직 
 		List<MainpageDTO> pagedatas = new ArrayList<MainpageDTO>();
 		ResultSet pageres = oc.select(query);

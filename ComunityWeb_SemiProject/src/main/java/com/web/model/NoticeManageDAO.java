@@ -58,7 +58,7 @@ public class NoticeManageDAO {
     }
 
     public PostDTO getCurrentPage(int postNum) {
-        String SQL = "SELECT POST_TITLE,POST_DATE,POST_CONTENT FROM POSTDB WHERE POST_NUM = ?";
+        String SQL = "SELECT POST_TITLE,POST_DATE,POST_CONTENT,USER_ID FROM POSTDB WHERE POST_NUM = ?";
         try (Connection conn = oc.getConn();
              PreparedStatement pstmt = conn.prepareStatement(SQL);) {
 
@@ -71,6 +71,7 @@ public class NoticeManageDAO {
                 post.setPost_date(rs.getDate(2));
                 post.setPost_content(rs.getString(3));
                 post.setPost_num(postNum);
+                post.setUser_id(rs.getString(4));
 
                 return post;
             }

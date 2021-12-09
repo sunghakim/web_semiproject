@@ -48,9 +48,7 @@ public class BoardManageController extends HttpServlet {
             // 공지사항 카테고리 번호 = 0, 삭제 수정 불가
             case "updateSubmit": {
                 String[] update = req.getParameterValues("update");
-                for(String s : update) {
-                	System.out.println(s+ " ");
-                }
+                
                 String[] currentCategory = update[0].split(" ");
                 int currentCategoryNum = Integer.parseInt(currentCategory[0]);
                 String currentCategoryName = currentCategory[1];
@@ -62,13 +60,22 @@ public class BoardManageController extends HttpServlet {
 
                 int updateCategoryNum = Integer.parseInt(update[1]);
                 String updateCategoryName = update[2];
-
-
-                System.out.println("수정 전 카테고리 : " + currentCategoryNum + " " + currentCategoryName);
-                int result = manage.updateCategory(updateCategoryName, updateCategoryNum, currentCategoryNum);
                 
-                System.out.println("쿼리 반환값 : " + result);
-                System.out.println("수정된 카테고리 : " + updateCategoryNum + " " + updateCategoryName);
+                System.out.println("수정 전 카테고리 : " + currentCategoryNum + " " + currentCategoryName);
+                
+                if(currentCategoryNum == updateCategoryNum) {
+                	if(manage.updateCategory(updateCategoryName, currentCategoryNum) >= 1) {	
+                	System.out.println("카테고리 수정 성공");
+					System.out.println("수정된 카테고리 : " + updateCategoryNum + " " + updateCategoryName);
+                	}
+                	break;
+                }
+
+				if (manage.updateCategory(updateCategoryName, updateCategoryNum, currentCategoryNum)) {
+					System.out.println("카테고리 수정 성공");
+					System.out.println("수정된 카테고리 : " + updateCategoryNum + " " + updateCategoryName);
+				}
+                
                 break;
             }
 

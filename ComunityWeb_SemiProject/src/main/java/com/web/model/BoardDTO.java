@@ -10,7 +10,7 @@ public class BoardDTO {
 	private String post_content; //게시글 내용
 	private Date post_date; //게시글 날짜
 	private int board_num; //게시판 번호
-	private String board_name;
+	private String board_name; //게시판 이름
 	
 	public BoardDTO() {}
 	public BoardDTO(int board_num) {

@@ -15,19 +15,19 @@ public class BoardDAO {
 	}
 	
 	public List<BoardDTO> select(int board_num, int page_num){
-		
-		String query =  "SELECT * FROM (" //페이징 기법으로 만들기 
-				+ "SELECT ROWNUM AS RNUM, P.*, B.BOARD_NAME FROM POSTDB P JOIN BOARDDB B ON (P.BOARD_NUM = B.BOARD_NUM) "
-				+ "ORDER BY POST_NUM DESC) "
-				+ "WHERE RNUM BETWEEN "
-				+ "'" + ((page_num - 1) * 10 + 1) + "' AND "
-				+ "'" + (page_num * 10) + "' AND "
-				+ "BOARD_NUM = '" + board_num + "'";
+		String query = "SELECT * FROM ("
+				+ "SELECT ROWNUM RNUM, TB.*  FROM ("
+				+ "SELECT * FROM POSTDB P JOIN BOARDDB B ON (P.BOARD_NUM = B.BOARD_NUM)  WHERE "
+				+ "P.BOARD_NUM = '" + board_num +"'"
+				+ "ORDER BY POST_NUM DESC )TB" 
+			    + ") WHERE RNUM BETWEEN "
+				+ "'" + ((page_num-1) * 10 + 1) + "'AND "
+				+ "'"+ (page_num * 10) + "'" ;
+
 		// N page = ((n-1) * 10 +1) ~ (n * 10); 페이징 로직 
 		ResultSet pageres = oc.select(query);//검색 결과
 		
 		List<BoardDTO> datas = new ArrayList<BoardDTO>(); //여러 데이터 담을 컬렉션
-		
 		
 		try {
 			while(pageres.next()) { //게시글 번호, 유저아이디, 게시글 제목, 내용, 날짜, 게시판 번호

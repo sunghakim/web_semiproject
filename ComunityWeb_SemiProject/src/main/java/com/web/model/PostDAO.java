@@ -53,6 +53,9 @@ public class PostDAO {
 		return datas;
 	}
 	
+	
+	
+	
 	public void commit() {
 		oc.commit();
 	}

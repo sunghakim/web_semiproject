@@ -161,7 +161,9 @@ ul {
 .mb-3.NoBtn{
 display: flex;
 }
-
+.mb-3.NoBtn >button{
+margin-right: 10px;
+}
 
 </style>
 <body>
@@ -215,8 +217,9 @@ display: flex;
             <button class="btn btn-outline-primary" type="submit" onclick="location.href='noticeList'">목록</button>
             <button id="noticCon-btn"class="btn btn-outline-primary" onclick="location.href='noticeWrite?updateNum=<%=data.getPost_num()%>&name=modify'">수정</button>
             <form  action="noticeList" method="post" >
-            <button class="btn btn-outline-secondary" style="color:black;" type="submit" name="send" value="delete">삭제</button>
+            <button class="btn btn-primary" type="submit" name="send" value="delete">삭제</button>
             <input type="hidden" name="deletePost" value="<%=data.getPost_num()%>">
+            <input type="hidden" name="postWriter" value="<%=data.getUser_id()%>">
             </form>
           </div>
 	</div>

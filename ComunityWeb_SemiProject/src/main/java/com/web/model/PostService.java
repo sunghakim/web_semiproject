@@ -19,6 +19,8 @@ public class PostService {
 		
 	}
 
+	
+	
 	public List<PostDTO> searchAll() { 
 		PostDAO dao = new PostDAO();
 		return dao.getList(); //DAO 리스트 반환

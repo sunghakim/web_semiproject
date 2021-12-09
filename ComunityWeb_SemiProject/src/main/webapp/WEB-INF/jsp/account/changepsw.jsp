@@ -213,15 +213,6 @@ function passwdCheck(form){
     form.submit();
 }
 
-function passwdCheck(form){
-    if(form.currPasswd.value ==""){
-        alert("현재 비밀번호를 입력해주세요");
-        form.currPasswd.focus();
-        return;
-
-    } 
-    
-}
 </script>
 </body>
 </html>
