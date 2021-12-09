@@ -34,10 +34,12 @@ public class LoginController extends HttpServlet {
 		switch(service.login(dto)) {
 		case(1)://관리자 로그인 성공
 			session.setAttribute("UserID", dto.getUserID());
+			session.setAttribute("Manager", dto.getManager());
 			response.sendRedirect("/memberlist");
 			break;
 		case(2)://일반회원 로그인 성공
 			session.setAttribute("UserID", dto.getUserID());
+			session.setAttribute("Manager", dto.getManager());
 			response.sendRedirect("/");
 			break;
 		case(3):

@@ -12,7 +12,7 @@ public class MainpageDAO {
 	private OracleConnect oc;
 	
 	public MainpageDAO(){
-		this.oc = new OracleConnect(false); //오라클 커넥트 연결(로컬로)
+		this.oc = new OracleConnect(true); //오라클 커넥트 연결(로컬로)
 	}
 	
 	public List<MainpageDTO> pageList(int page_num){

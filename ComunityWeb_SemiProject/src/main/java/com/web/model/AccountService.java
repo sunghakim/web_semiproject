@@ -30,6 +30,7 @@ public class AccountService {
 				return false;
 			}
 		} else {
+			dao.close();
 			return false;
 		}
 	}

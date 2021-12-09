@@ -10,7 +10,7 @@ public class PostDAO {
 	OracleConnect oc = null;
 	
 	public PostDAO() {
-		this.oc = new OracleConnect(false); //데이터베이스 연결한것 로컬은 false
+		this.oc = new OracleConnect(true); //데이터베이스 연결한것 로컬은 false
 	}
 	
 	public boolean add(PostDTO dto) { //게시글 추가 작업
