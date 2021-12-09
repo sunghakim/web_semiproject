@@ -31,6 +31,17 @@ public class BoardSelectController extends HttpServlet {
 		List<BoardDTO> datas = service.searchBoard(board_select, page_num); //게시판넘버랑 게시글 번호 매개변수 받아서 게시글 불러오기 
 		request.setAttribute("datas", datas); //게시글 리스트를 셋
 		
+		int postNum = service.searchBoardPostNum(board_select);
+		int pagingNum = 0;
+		if(postNum%10 == 0) {
+			pagingNum = postNum/10;
+		}
+		else {
+			pagingNum = (postNum/10) + 1;
+		}
+		System.out.println(postNum + "|" + pagingNum);
+		request.setAttribute("paging_num", pagingNum);
+		
 		request.setAttribute("board_num", board_select );
 		request.setAttribute("page_num", page_num );
 		

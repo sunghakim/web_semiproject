@@ -113,6 +113,16 @@ public class PostController extends HttpServlet {
 		List<BoardManageDTO> cate_list = category.boardList();
 		request.setAttribute("cate_list", cate_list);
 		
+		int postAmount = b_service.searchBoardPostNum(board_select);
+		int pagingNum = 0;
+		if(postAmount%10 == 0) {
+			pagingNum = postAmount/10;
+		}
+		else {
+			pagingNum = (postAmount/10) + 1;
+		}
+		request.setAttribute("paging_num", pagingNum);
+		
 		String view = "/WEB-INF/jsp/board/boardList.jsp"; //게시글 리스트 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
