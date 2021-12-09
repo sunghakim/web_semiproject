@@ -15,7 +15,6 @@ public class AccountDAO {
 	}
 	
 	public List<AccountDTO> select(String UserID) {
-		
 		String query = "SELECT * FROM ACCOUNTDB WHERE USER_ID = '" + UserID + "'";
 		ResultSet res = oc.select(query);
 		

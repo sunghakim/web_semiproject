@@ -42,7 +42,7 @@ public class MainpageDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
+		oc.close();
 		return pagedatas;
 	}
 	

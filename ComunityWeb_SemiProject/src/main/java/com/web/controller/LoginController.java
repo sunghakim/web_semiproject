@@ -27,10 +27,10 @@ public class LoginController extends HttpServlet {
 			throws ServletException, IOException {
 		String UserID = request.getParameter("UserID");
 		String UserPassword = request.getParameter("UserPassword");
-		
 		AccountDTO dto = new AccountDTO(UserID, UserPassword);
 		AccountService service = new AccountService();
 		HttpSession session = request.getSession();
+		
 		switch(service.login(dto)) {
 		case(1)://관리자 로그인 성공
 			session.setAttribute("UserID", dto.getUserID());
