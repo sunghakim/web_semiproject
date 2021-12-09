@@ -11,7 +11,7 @@ public class BoardDAO {
 
 	OracleConnect oc = null;
 	public BoardDAO() {
-		this.oc = new OracleConnect(true); //로컬 데이터베이스 연결
+		this.oc = new OracleConnect(false); //로컬 데이터베이스 연결
 	}
 	
 	public List<BoardDTO> select(int board_num, int page_num){

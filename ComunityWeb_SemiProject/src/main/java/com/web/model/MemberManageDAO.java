@@ -16,7 +16,7 @@ public class MemberManageDAO {
 	StringBuffer id;
 	
 	public MemberManageDAO() {
-    	oc = new OracleConnect(true);
+    	oc = new OracleConnect(false);
     }
 
     public List<AccountDTO> memberList() {

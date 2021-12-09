@@ -10,7 +10,7 @@ public class CommentDAO {
 	private OracleConnect oc;
 	
 	public CommentDAO() {
-		this.oc = new OracleConnect(true);
+		this.oc = new OracleConnect(false);
 	}
 	
 	public List<CommentDTO> selectList(int postNum) {
