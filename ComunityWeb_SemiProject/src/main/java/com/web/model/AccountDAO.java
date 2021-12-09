@@ -11,11 +11,10 @@ public class AccountDAO {
 	private OracleConnect oc;
 
 	public AccountDAO() {
-		this.oc = new OracleConnect(false);
+		this.oc = new OracleConnect(true);
 	}
 	
 	public List<AccountDTO> select(String UserID) {
-		
 		String query = "SELECT * FROM ACCOUNTDB WHERE USER_ID = '" + UserID + "'";
 		ResultSet res = oc.select(query);
 		
@@ -35,7 +34,6 @@ public class AccountDAO {
 				e.printStackTrace();
 			}
 		}
-		
 		return datas;
 	}
 

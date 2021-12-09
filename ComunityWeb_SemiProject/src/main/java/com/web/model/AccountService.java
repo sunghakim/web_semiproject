@@ -30,6 +30,7 @@ public class AccountService {
 				return false;
 			}
 		} else {
+			dao.close();
 			return false;
 		}
 	}
@@ -43,14 +44,18 @@ public class AccountService {
 			if(dto.getUserPassword().equals(DBData.getUserPassword())) {
 				//로그인 성공
 				if (DBData.getManager()) {
+					dao.close();
 					return 1;//관리자 로그인
 				} else {
+					dao.close();
 					return 2;//일반회원 로그인
 				}
 			} else {
+				dao.close();
 				return 3;//비밀번호 다름
 			}
 		} else {
+			dao.close();
 			//DB 데이터 오류(관리자에게 보고할것)
 			return 4;
 		}
@@ -75,11 +80,12 @@ public class AccountService {
 				}
 			} else {
 				//현재 비밀번호 다름
+				dao.close();
 				return 3;
 			}
 		} else {
-			System.out.println("4");
 			//데이터베이스에서 중복된 값 오류 검출
+			dao.close();
 			return 4;
 		}
 	}
@@ -144,12 +150,15 @@ public class AccountService {
 		List<AccountDTO> data = dao.select(dto.getUserID());
 		if(data.size() == 0) {
 			//중복되는 아이디 없음
+			dao.close();
 			return 0;
 		} else if (data.size() == 1) {
 			//중복되는 아이디 검출
+			dao.close();
 			return 1;
 		} else {
 			//DB 데이터 오류(관리자에게 보고할것)
+			dao.close();
 			return 2;
 		}
 	}

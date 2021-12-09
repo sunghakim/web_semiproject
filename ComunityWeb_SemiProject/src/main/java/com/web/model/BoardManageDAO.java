@@ -15,7 +15,7 @@ public class BoardManageDAO {
 	private OracleConnect oc;
 	
     public BoardManageDAO() {
-    	oc = new OracleConnect();
+    	oc = new OracleConnect(true);
 
     }
 

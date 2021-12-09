@@ -13,7 +13,7 @@ import com.db.conn.OracleConnect;
 public class NoticeManageDAO {
 	private OracleConnect oc;
     public NoticeManageDAO() {
-        oc = new OracleConnect(false);
+        oc = new OracleConnect(true);
     }
 
     public List<PostDTO> noticeList() {
