@@ -22,6 +22,18 @@ public class NoticeListController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	NoticeManageDAO noticeManage = new NoticeManageDAO();
     	
+    	HttpSession session = req.getSession();
+    	req.setCharacterEncoding("UTF-8");
+    	resp.setContentType("text/html;charset=UTF-8");
+    	
+    	Boolean access = (Boolean) session.getAttribute("isManager");
+    	if(access == null || !access) {
+    		PrintWriter pw = resp.getWriter();
+    		pw.println("<script>alert('접근 불가'); location.href='';</script>");
+    		pw.close();
+    		return;
+    	}
+    	
         req.setAttribute("postList", noticeManage.noticeList());
         req.getRequestDispatcher("/WEB-INF/jsp/manager/noticeList.jsp").forward(req, resp);
 
