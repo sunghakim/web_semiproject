@@ -77,10 +77,10 @@ public class PostController extends HttpServlet {
 			dto.setBoard_num(Integer.parseInt(postBoard));
 			
 			if(service.create(dto)) {
-				System.out.println("새글 저장 성공");
+				//새글 저장 성공
 			}
 			else {
-				System.out.println("새글 저장 실패");
+				//새글 저장 실패
 			}
 		}
 		else {
@@ -91,10 +91,10 @@ public class PostController extends HttpServlet {
 			dto.setPost_date(postDate);
 			
 			if(service.changePost(dto)) {
-				System.out.println("수정글 저장 성공");
+				//수정글 저장 성공
 			}
 			else {
-				System.out.println("수정글 저장 실패");
+				//수정글 저장 실패
 			}
 		}
 		
@@ -112,6 +112,16 @@ public class PostController extends HttpServlet {
 		BoardManageDAO category = new BoardManageDAO(); //카테고리 받아오는것
 		List<BoardManageDTO> cate_list = category.boardList();
 		request.setAttribute("cate_list", cate_list);
+		
+		int postAmount = b_service.searchBoardPostNum(board_select);
+		int pagingNum = 0;
+		if(postAmount%10 == 0) {
+			pagingNum = postAmount/10;
+		}
+		else {
+			pagingNum = (postAmount/10) + 1;
+		}
+		request.setAttribute("paging_num", pagingNum);
 		
 		String view = "/WEB-INF/jsp/board/boardList.jsp"; //게시글 리스트 페이지
 		RequestDispatcher rd = request.getRequestDispatcher(view);

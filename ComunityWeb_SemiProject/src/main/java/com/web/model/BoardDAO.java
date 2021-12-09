@@ -49,6 +49,35 @@ public class BoardDAO {
 		return datas;
 	}
 	
+	public List<BoardDTO> selectAll(int board_num) {
+		String query = "SELECT * FROM POSTDB P JOIN BOARDDB B ON (P.BOARD_NUM = B.BOARD_NUM) WHERE "
+				+ "P.BOARD_NUM = '" + board_num +"'";
+
+		ResultSet result = oc.select(query);
+		
+		List<BoardDTO> datas = new ArrayList<BoardDTO>(); //여러 데이터 담을 컬렉션
+		
+		try {
+			while(result.next()) { //게시글 번호, 유저아이디, 게시글 제목, 내용, 날짜, 게시판 번호
+				BoardDTO dto = new BoardDTO();
+				dto.setPost_num(result.getInt("POST_NUM"));
+				dto.setUser_id(result.getString("USER_ID"));
+				dto.setPost_title(result.getString("POST_TITLE"));
+				dto.setPost_content(result.getString("POST_CONTENT"));
+				dto.setPost_date(result.getDate("POST_DATE"));
+				dto.setBoard_num(result.getInt("BOARD_NUM"));
+				dto.setBoard_name(result.getString("BOARD_NAME"));
+				datas.add(dto);
+				System.out.println(dto.getPost_num());
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(datas.size());
+		return datas;
+	}
+	
 	public void commit() {
 		oc.commit();
 	}

@@ -20,7 +20,7 @@ public class CommentDeleteController extends HttpServlet {
 		
 		CommentService service = new CommentService();
 		int postId = service.getComment(commentId).getWriteId();
-		System.out.println(postId);
+		
 		if(service.deleteComment(commentId)) {
 			//성공
 			String view = "/Writeview?post_id=" + postId;

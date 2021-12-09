@@ -38,7 +38,7 @@ public class PostService {
 		PostDAO p_dao = new PostDAO();
 		CommentDAO c_dao = new CommentDAO();
 		List<CommentDTO> c_List = c_dao.selectList(postNum);
-		System.out.println(c_List.size());
+		
 		if(c_List.size() == 0) {
 			//댓글 없으면
 			if(p_dao.delete(postNum)) {

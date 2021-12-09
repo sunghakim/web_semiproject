@@ -8,4 +8,9 @@ public class BoardService {
 		BoardDAO dao = new BoardDAO();
 		return dao.select(board_num, page_num);
 	}
+	
+	public int searchBoardPostNum(int board_num) {
+		BoardDAO dao = new BoardDAO();
+		return dao.selectAll(board_num).size();
+	}
 }
